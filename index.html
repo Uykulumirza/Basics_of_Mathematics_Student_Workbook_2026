@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basics of Mathematics — Student Workbook (Winter 2026)</title>
+  
+  <!-- Favicon / Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  
+  <!-- KaTeX and Marked.js Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@14.1.2/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+
+  <style>
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-tertiary: #f1f5f9;
+      --border-color: #e2e8f0;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-light: #eff6ff;
+      --success: #16a34a;
+      --success-light: #f0fdf4;
+      --warning: #d97706;
+      --warning-light: #fffbeb;
+      --sidebar-width: 320px;
+      --header-height: 64px;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #0b1120;
+      --bg-secondary: #0f172a;
+      --bg-tertiary: #1e293b;
+      --border-color: #334155;
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #64748b;
+      --accent: #3b82f6;
+      --accent-hover: #60a5fa;
+      --accent-light: rgba(59, 130, 246, 0.15);
+      --success: #22c55e;
+      --success-light: rgba(34, 197, 94, 0.15);
+      --warning: #f59e0b;
+      --warning-light: rgba(245, 158, 11, 0.15);
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Sidebar Navigation */
+    #sidebar {
+      width: var(--sidebar-width);
+      height: 100vh;
+      background-color: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+      z-index: 50;
+    }
+
+    .sidebar-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      color: white;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .brand-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .brand-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .search-box {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 8px 12px;
+      background-color: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+    }
+
+    .sidebar-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 8px;
+    }
+
+    .module-group {
+      margin-bottom: 16px;
+    }
+
+    .module-heading {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      margin: 2px 0;
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .nav-item:hover {
+      background-color: var(--bg-tertiary);
+      color: var(--text-primary);
+    }
+
+    .nav-item.active {
+      background-color: var(--accent-light);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .nav-item-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-right: 8px;
+    }
+
+    .status-badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 9999px;
+      white-space: nowrap;
+    }
+
+    .status-badge.accepted {
+      background-color: var(--success-light);
+      color: var(--success);
+    }
+
+    .status-badge.progress {
+      background-color: var(--warning-light);
+      color: var(--warning);
+    }
+
+    .status-badge.pending {
+      background-color: var(--bg-tertiary);
+      color: var(--text-muted);
+    }
+
+    /* Main Content Area */
+    #main-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Navbar / Header */
+    header {
+      height: var(--header-height);
+      border-bottom: 1px solid var(--border-color);
+      background-color: var(--bg-primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      flex-shrink: 0;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      cursor: pointer;
+      padding: 6px;
+      border-radius: var(--radius-sm);
+    }
+
+    .breadcrumbs {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .breadcrumbs span.active {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: var(--bg-tertiary);
+      border-color: var(--text-muted);
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      color: white;
+    }
+
+    /* View Tabs & Sub-Navigation */
+    .view-bar {
+      padding: 10px 24px;
+      background-color: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 6px;
+      background-color: var(--bg-tertiary);
+      padding: 3px;
+      border-radius: var(--radius-md);
+    }
+
+    .tab-btn {
+      padding: 6px 14px;
+      border: none;
+      background: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .tab-btn.active {
+      background-color: var(--bg-primary);
+      color: var(--accent);
+      font-weight: 600;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Solutions Pills Bar */
+    #problem-selector {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      max-width: 100%;
+      padding-bottom: 2px;
+    }
+
+    .problem-pill {
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-primary);
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+
+    .problem-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .problem-pill.active {
+      background-color: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    .problem-pill.done::after {
+      content: " ✓";
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .problem-pill.active.done::after {
+      color: white;
+    }
+
+    /* Content Area */
+    #content-viewport {
+      flex: 1;
+      overflow-y: auto;
+      padding: 32px;
+      background-color: var(--bg-primary);
+    }
+
+    .markdown-body {
+      max-width: 860px;
+      margin: 0 auto;
+      color: var(--text-primary);
+    }
+
+    .markdown-body h1 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-color);
+      font-weight: 700;
+    }
+
+    .markdown-body h2 {
+      font-size: 1.4rem;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .markdown-body h3 {
+      font-size: 1.15rem;
+      margin-top: 22px;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .markdown-body p {
+      margin-bottom: 14px;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .markdown-body ul, .markdown-body ol {
+      margin-left: 24px;
+      margin-bottom: 14px;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .markdown-body li {
+      margin-bottom: 6px;
+    }
+
+    .markdown-body blockquote {
+      border-left: 4px solid var(--accent);
+      padding: 10px 16px;
+      background-color: var(--bg-secondary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: 16px 0;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .markdown-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.9rem;
+    }
+
+    .markdown-body th, .markdown-body td {
+      border: 1px solid var(--border-color);
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    .markdown-body th {
+      background-color: var(--bg-secondary);
+      font-weight: 600;
+    }
+
+    .markdown-body tr:nth-child(even) {
+      background-color: var(--bg-tertiary);
+    }
+
+    .markdown-body pre {
+      background-color: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      overflow-x: auto;
+      margin: 16px 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+    }
+
+    .markdown-body code {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      background-color: var(--bg-tertiary);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .markdown-body pre code {
+      background: none;
+      padding: 0;
+    }
+
+    /* Math rendering styling */
+    .katex-display {
+      margin: 16px 0 !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 4px 0;
+    }
+
+    /* Loading and empty states */
+    .loading-spinner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+      gap: 12px;
+      color: var(--text-muted);
+    }
+
+    .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid var(--border-color);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      #sidebar {
+        position: fixed;
+        transform: translateX(-100%);
+      }
+      #sidebar.open {
+        transform: translateX(0);
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      #content-viewport {
+        padding: 20px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <div class="sidebar-header">
+      <div class="brand-icon">∑</div>
+      <div>
+        <div class="brand-title">Basics of Mathematics</div>
+        <div class="brand-subtitle">Student Workbook Winter 2026</div>
+      </div>
+    </div>
+
+    <div class="search-box">
+      <input type="text" id="topic-search" class="search-input" placeholder="Search exercises, topics...">
+    </div>
+
+    <div class="sidebar-scroll" id="nav-container">
+      <!-- Generated by JS -->
+    </div>
+  </aside>
+
+  <!-- Main View -->
+  <div id="main-container">
+    <header>
+      <div class="header-left">
+        <button class="mobile-menu-btn" id="toggle-sidebar" aria-label="Toggle Navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <div class="breadcrumbs" id="breadcrumbs">
+          <span>Algebra</span> / <span class="active">01 Matrices and Operations</span>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <button class="btn" id="theme-toggle" title="Toggle Dark/Light Mode">
+          <span id="theme-icon">🌙</span>
+        </button>
+        <a href="https://github.com/Uykulumirza/Basics_of_Mathematics_Student_Workbook_2026" target="_blank" class="btn" title="View on GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </header>
+
+    <!-- Sub-Navbar for Views (Exercises vs. Solutions) -->
+    <div class="view-bar">
+      <div class="tabs">
+        <button class="tab-btn active" id="tab-exercise" onclick="switchTab('exercise')">📖 Exercise Problems</button>
+        <button class="tab-btn" id="tab-solutions" onclick="switchTab('solutions')">💡 Solutions Explorer</button>
+      </div>
+
+      <div id="problem-selector">
+        <!-- 15 problem buttons injected dynamically -->
+      </div>
+    </div>
+
+    <!-- Content Viewport -->
+    <main id="content-viewport">
+      <div class="markdown-body" id="article-content">
+        <div class="loading-spinner">
+          <div class="spinner"></div>
+          <div>Loading workbook materials...</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // --- Curriculum Database ---
+    const CURRICULUM = [
+      {
+        id: 'overview',
+        title: 'Course Overview & Instructions',
+        module: 'General',
+        exerciseFile: 'README.md',
+        isOverview: true
+      },
+      // Module 1: Algebra
+      {
+        id: 'algebra-01',
+        title: '01 Matrices and Operations',
+        module: '1. Algebra',
+        exerciseFile: 'exercises/1_Algebra/01_matrices_and_operations_en.md',
+        solutionsDir: 'solutions/1_Algebra/01_matrices_and_operations',
+        totalProblems: 15,
+        completedCount: 15,
+        status: 'accepted'
+      },
+      {
+        id: 'algebra-02',
+        title: '02 Determinants',
+        module: '1. Algebra',
+        exerciseFile: 'exercises/1_Algebra/02_determinants_en.md',
+        solutionsDir: 'solutions/1_Algebra/02_determinants',
+        totalProblems: 15,
+        completedCount: 7,
+        status: 'progress'
+      },
+      {
+        id: 'algebra-03',
+        title: '03 Matrix Inversion',
+        module: '1. Algebra',
+        exerciseFile: 'exercises/1_Algebra/03_matrix_inversion_en.md',
+        solutionsDir: 'solutions/1_Algebra/03_matrix_inversion',
+        totalProblems: 15,
+        completedCount: 0,
+        status: 'pending'
+      },
+      {
+        id: 'algebra-04',
+        title: '04 Systems of Equations',
+        module: '1. Algebra',
+        exerciseFile: 'exercises/1_Algebra/04_systems_of_equations_en.md',
+        solutionsDir: 'solutions/1_Algebra/04_systems_of_equations',
+        totalProblems: 15,
+        completedCount: 0,
+        status: 'pending'
+      },
+      // Module 2: Geometry
+      {
+        id: 'geometry-01',
+        title: '01 Vectors',
+        module: '2. Geometry',
+        exerciseFile: 'exercises/2_Geometry/01_vectors_en.md',
+        solutionsDir: 'solutions/2_Geometry/01_vectors',
+        totalProblems: 15,
+        completedCount: 0,
+        status: 'pending'
+      },
+      {
+        id: 'geometry-02',
+        title: '02 Lines and Planes',
+        module: '2. Geometry',
+        exerciseFile: 'exercises/2_Geometry/02_lines_and_planes_en.md',
+        solutionsDir: 'solutions/2_Geometry/02_lines_and_planes',
+        totalProblems: 15,
+        completedCount: 0,
+        status: 'pending'
+      },
+      {
+        id: 'geometry-03',
+        title: '03 Curves and Surfaces',
+        module: '2. Geometry',
+        exerciseFile: 'exercises/2_Geometry/03_second_degree_curves_and_surfaces_en.md',
+        solutionsDir: 'solutions/2_Geometry/03_second_degree_curves_and_surfaces',
+        totalProblems: 15,
+        completedCount: 0,
+        status: 'pending'
+      },
+      // Module 3: Calculus
+      {
+        id: 'calculus-01',
+        title: '01 Limits',
+        module: '3. Calculus',
+        exerciseFile: 'exercises/3_Calculus/01_limits_en.md',
+        solutionsDir: 'solutions/3_Calculus/01_limits',
+        totalProblems: 15,
+        completedCount: 0,
+        status: 'pending'
+      },
+      {
+        id: 'calculus-02',
+        title: '02 Derivatives',
+        module: '3. Calculus',
+        exerciseFile: 'exercises/3_Calculus/02_derivatives_en.md',
+        solutionsDir: 'solutions/3_Calculus/02_derivatives',
+        totalProblems: 15,
+        completedCount: 0,
+        status: 'pending'
+      },
+      {
+        id: 'calculus-03',
+        title: '03 Function Analysis',
+        module: '3. Calculus',
+        exerciseFile: 'exercises/3_Calculus/03_function_analysis_en.md',
+        solutionsDir: 'solutions/3_Calculus/03_function_analysis',
+        totalProblems: 15,
+        completedCount: 0,
+        status: 'pending'
+      },
+      {
+        id: 'calculus-04',
+        title: '04 Integrals',
+        module: '3. Calculus',
+        exerciseFile: 'exercises/3_Calculus/04_integrals_en.md',
+        solutionsDir: 'solutions/3_Calculus/04_integrals',
+        totalProblems: 15,
+        completedCount: 0,
+        status: 'pending'
+      },
+      {
+        id: 'calculus-05',
+        title: '05 Applications',
+        module: '3. Calculus',
+        exerciseFile: 'exercises/3_Calculus/05_applications_en.md',
+        solutionsDir: 'solutions/3_Calculus/05_applications',
+        totalProblems: 12,
+        completedCount: 0,
+        status: 'pending'
+      }
+    ];
+
+    // --- State ---
+    let currentTopicId = 'algebra-01';
+    let currentTab = 'exercise'; // 'exercise' | 'solutions'
+    let currentProblemIndex = 1;
+
+    // --- Math + Markdown Parser ---
+    function renderMarkdownWithKaTeX(markdownText) {
+      if (!markdownText) return '<p>No content available.</p>';
+
+      const mathBlocks = [];
+
+      // 1. Protect Display Math ($$...$$)
+      let protectedText = markdownText.replace(/\$\$([\s\S]+?)\$\$/g, (match, formula) => {
+        mathBlocks.push({ type: 'display', formula: formula.trim() });
+        return `@@MATH_BLOCK_${mathBlocks.length - 1}@@`;
+      });
+
+      // 2. Protect Inline Math ($...$)
+      protectedText = protectedText.replace(/\$([^\$\n]+?)\$/g, (match, formula) => {
+        mathBlocks.push({ type: 'inline', formula: formula.trim() });
+        return `@@MATH_BLOCK_${mathBlocks.length - 1}@@`;
+      });
+
+      // 3. Parse Markdown
+      let parsedHtml = marked.parse(protectedText);
+
+      // 4. Restore and Render KaTeX
+      parsedHtml = parsedHtml.replace(/@@MATH_BLOCK_(\d+)@@/g, (match, index) => {
+        const item = mathBlocks[Number(index)];
+        if (!item) return match;
+        try {
+          return katex.renderToString(item.formula, {
+            displayMode: item.type === 'display',
+            throwOnError: false
+          });
+        } catch (e) {
+          console.error("KaTeX Error:", e);
+          return `<span style="color:red;">${match}</span>`;
+        }
+      });
+
+      return parsedHtml;
+    }
+
+    // --- UI Navigation Building ---
+    function buildSidebar() {
+      const navContainer = document.getElementById('nav-container');
+      navContainer.innerHTML = '';
+
+      // Group by module
+      const modules = {};
+      CURRICULUM.forEach(item => {
+        if (!modules[item.module]) modules[item.module] = [];
+        modules[item.module].push(item);
+      });
+
+      for (const [moduleName, items] of Object.entries(modules)) {
+        const groupEl = document.createElement('div');
+        groupEl.className = 'module-group';
+
+        const headingEl = document.createElement('div');
+        headingEl.className = 'module-heading';
+        headingEl.textContent = moduleName;
+        groupEl.appendChild(headingEl);
+
+        items.forEach(item => {
+          const itemEl = document.createElement('div');
+          itemEl.className = `nav-item ${item.id === currentTopicId ? 'active' : ''}`;
+          itemEl.onclick = () => selectTopic(item.id);
+
+          let badgeHtml = '';
+          if (item.status === 'accepted') {
+            badgeHtml = `<span class="status-badge accepted">✓ ${item.completedCount}/${item.totalProblems}</span>`;
+          } else if (item.status === 'progress') {
+            badgeHtml = `<span class="status-badge progress">${item.completedCount}/${item.totalProblems}</span>`;
+          } else if (item.status === 'pending') {
+            badgeHtml = `<span class="status-badge pending">0/${item.totalProblems}</span>`;
+          }
+
+          itemEl.innerHTML = `
+            <span class="nav-item-title">${item.title}</span>
+            ${badgeHtml}
+          `;
+          groupEl.appendChild(itemEl);
+        });
+
+        navContainer.appendChild(groupEl);
+      }
+    }
+
+    // --- Content Loader ---
+    async function loadCurrentContent() {
+      const topic = CURRICULUM.find(t => t.id === currentTopicId);
+      if (!topic) return;
+
+      // Update Breadcrumbs
+      const breadcrumbs = document.getElementById('breadcrumbs');
+      breadcrumbs.innerHTML = `<span>${topic.module}</span> / <span class="active">${topic.title}</span>`;
+
+      // Update Tab Bar visibility
+      const problemSelector = document.getElementById('problem-selector');
+      if (topic.isOverview) {
+        document.querySelector('.view-bar').style.display = 'none';
+      } else {
+        document.querySelector('.view-bar').style.display = 'flex';
+        problemSelector.style.display = currentTab === 'solutions' ? 'flex' : 'none';
+      }
+
+      const contentEl = document.getElementById('article-content');
+      contentEl.innerHTML = `
+        <div class="loading-spinner">
+          <div class="spinner"></div>
+          <div>Loading content...</div>
+        </div>
+      `;
+
+      let targetUrl = '';
+      if (currentTab === 'exercise' || topic.isOverview) {
+        targetUrl = topic.exerciseFile;
+      } else {
+        const paddedIndex = String(currentProblemIndex).padStart(2, '0');
+        targetUrl = `${topic.solutionsDir}/problem_${paddedIndex}_solution.md`;
+      }
+
+      try {
+        const resp = await fetch(targetUrl);
+        if (!resp.ok) {
+          throw new Error(`HTTP ${resp.status}: Could not load ${targetUrl}`);
+        }
+        const text = await resp.text();
+        if (text.trim().length === 0) {
+          contentEl.innerHTML = `
+            <div style="text-align:center; padding: 60px 20px;">
+              <h2>Solution Not Started Yet</h2>
+              <p style="color:var(--text-muted); margin-top:8px;">
+                The template for <code>${targetUrl}</code> is currently awaiting solution.
+              </p>
+            </div>
+          `;
+        } else {
+          contentEl.innerHTML = renderMarkdownWithKaTeX(text);
+        }
+      } catch (err) {
+        contentEl.innerHTML = `
+          <div style="padding: 24px; border: 1px solid var(--border-color); border-radius: var(--radius-md); background-color: var(--bg-secondary);">
+            <h3 style="color:#ef4444; margin-bottom:8px;">Unable to load content file</h3>
+            <p>Target file: <code>${targetUrl}</code></p>
+            <p style="color:var(--text-muted); font-size:0.85rem; margin-top:8px;">${err.message}</p>
+          </div>
+        `;
+      }
+    }
+
+    // --- Action Handlers ---
+    function selectTopic(id) {
+      currentTopicId = id;
+      const topic = CURRICULUM.find(t => t.id === currentTopicId);
+      if (topic.isOverview) {
+        currentTab = 'exercise';
+      }
+      buildSidebar();
+      buildProblemSelector();
+      loadCurrentContent();
+      window.location.hash = `#${currentTopicId}`;
+
+      // Close mobile menu
+      document.getElementById('sidebar').classList.remove('open');
+    }
+
+    function switchTab(tab) {
+      currentTab = tab;
+      document.getElementById('tab-exercise').classList.toggle('active', tab === 'exercise');
+      document.getElementById('tab-solutions').classList.toggle('active', tab === 'solutions');
+      document.getElementById('problem-selector').style.display = tab === 'solutions' ? 'flex' : 'none';
+      loadCurrentContent();
+    }
+
+    function selectProblem(index) {
+      currentProblemIndex = index;
+      buildProblemSelector();
+      loadCurrentContent();
+    }
+
+    function buildProblemSelector() {
+      const selector = document.getElementById('problem-selector');
+      selector.innerHTML = '';
+      const topic = CURRICULUM.find(t => t.id === currentTopicId);
+      if (!topic || topic.isOverview) return;
+
+      const total = topic.totalProblems || 15;
+      for (let i = 1; i <= total; i++) {
+        const pill = document.createElement('button');
+        const isDone = i <= topic.completedCount;
+        pill.className = `problem-pill ${i === currentProblemIndex ? 'active' : ''} ${isDone ? 'done' : ''}`;
+        pill.textContent = `P${i}`;
+        pill.title = `Problem ${i} ${isDone ? '(Completed)' : '(Pending)'}`;
+        pill.onclick = () => selectProblem(i);
+        selector.appendChild(pill);
+      }
+    }
+
+    // --- Search functionality ---
+    document.getElementById('topic-search').addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase();
+      document.querySelectorAll('.nav-item').forEach(el => {
+        const text = el.textContent.toLowerCase();
+        el.style.display = text.includes(term) ? 'flex' : 'none';
+      });
+    });
+
+    // --- Theme toggle ---
+    const themeBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    function applyTheme(isDark) {
+      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+      themeIcon.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('math_workbook_theme', isDark ? 'dark' : 'light');
+    }
+
+    themeBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      applyTheme(!isDark);
+    });
+
+    // Initialize Theme
+    const savedTheme = localStorage.getItem('math_workbook_theme') || 
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    applyTheme(savedTheme === 'dark');
+
+    // Mobile Sidebar toggle
+    document.getElementById('toggle-sidebar').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.toggle('open');
+    });
+
+    // Initialize on Page Load
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash) {
+        const hashId = window.location.hash.replace('#', '');
+        if (CURRICULUM.some(t => t.id === hashId)) {
+          currentTopicId = hashId;
+        }
+      }
+      buildSidebar();
+      buildProblemSelector();
+      loadCurrentContent();
+    });
+  </script>
+</body>
+</html>
