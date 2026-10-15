@@ -26,10 +26,13 @@ The first few terms are:
 $$f_0 = 0, \quad f_1 = 1, \quad f_2 = 1, \quad f_3 = 2, \quad f_4 = 3, \quad f_5 = 5, \quad f_6 = 8, \quad f_7 = 13, \dots$$
 
 ### Companion Matrix and State-Space Representation
-Any scalar second-order recurrence can be converted into a first-order system of vector equations using a state vector $v_n = \begin{pmatrix} f_n \\ f_{n-1} \end{pmatrix}$:
+Any scalar second-order recurrence can be converted into a first-order system of vector equations using a state vector $v_n = \begin{pmatrix} f_n \\ f_{n-1} \end{pmatrix}$ for $n \ge 1$:
 $$v_{n+1} = \begin{pmatrix} f_{n+1} \\ f_n \end{pmatrix} = \begin{pmatrix} f_n + f_{n-1} \\ f_n \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} f_n \\ f_{n-1} \end{pmatrix} = F v_n$$
-Repeated application shows that the $n$-th state is obtained directly by matrix exponentiation:
-$$v_n = F^n v_0$$
+Starting from the base state vector:
+$$v_1 = \begin{pmatrix} f_1 \\ f_0 \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$$
+repeated application of the matrix multiplication yields the $n$-th state vector directly for all $n \ge 1$:
+$$v_n = F^{n-1} v_1$$
+
 
 ---
 

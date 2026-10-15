@@ -74,7 +74,7 @@ Therefore:
 $$AB = \begin{pmatrix} Ab_1 & Ab_2 \end{pmatrix} = \begin{pmatrix} -1 & 2 \\ 2 & 1 \end{pmatrix}$$
 
 **Explanation:**
-When computing the $j$-th column of $AB$, the row operations of $A$ act strictly on the numbers located in the $j$-th column of $B$ (which form the vector $b_j$). The entries of other columns of $B$ play no role in determining column $j$ of the product. Therefore, multiplying a matrix $A$ by a full matrix $B$ is identical to performing separate matrix-vector multiplications $A b_j$ for each column of $B$ and arranging the resulting column vectors side by side.
+When computing the $j$-th column of $AB$, the row dot products of $A$ act strictly on the numbers located in the $j$-th column of $B$ (which form the vector $b_j$). The entries of other columns of $B$ play no role in determining column $j$ of the product. Therefore, multiplying a matrix $A$ by a full matrix $B$ is identical to performing separate matrix-vector multiplications $A b_j$ for each column of $B$ and arranging the resulting column vectors side by side.
 
 ---
 

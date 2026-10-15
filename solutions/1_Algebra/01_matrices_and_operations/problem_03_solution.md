@@ -91,6 +91,6 @@ We analyze each of the eight products systematically:
 | $DA$ | $2 \times 2$ | $2 \times 3$ | $2 = 2$ | **Yes** | $2 \times 3$ |
 
 ### Structural Observations
-- Notice that while $AB$ is defined, $BA$ is not defined. Even when both products of two matrices are defined (e.g. if we consider $A$ and $C$: $CA$ is defined but $AC$ is not), commutativity of existence generally fails for rectangular matrices.
+- Notice that existence of matrix products is not symmetric: for instance, $AB$ is defined while $BA$ is not, and $CA$ is defined while $AC$ is not. Commutativity of existence fails for rectangular matrices unless their dimensions are transpose-compatible ($m \times n$ and $n \times m$), and even then the resulting products have different sizes ($m \times m$ versus $n \times n$).
 - The results are fully consistent with the linear mapping interpretation: $A: \mathbb{R}^3 \to \mathbb{R}^2$, $B: \mathbb{R}^4 \to \mathbb{R}^3$, $C: \mathbb{R}^2 \to \mathbb{R}^4$, and $D: \mathbb{R}^2 \to \mathbb{R}^2$. A composition $M \circ N$ is valid if and only if the codomain of $N$ matches the domain of $M$.
 
