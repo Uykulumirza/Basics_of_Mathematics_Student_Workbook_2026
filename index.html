@@ -842,6 +842,275 @@
         padding: 20px 16px;
       }
     }
+
+    /* --- Geometry Plotter Styles --- */
+    .plotter-dashboard {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .plotter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .plotter-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .plotter-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-top: 6px;
+    }
+
+    .plotter-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .plotter-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .plotter-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .plotter-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .plotter-card-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .preset-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .preset-item {
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      text-align: left;
+    }
+
+    .preset-item:hover {
+      border-color: var(--accent);
+      background-color: var(--bg-tertiary);
+    }
+
+    .preset-item.active {
+      border-color: var(--accent);
+      background-color: var(--accent-light);
+    }
+
+    .preset-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .preset-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .preset-item.active .preset-name {
+      color: var(--accent);
+    }
+
+    .preset-math {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: 'Fira Code', monospace;
+    }
+
+    .param-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .slider-box {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .slider-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .slider-val {
+      font-family: 'Fira Code', monospace;
+      color: var(--accent);
+    }
+
+    .range-input {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .toggle-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toggle-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .toggle-label input {
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .canvas-container-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .canvas-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .canvas-tools-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .canvas-btn {
+      padding: 5px 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-primary);
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .canvas-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .coord-display {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      background-color: var(--bg-tertiary);
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+    }
+
+    .canvas-frame {
+      position: relative;
+      width: 100%;
+      height: 540px;
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    #conicCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: crosshair;
+    }
+
+    .math-details-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+
+    .math-details-table td {
+      padding: 6px 4px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .math-details-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .math-details-table .key {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .math-details-table .val {
+      font-weight: 600;
+      font-family: 'Fira Code', monospace;
+      text-align: right;
+      color: var(--text-primary);
+    }
   </style>
 </head>
 <body>
@@ -894,6 +1163,7 @@
         <button class="tab-btn active" id="tab-exercise" onclick="switchTab('exercise')">📖 Exercise Problems</button>
         <button class="tab-btn" id="tab-solutions" onclick="switchTab('solutions')">💡 Solutions Explorer</button>
         <button class="tab-btn" id="tab-tracker" onclick="switchTab('tracker')">📊 Acceptance Tracker</button>
+        <button class="tab-btn" id="tab-plotter" onclick="switchTab('plotter')">📈 Geometry Plotter</button>
       </div>
 
       <div id="problem-selector">
@@ -920,6 +1190,12 @@
         title: '📊 Acceptance & Review Tracker',
         module: 'Course Status',
         isTracker: true
+      },
+      {
+        id: 'plotter-view',
+        title: '📈 Interactive Geometry Plotter',
+        module: 'Course Status',
+        isPlotter: true
       },
       {
         id: 'overview',
@@ -1009,8 +1285,10 @@
         solutionsDir: 'solutions/2_Geometry/03_second_degree_curves_and_surfaces',
         totalProblems: 15,
         acceptedCount: 0,
-        submittedCount: 0,
-        status: 'pending'
+        submittedCount: 4,
+        submittedProblems: [1, 3, 4, 5],
+        status: 'submitted',
+        reviewNotes: 'Exercises 1, 3, 4, and 5 completed with geometric feature classification and interactive 2D canvas plots.'
       },
       // Module 3: Calculus
       {
@@ -1138,11 +1416,15 @@
 
         items.forEach(item => {
           const itemEl = document.createElement('div');
-          const isActive = (currentTab === 'tracker' && item.isTracker) || (currentTab !== 'tracker' && item.id === currentTopicId);
+          const isActive = (currentTab === 'tracker' && item.isTracker) ||
+                           (currentTab === 'plotter' && item.isPlotter) ||
+                           (currentTab !== 'tracker' && currentTab !== 'plotter' && item.id === currentTopicId);
           itemEl.className = `nav-item ${isActive ? 'active' : ''}`;
           itemEl.onclick = () => {
             if (item.isTracker) {
               switchTab('tracker');
+            } else if (item.isPlotter) {
+              switchTab('plotter');
             } else {
               selectTopic(item.id);
             }
@@ -1155,6 +1437,8 @@
             badgeHtml = `<span class="status-badge submitted">⏳ ${item.submittedCount}/${item.totalProblems}</span>`;
           } else if (item.status === 'pending') {
             badgeHtml = `<span class="status-badge pending">0/${item.totalProblems}</span>`;
+          } else if (item.isPlotter) {
+            badgeHtml = `<span class="status-badge" style="background:var(--accent-light);color:var(--accent);font-weight:600;">2D Plot</span>`;
           }
 
           itemEl.innerHTML = `
@@ -1307,10 +1591,11 @@
         for (let i = 1; i <= topic.totalProblems; i++) {
           let cellClass = 'pending';
           let cellTag = 'Pending';
+          const isSubmittedProb = topic.submittedProblems ? topic.submittedProblems.includes(i) : (topic.submittedCount && i <= topic.submittedCount);
           if (topic.status === 'accepted') {
             cellClass = 'accepted';
             cellTag = '✓ Pass';
-          } else if (topic.status === 'submitted') {
+          } else if (isSubmittedProb) {
             cellClass = 'submitted';
             cellTag = '⏳ Sent';
           }
@@ -1407,6 +1692,12 @@
         renderAcceptanceTracker();
         return;
       }
+      if (currentTab === 'plotter') {
+        document.querySelector('.view-bar').style.display = 'flex';
+        document.getElementById('problem-selector').style.display = 'none';
+        renderGeometryPlotter();
+        return;
+      }
 
       const topic = CURRICULUM.find(t => t.id === currentTopicId);
       if (!topic) return;
@@ -1478,6 +1769,9 @@
       } else if (topic.isTracker) {
         switchTab('tracker');
         return;
+      } else if (topic.isPlotter) {
+        switchTab('plotter');
+        return;
       }
       buildSidebar();
       buildProblemSelector();
@@ -1493,6 +1787,8 @@
       document.getElementById('tab-exercise').classList.toggle('active', tab === 'exercise');
       document.getElementById('tab-solutions').classList.toggle('active', tab === 'solutions');
       document.getElementById('tab-tracker').classList.toggle('active', tab === 'tracker');
+      const tabPlotter = document.getElementById('tab-plotter');
+      if (tabPlotter) tabPlotter.classList.toggle('active', tab === 'plotter');
       
       const problemSelector = document.getElementById('problem-selector');
       if (problemSelector) {
@@ -1500,11 +1796,11 @@
       }
 
       buildSidebar();
-      if (tab !== 'tracker') {
+      if (tab !== 'tracker' && tab !== 'plotter') {
         buildProblemSelector();
       }
       loadCurrentContent();
-      window.location.hash = tab === 'tracker' ? '#tracker' : `#${currentTopicId}`;
+      window.location.hash = tab === 'tracker' ? '#tracker' : (tab === 'plotter' ? '#plotter' : `#${currentTopicId}`);
     }
 
     function selectProblem(index) {
@@ -1517,18 +1813,885 @@
       const selector = document.getElementById('problem-selector');
       selector.innerHTML = '';
       const topic = CURRICULUM.find(t => t.id === currentTopicId);
-      if (!topic || topic.isOverview || topic.isTracker) return;
+      if (!topic || topic.isOverview || topic.isTracker || topic.isPlotter) return;
 
       const total = topic.totalProblems || 15;
       for (let i = 1; i <= total; i++) {
         const pill = document.createElement('button');
-        const isDone = (topic.acceptedCount && i <= topic.acceptedCount) || (topic.submittedCount && i <= topic.submittedCount);
+        const isDone = (topic.acceptedCount && i <= topic.acceptedCount) || 
+                       (topic.submittedProblems ? topic.submittedProblems.includes(i) : (topic.submittedCount && i <= topic.submittedCount));
         pill.className = `problem-pill ${i === currentProblemIndex ? 'active' : ''} ${isDone ? 'done' : ''}`;
         pill.textContent = `P${i}`;
         pill.title = `Problem ${i} ${isDone ? '(Completed)' : '(Pending)'}`;
         pill.onclick = () => selectProblem(i);
         selector.appendChild(pill);
       }
+    }
+
+    // --- Interactive Geometry Plotter Implementation ---
+    let plotterState = {
+      preset: 'ex1', // 'ex1' | 'ex3' | 'ex4' | 'ex5' | 'custom'
+      customType: 'ellipse', // 'ellipse' | 'parabola' | 'hyperbola' | 'circle'
+      a: 5,
+      b: 3,
+      p: 6,
+      R: 3,
+      zoom: 26,
+      offsetX: 0,
+      offsetY: 0,
+      showGrid: true,
+      showFoci: true,
+      showDirectrix: true,
+      showAsymptotes: true,
+      showTangentBox: true,
+      showLabels: true
+    };
+
+    const PLOTTER_PRESETS = {
+      ex1: {
+        id: 'ex1',
+        title: 'Exercise 1: Canonical Curves Comparison',
+        subtitle: 'Circle, Ellipse, Parabola, and Hyperbola canonical equations plotted on a shared plane',
+        problemNum: 1,
+        zoom: 26,
+        offsetX: 0,
+        desc: 'Comparing the canonical conics on a single plane: Circle $x^2+y^2=9$ (radius 3, blue), Ellipse $\\frac{x^2}{16}+\\frac{y^2}{9}=1$ ($a=4, b=3$, purple), Parabola $y^2=8x$ ($p=4$, emerald), and Hyperbola $\\frac{x^2}{9}-\\frac{y^2}{4}=1$ ($a=3, b=2$, amber).'
+      },
+      ex3: {
+        id: 'ex3',
+        title: 'Exercise 3: Ellipse Analysis',
+        subtitle: 'Canonical form: x²/25 + y²/9 = 1',
+        problemNum: 3,
+        a: 5,
+        b: 3,
+        zoom: 32,
+        offsetX: 0,
+        desc: 'Horizontal semi-axis $a = 5$, vertical semi-axis $b = 3$. Major axis along the $x$-axis, linear eccentricity $c = \\sqrt{25-9} = 4$, foci $F_1(-4, 0), F_2(4, 0)$, numerical eccentricity $e = 0.8$.'
+      },
+      ex4: {
+        id: 'ex4',
+        title: 'Exercise 4: Parabola & Focal Properties',
+        subtitle: 'Canonical form: y² = 12x (2p = 12 ⟹ p = 6)',
+        problemNum: 4,
+        p: 6,
+        zoom: 22,
+        offsetX: -100,
+        desc: 'Vertex at origin $(0, 0)$, axis of symmetry $y=0$, focal parameter $p=6$, focus $F(3, 0)$, directrix $x=-3$. Focal chord (latus rectum) at $x=3$ has length $2p=12$ between $(3, 6)$ and $(3, -6)$.'
+      },
+      ex5: {
+        id: 'ex5',
+        title: 'Exercise 5: Hyperbola & Asymptotes',
+        subtitle: 'Canonical form: x²/16 - y²/9 = 1',
+        problemNum: 5,
+        a: 4,
+        b: 3,
+        zoom: 28,
+        offsetX: 0,
+        desc: 'Real semi-axis $a = 4$, imaginary semi-axis $b = 3$, vertices $V_1(-4, 0), V_2(4, 0)$, foci $F_1(-5, 0), F_2(5, 0)$, and linear asymptotes $y = \\pm \\frac{3}{4}x = \\pm 0.75x$.'
+      },
+      custom: {
+        id: 'custom',
+        title: 'Custom Conic Sandbox',
+        subtitle: 'Interactive real-time parameter exploration',
+        problemNum: null,
+        zoom: 28,
+        offsetX: 0,
+        desc: 'Freely modify parameters $a, b, p, R$ using real-time sliders to explore shape transitions, foci coordinates, and asymptotic bounds.'
+      }
+    };
+
+    function renderGeometryPlotter() {
+      const contentEl = document.getElementById('article-content');
+      const breadcrumbs = document.getElementById('breadcrumbs');
+      breadcrumbs.innerHTML = `<span>Geometry</span> / <span class="active">Interactive Geometry Plotter</span>`;
+
+      const pState = plotterState;
+      const currentPreset = PLOTTER_PRESETS[pState.preset] || PLOTTER_PRESETS.ex1;
+
+      // Solution button
+      let solBtnHtml = '';
+      if (currentPreset.problemNum) {
+        solBtnHtml = `
+          <button class="btn btn-primary" onclick="jumpToSolution('geometry-03', ${currentPreset.problemNum})">
+            📖 Inspect Problem ${currentPreset.problemNum} Solution ↗
+          </button>
+        `;
+      }
+
+      // Slider controls according to preset
+      let paramSlidersHtml = '';
+      if (pState.preset === 'ex1') {
+        paramSlidersHtml = `
+          <div style="font-size:0.82rem; color:var(--text-secondary); line-height:1.6;">
+            Visualizing all 4 standard curves simultaneously:
+            <div style="margin-top:8px; display:flex; flex-direction:column; gap:4px;">
+              <div><span style="color:#2563eb; font-weight:700;">●</span> <b>Circle:</b> $x^2 + y^2 = 9$ ($R=3$)</div>
+              <div><span style="color:#8b5cf6; font-weight:700;">●</span> <b>Ellipse:</b> $\\frac{x^2}{16} + \\frac{y^2}{9} = 1$ ($a=4, b=3$)</div>
+              <div><span style="color:#10b981; font-weight:700;">●</span> <b>Parabola:</b> $y^2 = 8x$ ($p=4$)</div>
+              <div><span style="color:#f59e0b; font-weight:700;">●</span> <b>Hyperbola:</b> $\\frac{x^2}{9} - \\frac{y^2}{4} = 1$ ($a=3, b=2$)</div>
+            </div>
+          </div>
+        `;
+      } else if (pState.preset === 'ex3') {
+        paramSlidersHtml = `
+          <div class="slider-box">
+            <div class="slider-head">
+              <span>Horizontal semi-axis (a):</span>
+              <span class="slider-val" id="val-a">${pState.a}</span>
+            </div>
+            <input type="range" class="range-input" id="range-a" min="1" max="10" step="0.5" value="${pState.a}" oninput="updatePlotterParam('a', this.value)">
+          </div>
+          <div class="slider-box">
+            <div class="slider-head">
+              <span>Vertical semi-axis (b):</span>
+              <span class="slider-val" id="val-b">${pState.b}</span>
+            </div>
+            <input type="range" class="range-input" id="range-b" min="1" max="10" step="0.5" value="${pState.b}" oninput="updatePlotterParam('b', this.value)">
+          </div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">Equation: $\\frac{x^2}{${(pState.a*pState.a).toFixed(0)}} + \\frac{y^2}{${(pState.b*pState.b).toFixed(0)}} = 1$</div>
+        `;
+      } else if (pState.preset === 'ex4') {
+        paramSlidersHtml = `
+          <div class="slider-box">
+            <div class="slider-head">
+              <span>Focal parameter (p):</span>
+              <span class="slider-val" id="val-p">${pState.p}</span>
+            </div>
+            <input type="range" class="range-input" id="range-p" min="1" max="16" step="0.5" value="${pState.p}" oninput="updatePlotterParam('p', this.value)">
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Equation: $y^2 = 2px = ${2 * pState.p}x$, Focus: $(${pState.p/2}, 0)$</div>
+          </div>
+        `;
+      } else if (pState.preset === 'ex5') {
+        paramSlidersHtml = `
+          <div class="slider-box">
+            <div class="slider-head">
+              <span>Real semi-axis (a):</span>
+              <span class="slider-val" id="val-a">${pState.a}</span>
+            </div>
+            <input type="range" class="range-input" id="range-a" min="1" max="10" step="0.5" value="${pState.a}" oninput="updatePlotterParam('a', this.value)">
+          </div>
+          <div class="slider-box">
+            <div class="slider-head">
+              <span>Imaginary semi-axis (b):</span>
+              <span class="slider-val" id="val-b">${pState.b}</span>
+            </div>
+            <input type="range" class="range-input" id="range-b" min="1" max="10" step="0.5" value="${pState.b}" oninput="updatePlotterParam('b', this.value)">
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Asymptote slope: $\\pm \\frac{b}{a} = \\pm ${(pState.b / pState.a).toFixed(2)}$</div>
+          </div>
+        `;
+      } else if (pState.preset === 'custom') {
+        paramSlidersHtml = `
+          <div class="slider-box">
+            <div class="slider-head">
+              <span>Curve Type:</span>
+            </div>
+            <select id="custom-type-select" class="btn" style="width:100%; padding:6px 8px; font-size:0.85rem;" onchange="setCustomType(this.value)">
+              <option value="ellipse" ${pState.customType === 'ellipse' ? 'selected' : ''}>Ellipse (x²/a² + y²/b² = 1)</option>
+              <option value="hyperbola" ${pState.customType === 'hyperbola' ? 'selected' : ''}>Hyperbola (x²/a² - y²/b² = 1)</option>
+              <option value="parabola" ${pState.customType === 'parabola' ? 'selected' : ''}>Parabola (y² = 2px)</option>
+              <option value="circle" ${pState.customType === 'circle' ? 'selected' : ''}>Circle (x² + y² = R²)</option>
+            </select>
+          </div>
+          ${pState.customType === 'circle' ? `
+            <div class="slider-box">
+              <div class="slider-head"><span>Radius (R):</span><span class="slider-val" id="val-R">${pState.R}</span></div>
+              <input type="range" class="range-input" id="range-R" min="1" max="10" step="0.5" value="${pState.R}" oninput="updatePlotterParam('R', this.value)">
+            </div>
+          ` : pState.customType === 'parabola' ? `
+            <div class="slider-box">
+              <div class="slider-head"><span>Parameter (p):</span><span class="slider-val" id="val-p">${pState.p}</span></div>
+              <input type="range" class="range-input" id="range-p" min="1" max="16" step="0.5" value="${pState.p}" oninput="updatePlotterParam('p', this.value)">
+            </div>
+          ` : `
+            <div class="slider-box">
+              <div class="slider-head"><span>Semi-axis (a):</span><span class="slider-val" id="val-a">${pState.a}</span></div>
+              <input type="range" class="range-input" id="range-a" min="1" max="10" step="0.5" value="${pState.a}" oninput="updatePlotterParam('a', this.value)">
+            </div>
+            <div class="slider-box">
+              <div class="slider-head"><span>Semi-axis (b):</span><span class="slider-val" id="val-b">${pState.b}</span></div>
+              <input type="range" class="range-input" id="range-b" min="1" max="10" step="0.5" value="${pState.b}" oninput="updatePlotterParam('b', this.value)">
+            </div>
+          `}
+        `;
+      }
+
+      // Mathematical Details Table
+      let mathTableRows = '';
+      if (pState.preset === 'ex1') {
+        mathTableRows = `
+          <tr><td class="key">Circle</td><td class="val">$x^2 + y^2 = 9$ ($R = 3$)</td></tr>
+          <tr><td class="key">Ellipse</td><td class="val">$\\frac{x^2}{16} + \\frac{y^2}{9} = 1$ ($a=4, b=3$)</td></tr>
+          <tr><td class="key">Parabola</td><td class="val">$y^2 = 8x$ ($p = 4, F=(2, 0)$)</td></tr>
+          <tr><td class="key">Hyperbola</td><td class="val">$\\frac{x^2}{9} - \\frac{y^2}{4} = 1$ ($a=3, b=2$)</td></tr>
+        `;
+      } else if (pState.preset === 'ex3' || (pState.preset === 'custom' && pState.customType === 'ellipse')) {
+        const a = pState.a;
+        const b = pState.b;
+        const c = Math.sqrt(Math.abs(a * a - b * b));
+        const major = a >= b ? 'x-axis (Horizontal)' : 'y-axis (Vertical)';
+        const e = (c / Math.max(a, b)).toFixed(3);
+        mathTableRows = `
+          <tr><td class="key">Equation</td><td class="val">$\\frac{x^2}{${(a*a).toFixed(0)}} + \\frac{y^2}{${(b*b).toFixed(0)}} = 1$</td></tr>
+          <tr><td class="key">Semi-axes</td><td class="val">$a = ${a},\\; b = ${b}$</td></tr>
+          <tr><td class="key">Major Axis</td><td class="val">${major}</td></tr>
+          <tr><td class="key">Focal dist. (c)</td><td class="val">$c = ${c.toFixed(2)}$</td></tr>
+          <tr><td class="key">Eccentricity (e)</td><td class="val">$e = ${e}$</td></tr>
+          <tr><td class="key">Foci</td><td class="val">${a >= b ? `$(\\pm ${c.toFixed(2)}, 0)$` : `$(0, \\pm ${c.toFixed(2)})`}</td></tr>
+          <tr><td class="key">Vertices</td><td class="val">$(\\pm ${a}, 0), (0, \\pm ${b})$</td></tr>
+        `;
+      } else if (pState.preset === 'ex4' || (pState.preset === 'custom' && pState.customType === 'parabola')) {
+        const p = pState.p;
+        const fX = p / 2;
+        mathTableRows = `
+          <tr><td class="key">Canonical Equation</td><td class="val">$y^2 = ${2 * p}x$</td></tr>
+          <tr><td class="key">Focal Parameter</td><td class="val">$p = ${p}$</td></tr>
+          <tr><td class="key">Vertex</td><td class="val">$(0, 0)$</td></tr>
+          <tr><td class="key">Focus (F)</td><td class="val">$(\\frac{p}{2}, 0) = (${fX}, 0)$</td></tr>
+          <tr><td class="key">Directrix (d)</td><td class="val">$x = -${fX}$</td></tr>
+          <tr><td class="key">Latus Rectum Length</td><td class="val">$2p = ${2 * p}$</td></tr>
+          <tr><td class="key">Latus Rectum Points</td><td class="val">$(${fX}, \\pm ${p})$</td></tr>
+        `;
+      } else if (pState.preset === 'ex5' || (pState.preset === 'custom' && pState.customType === 'hyperbola')) {
+        const a = pState.a;
+        const b = pState.b;
+        const c = Math.sqrt(a * a + b * b);
+        const e = (c / a).toFixed(3);
+        const slope = (b / a).toFixed(2);
+        mathTableRows = `
+          <tr><td class="key">Canonical Equation</td><td class="val">$\\frac{x^2}{${(a*a).toFixed(0)}} - \\frac{y^2}{${(b*b).toFixed(0)}} = 1$</td></tr>
+          <tr><td class="key">Semi-axes</td><td class="val">$a = ${a},\\; b = ${b}$</td></tr>
+          <tr><td class="key">Vertices</td><td class="val">$(\\pm ${a}, 0)$</td></tr>
+          <tr><td class="key">Focal dist. (c)</td><td class="val">$c = ${c.toFixed(2)}$</td></tr>
+          <tr><td class="key">Eccentricity (e)</td><td class="val">$e = ${e}$</td></tr>
+          <tr><td class="key">Foci</td><td class="val">$(\\pm ${c.toFixed(2)}, 0)$</td></tr>
+          <tr><td class="key">Asymptotes</td><td class="val">$y = \\pm \\frac{${b}}{${a}}x = \\pm ${slope}x$</td></tr>
+        `;
+      } else if (pState.customType === 'circle') {
+        const R = pState.R;
+        mathTableRows = `
+          <tr><td class="key">Canonical Equation</td><td class="val">$x^2 + y^2 = ${(R*R).toFixed(0)}$</td></tr>
+          <tr><td class="key">Radius (R)</td><td class="val">$R = ${R}$</td></tr>
+          <tr><td class="key">Center</td><td class="val">$(0, 0)$</td></tr>
+          <tr><td class="key">Circumference</td><td class="val">$2\\pi R \\approx ${(2 * Math.PI * R).toFixed(2)}$</td></tr>
+          <tr><td class="key">Area</td><td class="val">$\\pi R^2 \\approx ${(Math.PI * R * R).toFixed(2)}$</td></tr>
+        `;
+      }
+
+      contentEl.innerHTML = `
+        <div class="plotter-dashboard">
+          <div class="plotter-header">
+            <div>
+              <h1 class="plotter-title">📈 Interactive Geometry Plotter</h1>
+              <div class="plotter-subtitle">
+                Module 2: Geometry — Topic 3 Second-Degree Curves & Surfaces
+              </div>
+            </div>
+            <div>
+              ${solBtnHtml}
+            </div>
+          </div>
+
+          <div class="plotter-layout">
+            <!-- Sidebar Controls -->
+            <div class="plotter-sidebar">
+              <!-- Presets -->
+              <div class="plotter-card">
+                <div class="plotter-card-title">Select Problem Preset</div>
+                <div class="preset-list">
+                  <div class="preset-item ${pState.preset === 'ex1' ? 'active' : ''}" onclick="setPlotterPreset('ex1')">
+                    <div class="preset-item-header">
+                      <span class="preset-name">Ex 1: Conics Overview</span>
+                      <span class="status-badge" style="background:var(--accent-light); color:var(--accent); font-size:0.65rem;">4 Curves</span>
+                    </div>
+                    <span class="preset-math">Circle, Ellipse, Parabola, Hyp.</span>
+                  </div>
+
+                  <div class="preset-item ${pState.preset === 'ex3' ? 'active' : ''}" onclick="setPlotterPreset('ex3')">
+                    <div class="preset-item-header">
+                      <span class="preset-name">Ex 3: Ellipse</span>
+                      <span class="status-badge" style="background:var(--success-light); color:var(--success); font-size:0.65rem;">Solved ✓</span>
+                    </div>
+                    <span class="preset-math">x²/25 + y²/9 = 1</span>
+                  </div>
+
+                  <div class="preset-item ${pState.preset === 'ex4' ? 'active' : ''}" onclick="setPlotterPreset('ex4')">
+                    <div class="preset-item-header">
+                      <span class="preset-name">Ex 4: Parabola</span>
+                      <span class="status-badge" style="background:var(--success-light); color:var(--success); font-size:0.65rem;">Solved ✓</span>
+                    </div>
+                    <span class="preset-math">y² = 12x</span>
+                  </div>
+
+                  <div class="preset-item ${pState.preset === 'ex5' ? 'active' : ''}" onclick="setPlotterPreset('ex5')">
+                    <div class="preset-item-header">
+                      <span class="preset-name">Ex 5: Hyperbola</span>
+                      <span class="status-badge" style="background:var(--success-light); color:var(--success); font-size:0.65rem;">Solved ✓</span>
+                    </div>
+                    <span class="preset-math">x²/16 - y²/9 = 1</span>
+                  </div>
+
+                  <div class="preset-item ${pState.preset === 'custom' ? 'active' : ''}" onclick="setPlotterPreset('custom')">
+                    <div class="preset-item-header">
+                      <span class="preset-name">Custom Sandbox</span>
+                      <span class="status-badge" style="background:var(--bg-tertiary); color:var(--text-muted); font-size:0.65rem;">Free Mode</span>
+                    </div>
+                    <span class="preset-math">Real-time parameters</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Curve Parameters -->
+              <div class="plotter-card">
+                <div class="plotter-card-title">Parameters & Dimensions</div>
+                <div class="param-controls">
+                  ${paramSlidersHtml}
+                </div>
+              </div>
+
+              <!-- Visual Toggles -->
+              <div class="plotter-card">
+                <div class="plotter-card-title">Display Toggles</div>
+                <div class="toggle-list">
+                  <label class="toggle-label">
+                    <input type="checkbox" ${pState.showGrid ? 'checked' : ''} onchange="togglePlotterOption('showGrid', this.checked)">
+                    Grid & Coordinate Axes
+                  </label>
+                  <label class="toggle-label">
+                    <input type="checkbox" ${pState.showFoci ? 'checked' : ''} onchange="togglePlotterOption('showFoci', this.checked)">
+                    Foci (F) & Directrix (d)
+                  </label>
+                  <label class="toggle-label">
+                    <input type="checkbox" ${pState.showAsymptotes ? 'checked' : ''} onchange="togglePlotterOption('showAsymptotes', this.checked)">
+                    Asymptotes & Tangent Box
+                  </label>
+                  <label class="toggle-label">
+                    <input type="checkbox" ${pState.showLabels ? 'checked' : ''} onchange="togglePlotterOption('showLabels', this.checked)">
+                    Coordinate Labels & Vertices
+                  </label>
+                </div>
+              </div>
+
+              <!-- Mathematical Properties -->
+              <div class="plotter-card">
+                <div class="plotter-card-title">Mathematical Properties</div>
+                <table class="math-details-table" id="math-details-tbody">
+                  ${mathTableRows}
+                </table>
+              </div>
+            </div>
+
+            <!-- Canvas Viewport -->
+            <div class="canvas-container-card">
+              <div class="canvas-toolbar">
+                <div style="font-size:0.95rem; font-weight:700; color:var(--text-primary);">
+                  ${currentPreset.title}
+                </div>
+                <div class="canvas-tools-group">
+                  <div class="coord-display" id="canvas-coord-badge">(x: 0.00, y: 0.00)</div>
+                  <button class="canvas-btn" onclick="zoomPlotter(1.2)" title="Zoom In">+</button>
+                  <button class="canvas-btn" onclick="zoomPlotter(0.8)" title="Zoom Out">−</button>
+                  <button class="canvas-btn" onclick="resetPlotterView()" title="Reset View">↺ Reset</button>
+                </div>
+              </div>
+
+              <div class="canvas-frame" id="canvas-frame">
+                <canvas id="conicCanvas"></canvas>
+              </div>
+
+              <div style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
+                ${currentPreset.desc}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // KaTeX rendering inside container
+      renderMathInContainer(contentEl);
+
+      // Initialize Canvas
+      initConicCanvas();
+      drawConicCanvas();
+    }
+
+    function renderMathInContainer(container) {
+      if (!container || !window.katex) return;
+      const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+      const textNodes = [];
+      while (walker.nextNode()) {
+        textNodes.push(walker.currentNode);
+      }
+      textNodes.forEach(node => {
+        const text = node.nodeValue;
+        if (text && text.includes('$')) {
+          const parent = node.parentNode;
+          if (parent && parent.tagName !== 'SCRIPT' && parent.tagName !== 'STYLE') {
+            const span = document.createElement('span');
+            span.innerHTML = text.replace(/\$([^\$\n]+?)\$/g, (m, f) => {
+              try {
+                return katex.renderToString(f, { throwOnError: false });
+              } catch(e) { return m; }
+            });
+            parent.replaceChild(span, node);
+          }
+        }
+      });
+    }
+
+    function initConicCanvas() {
+      const canvas = document.getElementById('conicCanvas');
+      if (!canvas) return;
+
+      canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const mx = e.clientX - rect.left;
+        const my = e.clientY - rect.top;
+        const cx = rect.width / 2 + plotterState.offsetX;
+        const cy = rect.height / 2 + plotterState.offsetY;
+        const mathX = ((mx - cx) / plotterState.zoom).toFixed(2);
+        const mathY = ((cy - my) / plotterState.zoom).toFixed(2);
+        const badge = document.getElementById('canvas-coord-badge');
+        if (badge) badge.textContent = `(x: ${mathX}, y: ${mathY})`;
+      });
+
+      let isDragging = false;
+      let startX = 0, startY = 0;
+      canvas.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.clientX - plotterState.offsetX;
+        startY = e.clientY - plotterState.offsetY;
+        canvas.style.cursor = 'grabbing';
+      });
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+        if (canvas) canvas.style.cursor = 'crosshair';
+      });
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        plotterState.offsetX = e.clientX - startX;
+        plotterState.offsetY = e.clientY - startY;
+        drawConicCanvas();
+      });
+
+      canvas.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const factor = e.deltaY < 0 ? 1.15 : 0.85;
+        zoomPlotter(factor);
+      }, { passive: false });
+    }
+
+    function setPlotterPreset(preset) {
+      plotterState.preset = preset;
+      const conf = PLOTTER_PRESETS[preset];
+      if (conf) {
+        if (conf.zoom) plotterState.zoom = conf.zoom;
+        if (conf.offsetX !== undefined) plotterState.offsetX = conf.offsetX;
+        plotterState.offsetY = 0;
+        if (conf.a) plotterState.a = conf.a;
+        if (conf.b) plotterState.b = conf.b;
+        if (conf.p) plotterState.p = conf.p;
+      }
+      renderGeometryPlotter();
+    }
+
+    function setCustomType(type) {
+      plotterState.customType = type;
+      renderGeometryPlotter();
+    }
+
+    function updatePlotterParam(param, value) {
+      plotterState[param] = parseFloat(value);
+      const valEl = document.getElementById(`val-${param}`);
+      if (valEl) valEl.textContent = value;
+      drawConicCanvas();
+    }
+
+    function togglePlotterOption(opt, checked) {
+      plotterState[opt] = checked;
+      drawConicCanvas();
+    }
+
+    function zoomPlotter(factor) {
+      plotterState.zoom = Math.max(8, Math.min(120, plotterState.zoom * factor));
+      drawConicCanvas();
+    }
+
+    function resetPlotterView() {
+      setPlotterPreset(plotterState.preset);
+    }
+
+    function drawConicCanvas() {
+      const canvas = document.getElementById('conicCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+
+      if (rect.width === 0 || rect.height === 0) return;
+
+      const w = Math.round(rect.width);
+      const h = Math.round(rect.height);
+
+      if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+      }
+
+      ctx.save();
+      ctx.scale(dpr, dpr);
+
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const bgColor = isDark ? '#0b1120' : '#ffffff';
+      const gridColor = isDark ? 'rgba(51, 65, 85, 0.45)' : 'rgba(226, 232, 240, 0.9)';
+      const axisColor = isDark ? '#94a3b8' : '#475569';
+      const textColor = isDark ? '#cbd5e1' : '#334155';
+      const textMuted = isDark ? '#64748b' : '#94a3b8';
+
+      // Clear background
+      ctx.fillStyle = bgColor;
+      ctx.fillRect(0, 0, w, h);
+
+      const cx = w / 2 + plotterState.offsetX;
+      const cy = h / 2 + plotterState.offsetY;
+      const zoom = plotterState.zoom;
+
+      const toCanvasX = x => cx + x * zoom;
+      const toCanvasY = y => cy - y * zoom;
+      const toMathX = px => (px - cx) / zoom;
+      const toMathY = py => (cy - py) / zoom;
+
+      // 1. Grid
+      if (plotterState.showGrid) {
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = gridColor;
+        ctx.beginPath();
+        const minX = Math.floor(toMathX(0));
+        const maxX = Math.ceil(toMathX(w));
+        for (let x = minX; x <= maxX; x++) {
+          const px = toCanvasX(x);
+          ctx.moveTo(px, 0);
+          ctx.lineTo(px, h);
+        }
+        const minY = Math.floor(toMathY(h));
+        const maxY = Math.ceil(toMathY(0));
+        for (let y = minY; y <= maxY; y++) {
+          const py = toCanvasY(y);
+          ctx.moveTo(0, py);
+          ctx.lineTo(w, py);
+        }
+        ctx.stroke();
+      }
+
+      // 2. Axes
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = axisColor;
+      ctx.beginPath();
+      // X-Axis
+      ctx.moveTo(0, cy);
+      ctx.lineTo(w, cy);
+      // Y-Axis
+      ctx.moveTo(cx, 0);
+      ctx.lineTo(cx, h);
+      ctx.stroke();
+
+      // Axis labels
+      ctx.fillStyle = textColor;
+      ctx.font = 'bold 12px "Inter", sans-serif';
+      ctx.fillText('x', w - 16, cy - 8);
+      ctx.fillText('y', cx + 8, 16);
+
+      // Tick numbers
+      ctx.fillStyle = textMuted;
+      ctx.font = '10px "Fira Code", monospace';
+      const minX = Math.floor(toMathX(0));
+      const maxX = Math.ceil(toMathX(w));
+      const stepTick = zoom < 20 ? 2 : 1;
+      for (let x = minX; x <= maxX; x += stepTick) {
+        if (x === 0) continue;
+        const px = toCanvasX(x);
+        if (px > 20 && px < w - 20) {
+          ctx.fillText(x, px - 6, cy + 14);
+        }
+      }
+      const minY = Math.floor(toMathY(h));
+      const maxY = Math.ceil(toMathY(0));
+      for (let y = minY; y <= maxY; y += stepTick) {
+        if (y === 0) continue;
+        const py = toCanvasY(y);
+        if (py > 20 && py < h - 20) {
+          ctx.fillText(y, cx + 6, py + 4);
+        }
+      }
+      ctx.fillText('0', cx - 12, cy + 14);
+
+      // Helper for key points
+      function drawKeyPoint(x, y, label, color = '#2563eb', align = 'top') {
+        const px = toCanvasX(x);
+        const py = toCanvasY(y);
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(px, py, 4.5, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        if (plotterState.showLabels && label) {
+          ctx.fillStyle = textColor;
+          ctx.font = 'bold 11px "Inter", sans-serif';
+          const offY = align === 'top' ? -8 : 16;
+          ctx.fillText(label, px + 8, py + offY);
+        }
+      }
+
+      // Draw Curves based on Preset
+      const p = plotterState;
+
+      if (p.preset === 'ex1') {
+        // Curve 1: Circle x^2 + y^2 = 9 (R=3)
+        ctx.strokeStyle = '#2563eb';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.arc(cx, cy, 3 * zoom, 0, 2 * Math.PI);
+        ctx.stroke();
+        drawKeyPoint(3, 0, 'Circle (3,0)', '#2563eb');
+        drawKeyPoint(0, 3, '(0,3)', '#2563eb');
+
+        // Curve 2: Ellipse x^2/16 + y^2/9 = 1 (a=4, b=3)
+        ctx.strokeStyle = '#8b5cf6';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, 4 * zoom, 3 * zoom, 0, 0, 2 * Math.PI);
+        ctx.stroke();
+        drawKeyPoint(4, 0, 'Ellipse (4,0)', '#8b5cf6');
+
+        // Curve 3: Parabola y^2 = 8x (p=4 ⟹ x = y^2 / 8)
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        const yMinEx1 = toMathY(h);
+        const yMaxEx1 = toMathY(0);
+        let firstP = true;
+        for (let y = yMinEx1; y <= yMaxEx1; y += 0.05) {
+          const x = (y * y) / 8;
+          const px = toCanvasX(x);
+          const py = toCanvasY(y);
+          if (firstP) { ctx.moveTo(px, py); firstP = false; }
+          else { ctx.lineTo(px, py); }
+        }
+        ctx.stroke();
+        drawKeyPoint(2, 4, 'Parabola (2,4)', '#10b981');
+        drawKeyPoint(2, -4, '(2,-4)', '#10b981', 'bottom');
+
+        // Curve 4: Hyperbola x^2/9 - y^2/4 = 1 (a=3, b=2)
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        for (let y = yMinEx1; y <= yMaxEx1; y += 0.05) {
+          const x = 3 * Math.sqrt(1 + (y * y) / 4);
+          const px = toCanvasX(x);
+          const py = toCanvasY(y);
+          if (y === yMinEx1) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+        ctx.beginPath();
+        for (let y = yMinEx1; y <= yMaxEx1; y += 0.05) {
+          const x = -3 * Math.sqrt(1 + (y * y) / 4);
+          const px = toCanvasX(x);
+          const py = toCanvasY(y);
+          if (y === yMinEx1) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+        drawKeyPoint(3, 0, 'Hyperbola V(3,0)', '#f59e0b', 'bottom');
+        drawKeyPoint(-3, 0, 'V(-3,0)', '#f59e0b', 'bottom');
+
+      } else if (p.preset === 'ex3' || (p.preset === 'custom' && p.customType === 'ellipse')) {
+        const a = p.a;
+        const b = p.b;
+
+        // Tangent box
+        if (p.showAsymptotes && p.showTangentBox) {
+          ctx.setLineDash([4, 4]);
+          ctx.strokeStyle = isDark ? 'rgba(148, 163, 184, 0.4)' : 'rgba(100, 116, 139, 0.4)';
+          ctx.lineWidth = 1.5;
+          ctx.strokeRect(toCanvasX(-a), toCanvasY(b), 2 * a * zoom, 2 * b * zoom);
+          ctx.setLineDash([]);
+        }
+
+        // Ellipse curve
+        ctx.strokeStyle = '#8b5cf6';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, a * zoom, b * zoom, 0, 0, 2 * Math.PI);
+        ctx.stroke();
+
+        // Vertices
+        drawKeyPoint(a, 0, `A2(${a}, 0)`, '#8b5cf6');
+        drawKeyPoint(-a, 0, `A1(-${a}, 0)`, '#8b5cf6');
+        drawKeyPoint(0, b, `B2(0, ${b})`, '#8b5cf6');
+        drawKeyPoint(0, -b, `B1(0, -${b})`, '#8b5cf6', 'bottom');
+
+        // Foci
+        if (p.showFoci) {
+          const c = Math.sqrt(Math.abs(a * a - b * b));
+          if (a >= b) {
+            drawKeyPoint(c, 0, `F2(${c.toFixed(1)}, 0)`, '#ef4444');
+            drawKeyPoint(-c, 0, `F1(-${c.toFixed(1)}, 0)`, '#ef4444');
+          } else {
+            drawKeyPoint(0, c, `F2(0, ${c.toFixed(1)})`, '#ef4444');
+            drawKeyPoint(0, -c, `F1(0, -${c.toFixed(1)})`, '#ef4444', 'bottom');
+          }
+        }
+
+      } else if (p.preset === 'ex4' || (p.preset === 'custom' && p.customType === 'parabola')) {
+        const paramP = p.p;
+        const focusX = paramP / 2;
+        const directrixX = -paramP / 2;
+
+        // Directrix
+        if (p.showDirectrix) {
+          ctx.setLineDash([6, 4]);
+          ctx.strokeStyle = '#ef4444';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(toCanvasX(directrixX), 0);
+          ctx.lineTo(toCanvasX(directrixX), h);
+          ctx.stroke();
+          ctx.setLineDash([]);
+          if (p.showLabels) {
+            ctx.fillStyle = '#ef4444';
+            ctx.font = 'bold 11px "Inter", sans-serif';
+            ctx.fillText(`Directrix d: x = -${focusX}`, toCanvasX(directrixX) + 6, 24);
+          }
+        }
+
+        // Parabola curve
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        const yMinP = toMathY(h);
+        const yMaxP = toMathY(0);
+        let first = true;
+        for (let y = yMinP; y <= yMaxP; y += 0.05) {
+          const x = (y * y) / (2 * paramP);
+          const px = toCanvasX(x);
+          const py = toCanvasY(y);
+          if (first) { ctx.moveTo(px, py); first = false; }
+          else { ctx.lineTo(px, py); }
+        }
+        ctx.stroke();
+
+        // Vertex
+        drawKeyPoint(0, 0, 'V(0, 0)', '#10b981', 'bottom');
+
+        // Focus
+        if (p.showFoci) {
+          drawKeyPoint(focusX, 0, `F(${focusX}, 0)`, '#ef4444');
+        }
+
+        // Latus Rectum Chord (at x = focusX)
+        ctx.strokeStyle = '#8b5cf6';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(toCanvasX(focusX), toCanvasY(-paramP));
+        ctx.lineTo(toCanvasX(focusX), toCanvasY(paramP));
+        ctx.stroke();
+
+        drawKeyPoint(focusX, paramP, `(${focusX}, ${paramP})`, '#8b5cf6');
+        drawKeyPoint(focusX, -paramP, `(${focusX}, -${paramP})`, '#8b5cf6', 'bottom');
+
+      } else if (p.preset === 'ex5' || (p.preset === 'custom' && p.customType === 'hyperbola')) {
+        const a = p.a;
+        const b = p.b;
+        const c = Math.sqrt(a * a + b * b);
+
+        const leftX = toMathX(0);
+        const rightX = toMathX(w);
+
+        // Fundamental rectangle
+        if (p.showAsymptotes && p.showTangentBox) {
+          ctx.setLineDash([4, 4]);
+          ctx.strokeStyle = isDark ? 'rgba(148, 163, 184, 0.4)' : 'rgba(100, 116, 139, 0.4)';
+          ctx.lineWidth = 1.5;
+          ctx.strokeRect(toCanvasX(-a), toCanvasY(b), 2 * a * zoom, 2 * b * zoom);
+          ctx.setLineDash([]);
+        }
+
+        // Asymptotes lines
+        if (p.showAsymptotes) {
+          ctx.setLineDash([6, 4]);
+          ctx.strokeStyle = '#ef4444';
+          ctx.lineWidth = 1.5;
+
+          ctx.beginPath();
+          ctx.moveTo(toCanvasX(leftX), toCanvasY((b / a) * leftX));
+          ctx.lineTo(toCanvasX(rightX), toCanvasY((b / a) * rightX));
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(toCanvasX(leftX), toCanvasY(-(b / a) * leftX));
+          ctx.lineTo(toCanvasX(rightX), toCanvasY(-(b / a) * rightX));
+          ctx.stroke();
+          ctx.setLineDash([]);
+
+          if (p.showLabels) {
+            ctx.fillStyle = '#ef4444';
+            ctx.font = 'bold 11px "Inter", sans-serif';
+            ctx.fillText(`Asymptote y = ${(b/a).toFixed(2)}x`, w - 160, 24);
+            ctx.fillText(`Asymptote y = -${(b/a).toFixed(2)}x`, w - 160, h - 20);
+          }
+        }
+
+        // Hyperbola Branches
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 3;
+        const yMinH = toMathY(h);
+        const yMaxH = toMathY(0);
+
+        // Right branch
+        ctx.beginPath();
+        for (let y = yMinH; y <= yMaxH; y += 0.05) {
+          const x = a * Math.sqrt(1 + (y * y) / (b * b));
+          const px = toCanvasX(x);
+          const py = toCanvasY(y);
+          if (y === yMinH) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+
+        // Left branch
+        ctx.beginPath();
+        for (let y = yMinH; y <= yMaxH; y += 0.05) {
+          const x = -a * Math.sqrt(1 + (y * y) / (b * b));
+          const px = toCanvasX(x);
+          const py = toCanvasY(y);
+          if (y === yMinH) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+
+        // Vertices
+        drawKeyPoint(a, 0, `V2(${a}, 0)`, '#f59e0b');
+        drawKeyPoint(-a, 0, `V1(-${a}, 0)`, '#f59e0b');
+
+        // Foci
+        if (p.showFoci) {
+          drawKeyPoint(c, 0, `F2(${c.toFixed(1)}, 0)`, '#ef4444');
+          drawKeyPoint(-c, 0, `F1(-${c.toFixed(1)}, 0)`, '#ef4444');
+        }
+
+      } else if (p.preset === 'custom' && p.customType === 'circle') {
+        const R = p.R;
+        ctx.strokeStyle = '#2563eb';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.arc(cx, cy, R * zoom, 0, 2 * Math.PI);
+        ctx.stroke();
+
+        drawKeyPoint(0, 0, 'Center (0,0)', '#2563eb', 'bottom');
+        drawKeyPoint(R, 0, `(${R}, 0)`, '#2563eb');
+        drawKeyPoint(0, R, `(0, ${R})`, '#2563eb');
+      }
+
+      ctx.restore();
     }
 
     // --- Search functionality ---
@@ -1547,6 +2710,9 @@
       document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
       themeIcon.textContent = isDark ? '☀️' : '🌙';
       localStorage.setItem('math_workbook_theme', isDark ? 'dark' : 'light');
+      if (currentTab === 'plotter') {
+        drawConicCanvas();
+      }
     }
 
     themeBtn.addEventListener('click', () => {
@@ -1564,12 +2730,21 @@
       document.getElementById('sidebar').classList.toggle('open');
     });
 
+    // Window resize handler for canvas
+    window.addEventListener('resize', () => {
+      if (currentTab === 'plotter') {
+        drawConicCanvas();
+      }
+    });
+
     // Initialize on Page Load
     window.addEventListener('DOMContentLoaded', () => {
       if (window.location.hash) {
         const hashId = window.location.hash.replace('#', '');
         if (hashId === 'tracker') {
           currentTab = 'tracker';
+        } else if (hashId === 'plotter') {
+          currentTab = 'plotter';
         } else if (CURRICULUM.some(t => t.id === hashId)) {
           currentTopicId = hashId;
         }
