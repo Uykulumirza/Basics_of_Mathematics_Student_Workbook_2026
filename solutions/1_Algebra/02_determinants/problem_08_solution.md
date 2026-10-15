@@ -87,3 +87,4 @@ Geometrically, the order in which two linear transformations are applied affects
    $$AB = \begin{pmatrix} 3 & 1 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 2 & -5 \end{pmatrix} = \begin{pmatrix} 5 & -5 \\ 2 & -5 \end{pmatrix} \implies \det(AB) = 5(-5) - (-5)(2) = -25 + 10 = -15 \quad \checkmark$$
    $$BA = \begin{pmatrix} 1 & 0 \\ 2 & -5 \end{pmatrix} \begin{pmatrix} 3 & 1 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 3 & 1 \\ 6 & -3 \end{pmatrix} \implies \det(BA) = 3(-3) - 1(6) = -9 - 6 = -15 \quad \checkmark$$
    Even though $AB \ne BA$, both determinants equal $-15$ exactly.
+

@@ -115,3 +115,4 @@ Therefore, for $b = \begin{pmatrix} 1 \\ 3 \end{pmatrix}$, the system is inconsi
    - Augmented matrix for $b = \begin{pmatrix} 1 \\ 3 \end{pmatrix}$:
      $$[A | b] = \begin{pmatrix} 1 & 2 & 1 \\ 2 & 4 & 3 \end{pmatrix} \xrightarrow{R_2 \leftarrow R_2 - 2R_1} \begin{pmatrix} 1 & 2 & 1 \\ 0 & 0 & 1 \end{pmatrix}$$
      Here $\operatorname{rank}(A) = 1 \ne 2 = \operatorname{rank}[A | b]$ (inconsistent $\implies$ no solution) $\checkmark$.
+

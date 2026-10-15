@@ -84,3 +84,4 @@ $$\text{Area} = |\det M_2| = |-11| = 11$$
    - Height vector: $v_{\perp} = v - v_{\parallel} = (1, 4) - (2.1, 0.7) = (-1.1, 3.3)$.
    - Height: $\|v_{\perp}\| = \sqrt{(-1.1)^2 + 3.3^2} = \sqrt{1.21 + 10.89} = \sqrt{12.1} = \frac{11}{\sqrt{10}}$.
    - Area: $\|u\| \cdot \|v_{\perp}\| = \sqrt{10} \cdot \frac{11}{\sqrt{10}} = 11 \quad \checkmark$.
+

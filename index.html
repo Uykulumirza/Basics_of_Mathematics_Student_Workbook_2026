@@ -33,6 +33,8 @@
       --success-light: #f0fdf4;
       --warning: #d97706;
       --warning-light: #fffbeb;
+      --danger: #dc2626;
+      --danger-light: #fef2f2;
       --sidebar-width: 320px;
       --header-height: 64px;
       --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -57,6 +59,8 @@
       --success-light: rgba(34, 197, 94, 0.15);
       --warning: #f59e0b;
       --warning-light: rgba(245, 158, 11, 0.15);
+      --danger: #ef4444;
+      --danger-light: rgba(239, 68, 68, 0.15);
       --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
       --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
     }
@@ -213,7 +217,7 @@
       color: var(--success);
     }
 
-    .status-badge.progress {
+    .status-badge.submitted {
       background-color: var(--warning-light);
       color: var(--warning);
     }
@@ -538,6 +542,290 @@
       to { transform: rotate(360deg); }
     }
 
+    /* --- Acceptance Tracker Dashboard Styles --- */
+    .tracker-dashboard {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .tracker-header {
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .tracker-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .tracker-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-top: 6px;
+    }
+
+    .stat-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat-card-val {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .stat-card-val.accepted { color: var(--success); }
+    .stat-card-val.submitted { color: var(--warning); }
+    .stat-card-val.pending { color: var(--text-muted); }
+    .stat-card-val.total { color: var(--accent); }
+
+    .stat-card-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .progress-bar-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 18px 20px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .progress-bar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .multi-progress {
+      height: 14px;
+      background-color: var(--bg-tertiary);
+      border-radius: 9999px;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .progress-seg {
+      height: 100%;
+      transition: width 0.3s ease;
+    }
+
+    .progress-seg.accepted { background-color: var(--success); }
+    .progress-seg.submitted { background-color: var(--warning); }
+    .progress-seg.pending { background-color: var(--border-color); }
+
+    .progress-legend {
+      display: flex;
+      gap: 16px;
+      margin-top: 10px;
+      font-size: 0.78rem;
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-secondary);
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .legend-dot.accepted { background-color: var(--success); }
+    .legend-dot.submitted { background-color: var(--warning); }
+    .legend-dot.pending { background-color: var(--text-muted); }
+
+    .tracker-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+
+    .filter-chip {
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      border-radius: 9999px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-secondary);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .filter-chip:hover {
+      border-color: var(--accent);
+      color: var(--text-primary);
+    }
+
+    .filter-chip.active {
+      background-color: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    .topic-status-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s;
+    }
+
+    .topic-status-card:hover {
+      border-color: var(--accent);
+    }
+
+    .topic-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .topic-meta-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .topic-meta-module {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .issue-review-box {
+      margin: 12px 0 16px 0;
+      padding: 12px 16px;
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+    }
+
+    .issue-review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .issue-link-btn {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .issue-link-btn:hover {
+      text-decoration: underline;
+    }
+
+    .prob-badges-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .prob-status-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 4px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-primary);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .prob-status-cell:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+      border-color: var(--accent);
+    }
+
+    .prob-status-cell.accepted {
+      background-color: var(--success-light);
+      border-color: rgba(34, 197, 94, 0.4);
+      color: var(--success);
+    }
+
+    .prob-status-cell.submitted {
+      background-color: var(--warning-light);
+      border-color: rgba(245, 158, 11, 0.4);
+      color: var(--warning);
+    }
+
+    .prob-status-cell.pending {
+      color: var(--text-muted);
+      opacity: 0.8;
+    }
+
+    .cell-number {
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .cell-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      margin-top: 2px;
+      text-transform: uppercase;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       #sidebar {
@@ -600,11 +888,12 @@
       </div>
     </header>
 
-    <!-- Sub-Navbar for Views (Exercises vs. Solutions) -->
+    <!-- Sub-Navbar for Views (Exercises vs. Solutions vs. Acceptance Tracker) -->
     <div class="view-bar">
       <div class="tabs">
         <button class="tab-btn active" id="tab-exercise" onclick="switchTab('exercise')">📖 Exercise Problems</button>
         <button class="tab-btn" id="tab-solutions" onclick="switchTab('solutions')">💡 Solutions Explorer</button>
+        <button class="tab-btn" id="tab-tracker" onclick="switchTab('tracker')">📊 Acceptance Tracker</button>
       </div>
 
       <div id="problem-selector">
@@ -627,6 +916,12 @@
     // --- Curriculum Database ---
     const CURRICULUM = [
       {
+        id: 'tracker-view',
+        title: '📊 Acceptance & Review Tracker',
+        module: 'Course Status',
+        isTracker: true
+      },
+      {
         id: 'overview',
         title: 'Course Overview & Instructions',
         module: 'General',
@@ -641,8 +936,13 @@
         exerciseFile: 'exercises/1_Algebra/01_matrices_and_operations_en.md',
         solutionsDir: 'solutions/1_Algebra/01_matrices_and_operations',
         totalProblems: 15,
-        completedCount: 15,
-        status: 'accepted'
+        acceptedCount: 15,
+        submittedCount: 0,
+        status: 'accepted',
+        issueNumber: 1,
+        issueTitle: 'Review — 1_Algebra/01_matrices_and_operations',
+        issueUrl: 'https://github.com/Uykulumirza/Basics_of_Mathematics_Student_Workbook_2026/issues/1',
+        reviewNotes: 'All 15 exercises accepted. Issue #1 resolved with initial-state index correction on Exercise 13.'
       },
       {
         id: 'algebra-02',
@@ -651,8 +951,10 @@
         exerciseFile: 'exercises/1_Algebra/02_determinants_en.md',
         solutionsDir: 'solutions/1_Algebra/02_determinants',
         totalProblems: 15,
-        completedCount: 15,
-        status: 'accepted'
+        acceptedCount: 0,
+        submittedCount: 15,
+        status: 'submitted',
+        reviewNotes: 'All 15 solutions completed and pushed to main in commit 6756bb0. Awaiting instructor review issue.'
       },
       {
         id: 'algebra-03',
@@ -661,7 +963,8 @@
         exerciseFile: 'exercises/1_Algebra/03_matrix_inversion_en.md',
         solutionsDir: 'solutions/1_Algebra/03_matrix_inversion',
         totalProblems: 15,
-        completedCount: 0,
+        acceptedCount: 0,
+        submittedCount: 0,
         status: 'pending'
       },
       {
@@ -671,7 +974,8 @@
         exerciseFile: 'exercises/1_Algebra/04_systems_of_equations_en.md',
         solutionsDir: 'solutions/1_Algebra/04_systems_of_equations',
         totalProblems: 15,
-        completedCount: 0,
+        acceptedCount: 0,
+        submittedCount: 0,
         status: 'pending'
       },
       // Module 2: Geometry
@@ -682,7 +986,8 @@
         exerciseFile: 'exercises/2_Geometry/01_vectors_en.md',
         solutionsDir: 'solutions/2_Geometry/01_vectors',
         totalProblems: 15,
-        completedCount: 0,
+        acceptedCount: 0,
+        submittedCount: 0,
         status: 'pending'
       },
       {
@@ -692,7 +997,8 @@
         exerciseFile: 'exercises/2_Geometry/02_lines_and_planes_en.md',
         solutionsDir: 'solutions/2_Geometry/02_lines_and_planes',
         totalProblems: 15,
-        completedCount: 0,
+        acceptedCount: 0,
+        submittedCount: 0,
         status: 'pending'
       },
       {
@@ -702,7 +1008,8 @@
         exerciseFile: 'exercises/2_Geometry/03_second_degree_curves_and_surfaces_en.md',
         solutionsDir: 'solutions/2_Geometry/03_second_degree_curves_and_surfaces',
         totalProblems: 15,
-        completedCount: 0,
+        acceptedCount: 0,
+        submittedCount: 0,
         status: 'pending'
       },
       // Module 3: Calculus
@@ -713,7 +1020,8 @@
         exerciseFile: 'exercises/3_Calculus/01_limits_en.md',
         solutionsDir: 'solutions/3_Calculus/01_limits',
         totalProblems: 15,
-        completedCount: 0,
+        acceptedCount: 0,
+        submittedCount: 0,
         status: 'pending'
       },
       {
@@ -723,7 +1031,8 @@
         exerciseFile: 'exercises/3_Calculus/02_derivatives_en.md',
         solutionsDir: 'solutions/3_Calculus/02_derivatives',
         totalProblems: 15,
-        completedCount: 0,
+        acceptedCount: 0,
+        submittedCount: 0,
         status: 'pending'
       },
       {
@@ -733,7 +1042,8 @@
         exerciseFile: 'exercises/3_Calculus/03_function_analysis_en.md',
         solutionsDir: 'solutions/3_Calculus/03_function_analysis',
         totalProblems: 15,
-        completedCount: 0,
+        acceptedCount: 0,
+        submittedCount: 0,
         status: 'pending'
       },
       {
@@ -743,7 +1053,8 @@
         exerciseFile: 'exercises/3_Calculus/04_integrals_en.md',
         solutionsDir: 'solutions/3_Calculus/04_integrals',
         totalProblems: 15,
-        completedCount: 0,
+        acceptedCount: 0,
+        submittedCount: 0,
         status: 'pending'
       },
       {
@@ -753,15 +1064,17 @@
         exerciseFile: 'exercises/3_Calculus/05_applications_en.md',
         solutionsDir: 'solutions/3_Calculus/05_applications',
         totalProblems: 12,
-        completedCount: 0,
+        acceptedCount: 0,
+        submittedCount: 0,
         status: 'pending'
       }
     ];
 
     // --- State ---
     let currentTopicId = 'algebra-01';
-    let currentTab = 'exercise'; // 'exercise' | 'solutions'
+    let currentTab = 'exercise'; // 'exercise' | 'solutions' | 'tracker'
     let currentProblemIndex = 1;
+    let currentTrackerFilter = 'all'; // 'all' | 'accepted' | 'submitted' | 'pending'
 
     // --- Math + Markdown Parser ---
     function renderMarkdownWithKaTeX(markdownText) {
@@ -825,14 +1138,21 @@
 
         items.forEach(item => {
           const itemEl = document.createElement('div');
-          itemEl.className = `nav-item ${item.id === currentTopicId ? 'active' : ''}`;
-          itemEl.onclick = () => selectTopic(item.id);
+          const isActive = (currentTab === 'tracker' && item.isTracker) || (currentTab !== 'tracker' && item.id === currentTopicId);
+          itemEl.className = `nav-item ${isActive ? 'active' : ''}`;
+          itemEl.onclick = () => {
+            if (item.isTracker) {
+              switchTab('tracker');
+            } else {
+              selectTopic(item.id);
+            }
+          };
 
           let badgeHtml = '';
           if (item.status === 'accepted') {
-            badgeHtml = `<span class="status-badge accepted">✓ ${item.completedCount}/${item.totalProblems}</span>`;
-          } else if (item.status === 'progress') {
-            badgeHtml = `<span class="status-badge progress">${item.completedCount}/${item.totalProblems}</span>`;
+            badgeHtml = `<span class="status-badge accepted">✓ ${item.acceptedCount}/${item.totalProblems}</span>`;
+          } else if (item.status === 'submitted') {
+            badgeHtml = `<span class="status-badge submitted">⏳ ${item.submittedCount}/${item.totalProblems}</span>`;
           } else if (item.status === 'pending') {
             badgeHtml = `<span class="status-badge pending">0/${item.totalProblems}</span>`;
           }
@@ -848,8 +1168,246 @@
       }
     }
 
+    // --- Acceptance Tracker Dashboard Renderer ---
+    function renderAcceptanceTracker() {
+      const contentEl = document.getElementById('article-content');
+      const breadcrumbs = document.getElementById('breadcrumbs');
+      breadcrumbs.innerHTML = `<span>Course Status</span> / <span class="active">Acceptance & Review Tracker</span>`;
+
+      // Calculate totals
+      let totalCourseProblems = 0;
+      let totalAccepted = 0;
+      let totalSubmitted = 0;
+
+      const topics = CURRICULUM.filter(t => !t.isOverview && !t.isTracker);
+      topics.forEach(t => {
+        totalCourseProblems += t.totalProblems;
+        totalAccepted += (t.acceptedCount || 0);
+        totalSubmitted += (t.submittedCount || 0);
+      });
+
+      const totalPending = totalCourseProblems - totalAccepted - totalSubmitted;
+      const pctAccepted = ((totalAccepted / totalCourseProblems) * 100).toFixed(1);
+      const pctSubmitted = ((totalSubmitted / totalCourseProblems) * 100).toFixed(1);
+      const pctPending = (100 - parseFloat(pctAccepted) - parseFloat(pctSubmitted)).toFixed(1);
+
+      // Filter topics according to current filter
+      const filteredTopics = topics.filter(t => {
+        if (currentTrackerFilter === 'all') return true;
+        if (currentTrackerFilter === 'accepted') return t.status === 'accepted';
+        if (currentTrackerFilter === 'submitted') return t.status === 'submitted';
+        if (currentTrackerFilter === 'pending') return t.status === 'pending';
+        return true;
+      });
+
+      let html = `
+        <div class="tracker-dashboard">
+          <div class="tracker-header">
+            <div>
+              <h1 class="tracker-title">📊 Problem Acceptance & Review Tracker</h1>
+              <div class="tracker-subtitle">
+                Official tracking dashboard monitoring submissions and instructor reviews via GitHub Issues.
+              </div>
+            </div>
+            <div>
+              <button class="btn btn-primary" onclick="syncWithGitHub()" id="btn-sync-gh">
+                🔄 Sync with GitHub Reviews
+              </button>
+            </div>
+          </div>
+
+          <!-- Metric Cards -->
+          <div class="stat-cards-grid">
+            <div class="stat-card">
+              <div class="stat-card-label">Accepted Problems</div>
+              <div class="stat-card-val accepted">${totalAccepted}</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">${pctAccepted}% of course total</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-label">Submitted (Under Review)</div>
+              <div class="stat-card-val submitted">${totalSubmitted}</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">${pctSubmitted}% of course total</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-label">Pending / Unsolved</div>
+              <div class="stat-card-val pending">${totalPending}</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">${pctPending}% remaining</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-label">Total Course Problems</div>
+              <div class="stat-card-val total">${totalCourseProblems}</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">12 topic problem sets</div>
+            </div>
+          </div>
+
+          <!-- Segmented Progress Bar -->
+          <div class="progress-bar-card">
+            <div class="progress-bar-header">
+              <span>Overall Workbook Completion</span>
+              <span>${(parseFloat(pctAccepted) + parseFloat(pctSubmitted)).toFixed(1)}% Completed</span>
+            </div>
+            <div class="multi-progress">
+              <div class="progress-seg accepted" style="width: ${pctAccepted}%;" title="Accepted: ${totalAccepted} problems"></div>
+              <div class="progress-seg submitted" style="width: ${pctSubmitted}%;" title="Submitted: ${totalSubmitted} problems"></div>
+              <div class="progress-seg pending" style="width: ${pctPending}%;" title="Pending: ${totalPending} problems"></div>
+            </div>
+            <div class="progress-legend">
+              <div class="legend-item"><div class="legend-dot accepted"></div> Accepted (${totalAccepted})</div>
+              <div class="legend-item"><div class="legend-dot submitted"></div> Submitted / Under Review (${totalSubmitted})</div>
+              <div class="legend-item"><div class="legend-dot pending"></div> Pending (${totalPending})</div>
+            </div>
+          </div>
+
+          <!-- Filter Bar -->
+          <div class="tracker-filters">
+            <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); margin-right:4px;">Filter:</span>
+            <button class="filter-chip ${currentTrackerFilter === 'all' ? 'active' : ''}" onclick="setTrackerFilter('all')">All Topics (${topics.length})</button>
+            <button class="filter-chip ${currentTrackerFilter === 'accepted' ? 'active' : ''}" onclick="setTrackerFilter('accepted')">Accepted (${topics.filter(t => t.status === 'accepted').length})</button>
+            <button class="filter-chip ${currentTrackerFilter === 'submitted' ? 'active' : ''}" onclick="setTrackerFilter('submitted')">Submitted (${topics.filter(t => t.status === 'submitted').length})</button>
+            <button class="filter-chip ${currentTrackerFilter === 'pending' ? 'active' : ''}" onclick="setTrackerFilter('pending')">Pending (${topics.filter(t => t.status === 'pending').length})</button>
+          </div>
+
+          <!-- Topic Status Cards List -->
+          <div class="topics-status-list">
+      `;
+
+      filteredTopics.forEach(topic => {
+        let statusBadge = '';
+        if (topic.status === 'accepted') {
+          statusBadge = `<span class="status-badge accepted">✓ Accepted (${topic.acceptedCount}/${topic.totalProblems})</span>`;
+        } else if (topic.status === 'submitted') {
+          statusBadge = `<span class="status-badge submitted">⏳ Submitted (${topic.submittedCount}/${topic.totalProblems})</span>`;
+        } else {
+          statusBadge = `<span class="status-badge pending">⚪ Not Started (0/${topic.totalProblems})</span>`;
+        }
+
+        let reviewBlock = '';
+        if (topic.issueNumber) {
+          reviewBlock = `
+            <div class="issue-review-box">
+              <div class="issue-review-header">
+                <span>💬 Instructor Review Status:</span>
+                <a href="${topic.issueUrl}" target="_blank" class="issue-link-btn">
+                  Issue #${topic.issueNumber} ↗
+                </a>
+              </div>
+              <div style="color:var(--text-secondary);">${topic.reviewNotes}</div>
+            </div>
+          `;
+        } else if (topic.reviewNotes) {
+          reviewBlock = `
+            <div class="issue-review-box" style="border-left-color: var(--warning);">
+              <div style="color:var(--text-secondary);">📌 ${topic.reviewNotes}</div>
+            </div>
+          `;
+        }
+
+        // Generate problem cells
+        let problemPills = '';
+        for (let i = 1; i <= topic.totalProblems; i++) {
+          let cellClass = 'pending';
+          let cellTag = 'Pending';
+          if (topic.status === 'accepted') {
+            cellClass = 'accepted';
+            cellTag = '✓ Pass';
+          } else if (topic.status === 'submitted') {
+            cellClass = 'submitted';
+            cellTag = '⏳ Sent';
+          }
+
+          problemPills += `
+            <div class="prob-status-cell ${cellClass}" 
+                 onclick="jumpToSolution('${topic.id}', ${i})" 
+                 title="View Solution for Problem ${i}">
+              <span class="cell-number">P${i}</span>
+              <span class="cell-label">${cellTag}</span>
+            </div>
+          `;
+        }
+
+        html += `
+          <div class="topic-status-card">
+            <div class="topic-card-top">
+              <div>
+                <div class="topic-meta-module">${topic.module}</div>
+                <div class="topic-meta-title">${topic.title}</div>
+              </div>
+              <div>${statusBadge}</div>
+            </div>
+
+            ${reviewBlock}
+
+            <div style="font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-muted); margin-top:14px;">
+              Individual Problem Status (Click to inspect solution):
+            </div>
+            <div class="prob-badges-grid">
+              ${problemPills}
+            </div>
+          </div>
+        `;
+      });
+
+      html += `
+          </div>
+        </div>
+      `;
+
+      contentEl.innerHTML = html;
+    }
+
+    function setTrackerFilter(filter) {
+      currentTrackerFilter = filter;
+      renderAcceptanceTracker();
+    }
+
+    function jumpToSolution(topicId, problemIndex) {
+      currentTopicId = topicId;
+      currentProblemIndex = problemIndex;
+      switchTab('solutions');
+    }
+
+    // --- Live GitHub API Sync ---
+    async function syncWithGitHub() {
+      const btn = document.getElementById('btn-sync-gh');
+      if (btn) btn.innerHTML = '⏳ Syncing...';
+
+      try {
+        const resp = await fetch('https://api.github.com/repos/Uykulumirza/Basics_of_Mathematics_Student_Workbook_2026/issues?state=all');
+        if (resp.ok) {
+          const issues = await resp.json();
+          issues.forEach(issue => {
+            const title = issue.title || '';
+            CURRICULUM.forEach(topic => {
+              // Match topic folder name inside issue title
+              if (topic.solutionsDir && title.includes(topic.solutionsDir.split('/').pop())) {
+                topic.issueNumber = issue.number;
+                topic.issueUrl = issue.html_url;
+                topic.issueTitle = issue.title;
+              }
+            });
+          });
+          renderAcceptanceTracker();
+          if (btn) btn.innerHTML = '✓ Synced with GitHub';
+          setTimeout(() => { if (btn) btn.innerHTML = '🔄 Sync with GitHub Reviews'; }, 3000);
+        } else {
+          throw new Error('Rate limit or connection issue');
+        }
+      } catch (e) {
+        console.warn('GitHub API sync note:', e);
+        if (btn) btn.innerHTML = '✓ Using Local Data';
+        setTimeout(() => { if (btn) btn.innerHTML = '🔄 Sync with GitHub Reviews'; }, 3000);
+      }
+    }
+
     // --- Content Loader ---
     async function loadCurrentContent() {
+      if (currentTab === 'tracker') {
+        document.querySelector('.view-bar').style.display = 'flex';
+        document.getElementById('problem-selector').style.display = 'none';
+        renderAcceptanceTracker();
+        return;
+      }
+
       const topic = CURRICULUM.find(t => t.id === currentTopicId);
       if (!topic) return;
 
@@ -917,6 +1475,9 @@
       const topic = CURRICULUM.find(t => t.id === currentTopicId);
       if (topic.isOverview) {
         currentTab = 'exercise';
+      } else if (topic.isTracker) {
+        switchTab('tracker');
+        return;
       }
       buildSidebar();
       buildProblemSelector();
@@ -931,8 +1492,19 @@
       currentTab = tab;
       document.getElementById('tab-exercise').classList.toggle('active', tab === 'exercise');
       document.getElementById('tab-solutions').classList.toggle('active', tab === 'solutions');
-      document.getElementById('problem-selector').style.display = tab === 'solutions' ? 'flex' : 'none';
+      document.getElementById('tab-tracker').classList.toggle('active', tab === 'tracker');
+      
+      const problemSelector = document.getElementById('problem-selector');
+      if (problemSelector) {
+        problemSelector.style.display = tab === 'solutions' ? 'flex' : 'none';
+      }
+
+      buildSidebar();
+      if (tab !== 'tracker') {
+        buildProblemSelector();
+      }
       loadCurrentContent();
+      window.location.hash = tab === 'tracker' ? '#tracker' : `#${currentTopicId}`;
     }
 
     function selectProblem(index) {
@@ -945,12 +1517,12 @@
       const selector = document.getElementById('problem-selector');
       selector.innerHTML = '';
       const topic = CURRICULUM.find(t => t.id === currentTopicId);
-      if (!topic || topic.isOverview) return;
+      if (!topic || topic.isOverview || topic.isTracker) return;
 
       const total = topic.totalProblems || 15;
       for (let i = 1; i <= total; i++) {
         const pill = document.createElement('button');
-        const isDone = i <= topic.completedCount;
+        const isDone = (topic.acceptedCount && i <= topic.acceptedCount) || (topic.submittedCount && i <= topic.submittedCount);
         pill.className = `problem-pill ${i === currentProblemIndex ? 'active' : ''} ${isDone ? 'done' : ''}`;
         pill.textContent = `P${i}`;
         pill.title = `Problem ${i} ${isDone ? '(Completed)' : '(Pending)'}`;
@@ -996,7 +1568,9 @@
     window.addEventListener('DOMContentLoaded', () => {
       if (window.location.hash) {
         const hashId = window.location.hash.replace('#', '');
-        if (CURRICULUM.some(t => t.id === hashId)) {
+        if (hashId === 'tracker') {
+          currentTab = 'tracker';
+        } else if (CURRICULUM.some(t => t.id === hashId)) {
           currentTopicId = hashId;
         }
       }

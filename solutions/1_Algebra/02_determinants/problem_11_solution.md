@@ -91,3 +91,4 @@ $$\det A = \det A'' = 1$$
    Expanding along column 1:
    $$\det A' = 1 \cdot \begin{vmatrix} 1 & 1 \\ 2 & 3 \end{vmatrix} - 0 + 0 = 1 \cdot (1 \cdot 3 - 1 \cdot 2) = 3 - 2 = 1 \quad \checkmark$$
    Both checks confirm that $\det A = 1$.
+

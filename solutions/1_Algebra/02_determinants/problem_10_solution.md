@@ -86,3 +86,4 @@ Because the rows are linearly dependent:
 2. **Rank Check via Gaussian Echelon Form:**
    $$\begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 0 & 1 & 5 \end{pmatrix} \xrightarrow{R_2 \leftarrow R_2 - 2R_1} \begin{pmatrix} 1 & 2 & 3 \\ 0 & 0 & 0 \\ 0 & 1 & 5 \end{pmatrix} \xrightarrow{R_2 \leftrightarrow R_3} \begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 5 \\ 0 & 0 & 0 \end{pmatrix}$$
    The echelon form has only 2 non-zero pivot rows. Therefore, $\operatorname{rank}(A) = 2 < 3$, confirming that the determinant must be $0$ and the matrix is singular.
+

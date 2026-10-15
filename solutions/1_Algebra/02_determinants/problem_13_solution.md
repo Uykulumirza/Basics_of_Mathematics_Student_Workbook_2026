@@ -98,3 +98,4 @@ $$\det A = \det A_1 = \det A_2 = \det A_3 = 1$$
    Computing $LU$:
    $$LU = \begin{pmatrix} 1 & 0 & 0 \\ 2 & 1 & 0 \\ 1 & -2 & 1 \end{pmatrix} \begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix} = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4+1 & 6+1 \\ 1 & 2-2 & 3-2+1 \end{pmatrix} = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 5 & 7 \\ 1 & 0 & 2 \end{pmatrix} = A$$
    Since $\det L = 1$ and $\det U = 1$, $\det A = \det L \cdot \det U = 1 \cdot 1 = 1 \quad \checkmark$.
+

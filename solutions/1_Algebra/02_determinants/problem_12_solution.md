@@ -100,3 +100,4 @@ $$R_2 = (2, 4, 6) = 2 \cdot (1, 2, 3) = 2 R_1$$
    Solving $A(6) x = 0$:
    $$\begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 0 & 1 & 1 \end{pmatrix} \begin{pmatrix} -1 \\ -1 \\ 1 \end{pmatrix} = \begin{pmatrix} -1 - 2 + 3 \\ -2 - 4 + 6 \\ 0 - 1 + 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$$
    The non-zero vector $x = (-1, -1, 1)^T$ belongs to the kernel, explicitly verifying that $A(6)$ is singular.
+

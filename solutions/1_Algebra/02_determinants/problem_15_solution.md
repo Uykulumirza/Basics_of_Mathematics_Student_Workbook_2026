@@ -99,3 +99,4 @@ $$\det\left(B^{-1} A^T B\right) = -2$$
    - Finally, compute its determinant:
      $$\det\left(B^{-1} A^T B\right) = (-2)(1) - (-3)(0) = -2 \quad \checkmark$$
    The direct numerical calculation on an explicit pair of matrices confirms $\det(B^{-1} A^T B) = -2$.
+
