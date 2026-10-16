@@ -110,3 +110,4 @@ $$F_1 = (-4, 0) \qquad \text{and} \qquad F_2 = (4, 0)$$
    The area enclosed by an ellipse is given by:
    $$\text{Area} = \pi \cdot a \cdot b = \pi \cdot 5 \cdot 3 = 15\pi$$
    Bounded in the bounding box $[-5, 5] \times [-3, 3]$ of area $10 \times 6 = 60$. Notice $15\pi \approx 47.12 < 60$, fully consistent.
+

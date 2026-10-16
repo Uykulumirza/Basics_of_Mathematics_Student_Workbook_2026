@@ -139,16 +139,17 @@ When there are no cross-terms ($B = 0$) and the center is at the origin ($D = E 
   - **Foci:** $F_1 = (-\sqrt{13}, 0)$ and $F_2 = (\sqrt{13}, 0)$.
 
 ```
-   asymptote: y = -(2/3)x \   / asymptote: y = (2/3)x
-                         y \ /
-                           ^X
-                *          |          *
-              *            |            *
-  ----------*--*-----------+-----------*--*---------> x
-         F1  (-3,0)        |         (3,0) F2
-              *            |            *
-                *         / \         *
-                         /   \
+  asymptote: y = -(2/3)x \     y     / asymptote: y = (2/3)x
+                          \    ^    /
+              *            \   |   /            *
+                *           \  |  /           *
+      F1          *          \ | /          *          F2
+  ----+------------*----------\+-----------*------------+-----> x
+    (-√13,0)     (-3,0)        |         (3,0)        (√13,0)
+                  *           /|\           *
+                *            / | \            *
+              *             /  |  \             *
+                           /   |   \
 ```
 
 ---
@@ -165,3 +166,4 @@ When there are no cross-terms ($B = 0$) and the center is at the origin ($D = E 
    For large $x \gg 1$:
    $$y = \pm 2 \sqrt{\frac{x^2}{9} - 1} = \pm \frac{2}{3} x \sqrt{1 - \frac{9}{x^2}} \approx \pm \frac{2}{3} x \left(1 - \frac{9}{2x^2}\right) \to \pm \frac{2}{3}x$$
    The distance between the hyperbola branch and the lines $y = \pm \frac{2}{3}x$ approaches $0$ as $x \to \infty$, confirming the asymptotes.
+

@@ -114,3 +114,4 @@ Because the distance shrinks to zero as $x \to \infty$, the hyperbola becomes in
      - Asymptote: $y = \frac{3}{4}(100) = 75$
      - Difference: $75 - 74.93998 = 0.06002 \approx \frac{6}{100}$
    The numerical gap matches $\frac{6}{x} = 0.06$ accurately, confirming the asymptotic behavior.
+

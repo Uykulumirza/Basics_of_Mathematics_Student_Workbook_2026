@@ -58,13 +58,19 @@ Because the rows are linearly dependent:
 1. **Rank Deficiency:** The span of the rows has dimension at most $2$, so:
    $$\operatorname{rank}(A) \le 2 < 3$$
 2. **Non-trivial Kernel (Null Space):** By the Rank-Nullity Theorem:
-   $$\dim(\ker A) = 3 - \operatorname{rank}(A) \ge 3 - 2 = 1$$
-   There exist non-zero vectors $x \ne 0$ such that $Ax = 0$. For instance, notice that the columns also exhibit linear dependence ($C_2 = 2C_1$), meaning:
-   $$\begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 0 & 1 & 5 \end{pmatrix} \begin{pmatrix} -2 \\ 1 \\ 0 \end{pmatrix} = \begin{pmatrix} -2 + 2 + 0 \\ -4 + 4 + 0 \\ 0 + 1 + 0 \end{pmatrix} \ne 0$$
-   Wait, to find an explicit null vector, we solve $Ax = 0$:
-   From row 1 and row 3: $x_1 + 2x_2 + 3x_3 = 0$ and $x_2 + 5x_3 = 0 \implies x_2 = -5x_3 \implies x_1 = -2(-5x_3) - 3x_3 = 7x_3$.
-   Taking $x_3 = 1$ gives $x = (7, -5, 1)^T$:
-   $$A \begin{pmatrix} 7 \\ -5 \\ 1 \end{pmatrix} = \begin{pmatrix} 7 - 10 + 3 \\ 14 - 20 + 6 \\ 0 - 5 + 5 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$$
+   $$\dim(\ker A) = 3 - \operatorname{rank}(A) = 3 - 2 = 1$$
+   There exist non-zero vectors $x \ne 0$ satisfying $Ax = 0$. Solving the homogeneous system:
+   $$\begin{cases} x_1 + 2x_2 + 3x_3 = 0 \\ 2x_1 + 4x_2 + 6x_3 = 0 \\ x_2 + 5x_3 = 0 \end{cases}$$
+   Since the second equation is a duplicate ($2 \times$ first equation), we use the third and first equations:
+   $$x_2 = -5x_3$$
+   Substituting into the first equation:
+   $$x_1 = -2x_2 - 3x_3 = -2(-5x_3) - 3x_3 = 10x_3 - 3x_3 = 7x_3$$
+   Choosing the free parameter $x_3 = 1$ yields the non-zero kernel vector:
+   $$x = \begin{pmatrix} 7 \\ -5 \\ 1 \end{pmatrix}$$
+   Verifying $Ax = 0$:
+   $$A \begin{pmatrix} 7 \\ -5 \\ 1 \end{pmatrix} = \begin{pmatrix} 1(7) + 2(-5) + 3(1) \\ 2(7) + 4(-5) + 6(1) \\ 0(7) + 1(-5) + 5(1) \end{pmatrix} = \begin{pmatrix} 7 - 10 + 3 \\ 14 - 20 + 6 \\ -5 + 5 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$$
+   This null vector also yields the exact linear dependence between the columns:
+   $$7 C_1 - 5 C_2 + C_3 = 7\begin{pmatrix} 1 \\ 2 \\ 0 \end{pmatrix} - 5\begin{pmatrix} 2 \\ 4 \\ 1 \end{pmatrix} + \begin{pmatrix} 3 \\ 6 \\ 5 \end{pmatrix} = \begin{pmatrix} 7 - 10 + 3 \\ 14 - 20 + 6 \\ 0 - 5 + 5 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$$
 3. **Loss of Injectivity and Invertibility:** Because $x = (7, -5, 1)^T \ne 0$ maps to the zero vector, the linear transformation is not injective (one-to-one). No function can invert a transformation that collapses non-zero vectors to zero. Hence, $A$ cannot be invertible.
 
 ---
