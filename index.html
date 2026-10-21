@@ -1111,6 +1111,355 @@
       text-align: right;
       color: var(--text-primary);
     }
+
+    /* --- Turkish Translation Bubble & Study Toolbar Styles --- */
+    .study-assist-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px 14px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--accent-light), var(--bg-secondary));
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 0.82rem;
+    }
+
+    .study-assist-left, .study-assist-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tr-bubble-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      color: #e11d48;
+      background: rgba(225, 29, 72, 0.08);
+      border: 1px solid rgba(225, 29, 72, 0.28);
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      vertical-align: middle;
+      margin-left: 8px;
+      line-height: 1.4;
+      user-select: none;
+    }
+
+    [data-theme="dark"] .tr-bubble-btn {
+      color: #fb7185;
+      background: rgba(251, 113, 133, 0.12);
+      border-color: rgba(251, 113, 133, 0.3);
+    }
+
+    .tr-bubble-btn:hover {
+      background: rgba(225, 29, 72, 0.16);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(225, 29, 72, 0.15);
+    }
+
+    .tr-bubble-btn.active {
+      background: #e11d48;
+      color: #ffffff;
+      border-color: #e11d48;
+    }
+
+    .tr-master-btn {
+      margin-left: 0;
+      padding: 5px 12px;
+      font-size: 0.78rem;
+    }
+
+    .glossary-open-btn {
+      margin-left: 0;
+      padding: 5px 12px;
+      font-size: 0.78rem;
+      color: var(--accent);
+      background: var(--bg-primary);
+      border-color: var(--border-color);
+    }
+
+    .glossary-open-btn:hover {
+      background: var(--accent-light);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .tr-translation-bubble {
+      position: relative;
+      margin: 12px 0 22px 0;
+      padding: 14px 18px;
+      background: linear-gradient(180deg, rgba(225, 29, 72, 0.05) 0%, rgba(225, 29, 72, 0.02) 100%);
+      border: 1px solid rgba(225, 29, 72, 0.25);
+      border-left: 4px solid #e11d48;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      animation: bubbleFadeIn 0.18s ease-out;
+    }
+
+    [data-theme="dark"] .tr-translation-bubble {
+      background: linear-gradient(180deg, rgba(244, 63, 94, 0.1) 0%, rgba(244, 63, 94, 0.04) 100%);
+      border-color: rgba(251, 113, 133, 0.3);
+      border-left-color: #fb7185;
+    }
+
+    @keyframes bubbleFadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tr-bubble-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px dashed rgba(225, 29, 72, 0.2);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #e11d48;
+      cursor: pointer;
+    }
+
+    [data-theme="dark"] .tr-bubble-header {
+      color: #fb7185;
+    }
+
+    .tr-bubble-close {
+      background: transparent;
+      border: 1px solid rgba(225, 29, 72, 0.3);
+      color: inherit;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .tr-bubble-close:hover {
+      background: rgba(225, 29, 72, 0.15);
+    }
+
+    .tr-bubble-body {
+      font-size: 0.94rem;
+      line-height: 1.68;
+      color: var(--text-primary);
+    }
+
+    .tr-bubble-body p:last-child,
+    .tr-bubble-body ul:last-child,
+    .tr-bubble-body ol:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Inline Math Glossary Tooltip Highlight */
+    .math-term-highlight {
+      border-bottom: 1px dotted #e11d48;
+      cursor: help;
+      position: relative;
+      transition: background-color 0.15s;
+    }
+
+    .math-term-highlight:hover {
+      background-color: rgba(225, 29, 72, 0.1);
+    }
+
+    .math-term-tooltip-popup {
+      position: fixed;
+      z-index: 9999;
+      max-width: 320px;
+      padding: 10px 12px;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid #e11d48;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      font-size: 0.8rem;
+      line-height: 1.45;
+      pointer-events: none;
+      display: none;
+    }
+
+    /* Glossary & Formula Cheat-Sheet Drawer */
+    .glossary-drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      z-index: 2000;
+      display: none;
+      justify-content: flex-end;
+      backdrop-filter: blur(2px);
+    }
+
+    .glossary-drawer-backdrop.open {
+      display: flex;
+    }
+
+    .glossary-drawer {
+      width: min(560px, 95vw);
+      height: 100%;
+      background: var(--bg-primary);
+      border-left: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-lg);
+      animation: drawerSlideIn 0.2s ease-out;
+    }
+
+    @keyframes drawerSlideIn {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+
+    .glossary-drawer-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-secondary);
+    }
+
+    .glossary-drawer-tabs {
+      display: flex;
+      gap: 8px;
+      padding: 10px 20px;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+    }
+
+    .glossary-drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 20px;
+    }
+
+    .glossary-item-card {
+      padding: 12px 14px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      margin-bottom: 10px;
+      background: var(--bg-secondary);
+    }
+
+    .glossary-item-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .glossary-en {
+      font-weight: 700;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+    }
+
+    .glossary-tr {
+      font-weight: 700;
+      color: #e11d48;
+      font-size: 0.88rem;
+      background: rgba(225, 29, 72, 0.1);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    [data-theme="dark"] .glossary-tr {
+      color: #fb7185;
+    }
+
+    /* Algebra Lab Styles */
+    .algebra-grid-layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .algebra-grid-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .matrix-input-grid {
+      display: grid;
+      gap: 6px;
+      margin: 10px 0;
+    }
+
+    .matrix-cell-input {
+      width: 100%;
+      padding: 7px 6px;
+      text-align: center;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+    }
+
+    .matrix-cell-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-light);
+    }
+
+    .step-card {
+      padding: 14px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background: var(--bg-primary);
+      margin-bottom: 12px;
+    }
+
+    .step-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      border-radius: 999px;
+      background: var(--accent-light);
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .plotter-mode-switch {
+      display: inline-flex;
+      background: var(--bg-tertiary);
+      padding: 4px;
+      border-radius: var(--radius-md);
+      gap: 4px;
+    }
+
+    .plotter-mode-btn {
+      padding: 6px 14px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .plotter-mode-btn.active {
+      background: var(--bg-primary);
+      color: var(--accent);
+      box-shadow: var(--shadow-sm);
+    }
   </style>
 </head>
 <body>
@@ -1147,6 +1496,9 @@
       </div>
 
       <div class="header-right">
+        <button class="btn" onclick="toggleGlossaryDrawer(true)" title="Open Turkish Math Glossary & Formula Cheat-Sheets" style="border-color:rgba(225,29,72,0.35); color:#e11d48;">
+          📘 TR Sözlük & Formüller
+        </button>
         <button class="btn" id="theme-toggle" title="Toggle Dark/Light Mode">
           <span id="theme-icon">🌙</span>
         </button>
@@ -1163,7 +1515,8 @@
         <button class="tab-btn active" id="tab-exercise" onclick="switchTab('exercise')">📖 Exercise Problems</button>
         <button class="tab-btn" id="tab-solutions" onclick="switchTab('solutions')">💡 Solutions Explorer</button>
         <button class="tab-btn" id="tab-tracker" onclick="switchTab('tracker')">📊 Acceptance Tracker</button>
-        <button class="tab-btn" id="tab-plotter" onclick="switchTab('plotter')">📈 Geometry Plotter</button>
+        <button class="tab-btn" id="tab-algebra" onclick="switchTab('algebra')">🧮 Algebra Lab</button>
+        <button class="tab-btn" id="tab-plotter" onclick="switchTab('plotter')">📈 Geometry Plotter (2D/3D)</button>
       </div>
 
       <div id="problem-selector">
@@ -1182,6 +1535,30 @@
     </main>
   </div>
 
+  <!-- Floating Tooltip for Math Terms -->
+  <div id="math-term-tooltip" class="math-term-tooltip-popup"></div>
+
+  <!-- Bilingual Glossary & Formula Cheat-Sheet Drawer -->
+  <div id="glossary-drawer-backdrop" class="glossary-drawer-backdrop" onclick="if(event.target===this) toggleGlossaryDrawer(false)">
+    <div class="glossary-drawer">
+      <div class="glossary-drawer-header">
+        <div>
+          <div style="font-weight:700; font-size:1.05rem;">🇹🇷 Matematik Terimleri Sözlüğü & Formül Özeti</div>
+          <div style="font-size:0.76rem; color:var(--text-muted);">Bilingual English–Turkish Study Companion</div>
+        </div>
+        <button class="btn" onclick="toggleGlossaryDrawer(false)">✕ Kapat</button>
+      </div>
+      <div class="glossary-drawer-tabs">
+        <button class="filter-chip active" id="drawer-tab-dict" onclick="switchGlossaryTab('dict')">📖 Terimler Sözlüğü (EN → TR)</button>
+        <button class="filter-chip" id="drawer-tab-formulas" onclick="switchGlossaryTab('formulas')">📐 Konu Formül Özetleri</button>
+      </div>
+      <div style="padding:10px 20px; border-bottom:1px solid var(--border-color); background:var(--bg-primary);" id="glossary-search-bar">
+        <input type="text" id="glossary-search-input" class="search-input" placeholder="Terim ara (örn. determinant, skew lines, echelon, odak...)" oninput="renderGlossaryDrawerContent()">
+      </div>
+      <div class="glossary-drawer-body" id="glossary-drawer-body"></div>
+    </div>
+  </div>
+
   <script>
     // --- Curriculum Database ---
     const CURRICULUM = [
@@ -1190,6 +1567,12 @@
         title: '📊 Acceptance & Review Tracker',
         module: 'Course Status',
         isTracker: true
+      },
+      {
+        id: 'algebra-lab-view',
+        title: '🧮 Interactive Algebra Lab',
+        module: 'Course Status',
+        isAlgebraLab: true
       },
       {
         id: 'plotter-view',
@@ -1433,12 +1816,15 @@
         items.forEach(item => {
           const itemEl = document.createElement('div');
           const isActive = (currentTab === 'tracker' && item.isTracker) ||
+                           (currentTab === 'algebra' && item.isAlgebraLab) ||
                            (currentTab === 'plotter' && item.isPlotter) ||
-                           (currentTab !== 'tracker' && currentTab !== 'plotter' && item.id === currentTopicId);
+                           (currentTab !== 'tracker' && currentTab !== 'algebra' && currentTab !== 'plotter' && item.id === currentTopicId);
           itemEl.className = `nav-item ${isActive ? 'active' : ''}`;
           itemEl.onclick = () => {
             if (item.isTracker) {
               switchTab('tracker');
+            } else if (item.isAlgebraLab) {
+              switchTab('algebra');
             } else if (item.isPlotter) {
               switchTab('plotter');
             } else {
@@ -1456,8 +1842,10 @@
               : `<span class="status-badge submitted">⏳ ${doneTotal}/${item.totalProblems}</span>`;
           } else if (item.status === 'pending') {
             badgeHtml = `<span class="status-badge pending">0/${item.totalProblems}</span>`;
+          } else if (item.isAlgebraLab) {
+            badgeHtml = `<span class="status-badge" style="background:var(--accent-light);color:var(--accent);font-weight:600;">Matrix</span>`;
           } else if (item.isPlotter) {
-            badgeHtml = `<span class="status-badge" style="background:var(--accent-light);color:var(--accent);font-weight:600;">2D Plot</span>`;
+            badgeHtml = `<span class="status-badge" style="background:var(--accent-light);color:var(--accent);font-weight:600;">2D/3D</span>`;
           }
 
           itemEl.innerHTML = `
@@ -1482,7 +1870,7 @@
       let totalAccepted = 0;
       let totalSubmitted = 0;
 
-      const topics = CURRICULUM.filter(t => !t.isOverview && !t.isTracker && !t.isPlotter);
+      const topics = CURRICULUM.filter(t => !t.isOverview && !t.isTracker && !t.isAlgebraLab && !t.isPlotter);
       topics.forEach(t => {
         totalCourseProblems += t.totalProblems;
         totalAccepted += (t.acceptedCount || 0);
@@ -1714,6 +2102,12 @@
         renderAcceptanceTracker();
         return;
       }
+      if (currentTab === 'algebra') {
+        document.querySelector('.view-bar').style.display = 'flex';
+        document.getElementById('problem-selector').style.display = 'none';
+        renderAlgebraLab();
+        return;
+      }
       if (currentTab === 'plotter') {
         document.querySelector('.view-bar').style.display = 'flex';
         document.getElementById('problem-selector').style.display = 'none';
@@ -1770,6 +2164,7 @@
           `;
         } else {
           contentEl.innerHTML = renderMarkdownWithKaTeX(text);
+          enhanceArticleWithTurkishAndGlossary(contentEl);
         }
       } catch (err) {
         contentEl.innerHTML = `
@@ -1791,10 +2186,22 @@
       } else if (topic.isTracker) {
         switchTab('tracker');
         return;
+      } else if (topic.isAlgebraLab) {
+        switchTab('algebra');
+        return;
       } else if (topic.isPlotter) {
         switchTab('plotter');
         return;
+      } else if (currentTab === 'tracker' || currentTab === 'algebra' || currentTab === 'plotter') {
+        currentTab = 'exercise';
       }
+      document.getElementById('tab-exercise').classList.toggle('active', currentTab === 'exercise');
+      document.getElementById('tab-solutions').classList.toggle('active', currentTab === 'solutions');
+      document.getElementById('tab-tracker').classList.toggle('active', currentTab === 'tracker');
+      const tabAlg = document.getElementById('tab-algebra');
+      if (tabAlg) tabAlg.classList.toggle('active', currentTab === 'algebra');
+      const tabPlot = document.getElementById('tab-plotter');
+      if (tabPlot) tabPlot.classList.toggle('active', currentTab === 'plotter');
       buildSidebar();
       buildProblemSelector();
       loadCurrentContent();
@@ -1809,6 +2216,8 @@
       document.getElementById('tab-exercise').classList.toggle('active', tab === 'exercise');
       document.getElementById('tab-solutions').classList.toggle('active', tab === 'solutions');
       document.getElementById('tab-tracker').classList.toggle('active', tab === 'tracker');
+      const tabAlgebra = document.getElementById('tab-algebra');
+      if (tabAlgebra) tabAlgebra.classList.toggle('active', tab === 'algebra');
       const tabPlotter = document.getElementById('tab-plotter');
       if (tabPlotter) tabPlotter.classList.toggle('active', tab === 'plotter');
       
@@ -1818,11 +2227,11 @@
       }
 
       buildSidebar();
-      if (tab !== 'tracker' && tab !== 'plotter') {
+      if (tab !== 'tracker' && tab !== 'algebra' && tab !== 'plotter') {
         buildProblemSelector();
       }
       loadCurrentContent();
-      window.location.hash = tab === 'tracker' ? '#tracker' : (tab === 'plotter' ? '#plotter' : `#${currentTopicId}`);
+      window.location.hash = tab === 'tracker' ? '#tracker' : (tab === 'algebra' ? '#algebra' : (tab === 'plotter' ? '#plotter' : `#${currentTopicId}`));
     }
 
     function selectProblem(index) {
@@ -1835,7 +2244,7 @@
       const selector = document.getElementById('problem-selector');
       selector.innerHTML = '';
       const topic = CURRICULUM.find(t => t.id === currentTopicId);
-      if (!topic || topic.isOverview || topic.isTracker || topic.isPlotter) return;
+      if (!topic || topic.isOverview || topic.isTracker || topic.isAlgebraLab || topic.isPlotter) return;
 
       const total = topic.totalProblems || 15;
       for (let i = 1; i <= total; i++) {
@@ -2000,7 +2409,12 @@
     function renderGeometryPlotter() {
       const contentEl = document.getElementById('article-content');
       const breadcrumbs = document.getElementById('breadcrumbs');
-      breadcrumbs.innerHTML = `<span>Geometry</span> / <span class="active">Interactive Geometry Plotter</span>`;
+      breadcrumbs.innerHTML = `<span>Geometry</span> / <span class="active">Interactive Geometry Plotter (2D & 3D)</span>`;
+
+      if (plotterState.mode === '3d') {
+        render3DGeometryPlotter(contentEl);
+        return;
+      }
 
       const pState = plotterState;
       const currentPreset = PLOTTER_PRESETS[pState.preset] || PLOTTER_PRESETS.ex1;
@@ -2121,10 +2535,14 @@
             <div>
               <h1 class="plotter-title">📈 Interactive Geometry Plotter</h1>
               <div class="plotter-subtitle">
-                Module 2: Geometry — Topic 3 Second-Degree Curves & Surfaces
+                Module 2: Geometry — 2D Conic Sections & 3D Quadric Surfaces / Vectors
               </div>
             </div>
-            <div>
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <div class="plotter-mode-switch">
+                <button class="plotter-mode-btn active" onclick="setPlotterMode('2d')">📐 2D Conics (Ex 1–8)</button>
+                <button class="plotter-mode-btn" onclick="setPlotterMode('3d')">🧊 3D Surfaces & Vectors (Ex 9–15)</button>
+              </div>
               ${solBtnHtml}
             </div>
           </div>
@@ -2797,6 +3215,1321 @@
       ctx.restore();
     }
 
+    // =========================================================================
+    // 1. 🇹🇷 INTERACTIVE TURKISH TRANSLATION BUBBLE & GLOSSARY TOOLTIP SYSTEM
+    // =========================================================================
+    let inlineGlossaryEnabled = true;
+
+    const MATH_GLOSSARY = [
+      { en: 'Row Echelon Form (REF)', tr: 'Satır Eşelon Formu', cat: 'Algebra', desc: 'Matriste sıfır olmayan her satırın ilk sıfırdan farklı elemanı (pivot), bir üst satırın pivotunun sağında yer alır ($a_{ij} = 0, i > j$).' },
+      { en: 'Reduced Row Echelon Form (RREF)', tr: 'İndirgenmiş Satır Eşelon Formu', cat: 'Algebra', desc: 'Her pivotun 1 olduğu ve pivotların bulunduğu sütunlardaki diğer tüm elemanların 0 olduğu kanonik matris formu.' },
+      { en: 'Gaussian Elimination', tr: 'Gauss Eliminasyonu (Yok Etme Yöntemi)', cat: 'Algebra', desc: 'Elementer satır işlemleri ($R_i \\leftarrow R_i - mR_j$) kullanarak doğrusal denklem sistemini üst üçgensel / eşelon forma dönüştürme yöntemi.' },
+      { en: 'Back-Substitution', tr: 'Geri Yerine Koyma', cat: 'Algebra', desc: 'Üst üçgensel formdaki denklem sisteminde en son bilinmeyenden başlayarak yukarı doğru sırayla diğer bilinmeyenleri bulma işlemi.' },
+      { en: 'Augmented Matrix', tr: 'Genişletilmiş Matris ([A | b])', cat: 'Algebra', desc: 'Katsayılar matrisi $A$ ile sağ taraf sabitler vektörü $b$\'nin yan yana birleştirilmesiyle oluşan $[A \\mid b]$ matrisi.' },
+      { en: 'Coefficient Matrix', tr: 'Katsayılar Matrisi', cat: 'Algebra', desc: 'Doğrusal denklem sistemindeki değişkenlerin katsayılarını içeren $A$ matrisi.' },
+      { en: 'Determinant', tr: 'Determinant (det A)', cat: 'Algebra', desc: 'Kare matrisin tersinirliğini ($\\det A \\neq 0$) ve hacim ölçekleme çarpanını belirleyen skaler değer.' },
+      { en: 'Cofactor Expansion (Laplace)', tr: 'Kofaktör (Laplace) Açılımı', cat: 'Algebra', desc: 'Determinantın bir satır veya sütundaki elemanların kendi kofaktörleriyle ($C_{ij} = (-1)^{i+j}M_{ij}$) çarpılıp toplanmasıyla hesaplanması.' },
+      { en: 'Minor', tr: 'Minör ($M_{ij}$)', cat: 'Algebra', desc: 'Matrisin $i$. satırı ve $j$. sütunu silindiğinde kalan alt matrisin determinantı.' },
+      { en: 'Adjugate Matrix', tr: 'Ek (Adjungate) Matris ($\\text{adj}(A)$)', cat: 'Algebra', desc: 'Kofaktör matrisinin devriği (transpozu): $\\text{adj}(A) = C^T$. Ters matris formülü: $A^{-1} = \\frac{1}{\\det A}\\text{adj}(A)$.' },
+      { en: 'Inverse Matrix', tr: 'Ters Matris ($A^{-1}$)', cat: 'Algebra', desc: '$A A^{-1} = A^{-1} A = I$ eşitliğini sağlayan matris. Yalnızca $\\det(A) \\neq 0$ (tekil olmayan) matrisler için mevcuttur.' },
+      { en: 'Singular Matrix', tr: 'Tekil (Terslenemez) Matris', cat: 'Algebra', desc: 'Determinantı sıfır olan ($\\det A = 0$) ve tersi bulunmayan kare matris.' },
+      { en: 'Transpose', tr: 'Devrik Matris / Transpoz ($A^T$)', cat: 'Algebra', desc: 'Matrisin satırları ile sütunlarının yer değiştirmesiyle elde edilen matris: $(A^T)_{ij} = A_{ji}$.' },
+      { en: 'Symmetric Matrix', tr: 'Simetrik Matris', cat: 'Algebra', desc: 'Devriği kendisine eşit olan kare matris ($A^T = A$).' },
+      { en: 'Skew-Symmetric Matrix', tr: 'Ters-Simetrik (Antisimetrik) Matris', cat: 'Algebra', desc: '$A^T = -A$ şartını sağlayan matris (köşegen elemanları sıfırdır).' },
+      { en: 'Rank of a Matrix', tr: 'Matrisin Rankı (Aşaması)', cat: 'Algebra', desc: 'Matrisin doğrusal bağımsız satır (veya sütun) sayısı; eşelon formdaki pivot sayısı.' },
+      { en: 'Rouché–Capelli Theorem', tr: 'Rouché–Capelli Teoremi', cat: 'Algebra', desc: '$Ax=b$ sisteminin çözülebilir olması için gerek ve yeter şart $\\text{rank}(A) = \\text{rank}([A \\mid b])$ olmasıdır.' },
+      { en: 'Cramer\'s Rule', tr: 'Cramer Kuralı', cat: 'Algebra', desc: '$\\det(A) \\neq 0$ iken her değişkenin $x_i = \\frac{\\det(A_i)}{\\det(A)}$ formülüyle bulunması.' },
+      { en: 'Free Variable', tr: 'Serbest Değişken (Parametre)', cat: 'Algebra', desc: 'Pivot içermeyen sütunlara karşılık gelen ve keyfi reel parametre ($t, s \\in \\mathbb{R}$) alabilen değişken.' },
+      { en: 'Homogeneous System', tr: 'Homojen Denklem Sistemi ($Ax = 0$)', cat: 'Algebra', desc: 'Sağ tarafı sıfır vektörü olan sistem. Her zaman en azından aşikar çözüme ($x=0$) sahiptir.' },
+      { en: 'Dot Product (Scalar Product)', tr: 'Nokta (Skaler / İç) Çarpım', cat: 'Geometry', desc: '$\\vec{u}\\cdot\\vec{v} = \\|\\vec{u}\\|\\|\\vec{v}\\|\\cos\\theta = u_x v_x + u_y v_y + u_z v_z$. Sonuç bir skalerdir; diklik testi ($\\vec{u}\\cdot\\vec{v}=0$) için kullanılır.' },
+      { en: 'Cross Product (Vector Product)', tr: 'Vektörel (Dış) Çarpım ($\\vec{u}\\times\\vec{v}$)', cat: 'Geometry', desc: 'İki vektöre de dik olan üçüncü bir vektör üretir. Büyüklüğü $\\|\\vec{u}\\times\\vec{v}\\| = \\|\\vec{u}\\|\\|\\vec{v}\\|\\sin\\theta$ paralelkenarın alanını verir.' },
+      { en: 'Scalar Triple Product', tr: 'Karma Çarpım ($\\vec{u}\\cdot(\\vec{v}\\times\\vec{w})$)', cat: 'Geometry', desc: 'Üç vektörün oluşturduğu $3\\times 3$ determinanttır. Mutlak değeri paralelkenar prizmanın (paralelyüz) hacmini verir.' },
+      { en: 'Coplanar Vectors', tr: 'Düzlemsel (Aynı Düzlemde) Vektörler', cat: 'Geometry', desc: 'Karma çarpımları sıfır olan ($\\vec{u}\\cdot(\\vec{v}\\times\\vec{w}) = 0$) vektörler.' },
+      { en: 'Orthogonal Projection', tr: 'Dik İzdüşüm', cat: 'Geometry', desc: '$\\vec{u}$ vektörünün $\\vec{v}$ üzerindeki dik izdüşümü: $\\text{proj}_{\\vec{v}}\\vec{u} = \\left(\\frac{\\vec{u}\\cdot\\vec{v}}{\\|\\vec{v}\\|^2}\\right)\\vec{v}$.' },
+      { en: 'Direction Vector', tr: 'Doğrultu (Yön) Vektörü', cat: 'Geometry', desc: 'Bir doğrunun uzaydaki yönünü belirten sıfırdan farklı $\\vec{d} = (a, b, c)$ vektörü.' },
+      { en: 'Normal Vector', tr: 'Normal Vektör ($\\vec{n}$)', cat: 'Geometry', desc: '$Ax + By + Cz + D = 0$ düzlemine dik olan $\\vec{n} = (A, B, C)$ vektörü.' },
+      { en: 'Skew Lines', tr: 'Aykırı Doğrular', cat: 'Geometry', desc: 'Üç boyutlu uzayda ne kesişen ne de birbirine paralel olan (farklı düzlemlerdeki) doğrular.' },
+      { en: 'Canonical Equation', tr: 'Kanonik (Standart) Denklem', cat: 'Geometry', desc: 'Koniklerin veya yüzeylerin simetri eksenlerinin koordinat eksenleriyle çakıştığı en sade denklem formu.' },
+      { en: 'Focus / Foci', tr: 'Odak Noktası / Odaklar ($F_1, F_2$)', cat: 'Geometry', desc: 'Elips, parabol ve hiperbolün geometrik tanımını belirleyen sabit odak noktaları.' },
+      { en: 'Directrix', tr: 'Doğrultman Doğrusu ($d$)', cat: 'Geometry', desc: 'Parabol veya koniklerde üzerindeki noktaların odak uzaklığıyla orantılı olduğu sabit doğru ($x = -p/2$).' },
+      { en: 'Eccentricity', tr: 'Dışmerkezlik / Eksantriklik ($e = c/a$)', cat: 'Geometry', desc: 'Koniğin basıklığını/açıklığını ölçen oran: Çemberde $e=0$, Elipste $0<e<1$, Parabolde $e=1$, Hiperbolde $e>1$.' },
+      { en: 'Latus Rectum (Focal Chord)', tr: 'Odak Kirişi (Latus Rectum)', cat: 'Geometry', desc: 'Odaktan geçen ve simetri eksenine dik olan kiriş. Parabolde ($y^2=2px$) uzunluğu $2p$\'dir.' },
+      { en: 'Asymptotes', tr: 'Asimptotlar', cat: 'Geometry', desc: 'Hiperbol kollarının sonsuzda yaklaştığı teğet doğrular ($y = \\pm \\frac{b}{a}x$).' },
+      { en: 'Quadric Surfaces', tr: 'İkinci Dereceden (Kuadrik) Yüzeyler', cat: 'Geometry', desc: 'Uzayda $x, y, z$ değişkenlerine göre ikinci dereceden denklemlerle tanımlanan 3B yüzeyler (Elipsoid, Paraboloid, Hiperboloid, Koni, Silindir).' },
+      { en: 'Hyperbolic Paraboloid', tr: 'Hiperbolik Paraboloid (Eyer Yüzeyi)', cat: 'Geometry', desc: '$z = \\frac{x^2}{a^2} - \\frac{y^2}{b^2}$ denklemli, bir yönde yukarı diğer yönde aşağı bükülen eyer (saddle) yüzeyi.' }
+    ];
+
+    const TOPIC_CHEATSHEETS = [
+      {
+        title: '01 & 02. Matrisler ve Determinantlar (Matrices & Determinants)',
+        items: [
+          '<b>Matris Çarpımı (Matrix Multiplication):</b> $(AB)_{ij} = \\sum_{k=1}^{n} a_{ik}b_{kj}$. Boyut şartı: $A_{m\\times n} \\cdot B_{n\\times p} = C_{m\\times p}$. Genel durumda $AB \\neq BA$ (değişme özelliği yoktur).',
+          '<b>Transpoz Özelliği:</b> $(AB)^T = B^T A^T$ ve $(A+B)^T = A^T + B^T$.',
+          '<b>$2\\times 2$ Determinant:</b> $\\det\\begin{pmatrix}a & b\\\\ c & d\\end{pmatrix} = ad - bc$.',
+          '<b>Laplace Kofaktör Açılımı:</b> $\\det(A) = \\sum_{j=1}^n a_{ij} C_{ij}$, burada $C_{ij} = (-1)^{i+j} M_{ij}$.',
+          '<b>Determinant Özellikleri:</b> $\\det(AB) = \\det(A)\\det(B)$, $\\det(A^T) = \\det(A)$, $\\det(kA) = k^n\\det(A)$ ($n\\times n$ matris için). İki satır yer değiştirirse determinant işaret değiştirir.'
+        ]
+      },
+      {
+        title: '03 & 04. Ters Matris ve Denklem Sistemleri (Inversion & Linear Systems)',
+        items: [
+          '<b>Ek Matris ile Ters Alma (Adjugate Formula):</b> $\\det(A) \\neq 0$ ise $A^{-1} = \\frac{1}{\\det(A)}\\text{adj}(A) = \\frac{1}{\\det(A)} C^T$.',
+          '<b>Gauss–Jordan Yöntemi:</b> $[A \\mid I] \\xrightarrow{\\text{satır işlemleri}} [I \\mid A^{-1}]$.',
+          '<b>Rouché–Capelli Teoremi ($Ax=b$):</b><br>• $\\text{rank}(A) < \\text{rank}([A\\mid b]) \\implies$ <b>Çözüm Yok (Tutarsız / Inconsistent)</b>.<br>• $\\text{rank}(A) = \\text{rank}([A\\mid b]) = n \\implies$ <b>Tek Çözüm (Unique Solution)</b>.<br>• $\\text{rank}(A) = \\text{rank}([A\\mid b]) = r < n \\implies$ <b>Sonsuz Çözüm ($n-r$ serbest parametreli)</b>.'
+        ]
+      },
+      {
+        title: 'Geometry 01 & 02. Vektörler, Doğrular ve Düzlemler (Vectors, Lines & Planes)',
+        items: [
+          '<b>Nokta (Skaler) Çarpım:</b> $\\vec{u}\\cdot\\vec{v} = u_x v_x + u_y v_y + u_z v_z = \\|\\vec{u}\\|\\|\\vec{v}\\|\\cos\\theta$. $\\vec{u}\\perp\\vec{v} \\iff \\vec{u}\\cdot\\vec{v}=0$.',
+          '<b>Vektörel Çarpım:</b> $\\vec{u}\\times\\vec{v}$ her iki vektöre diktir; üçgen alanı $= \\frac{1}{2}\\|\\vec{u}\\times\\vec{v}\\|$.',
+          '<b>Karma Çarpım ve Hacim:</b> Paralelyüz hacmi $V = |\\vec{u}\\cdot(\\vec{v}\\times\\vec{w})|$, Dörtyüzlü (Tetrahedron) hacmi $V_T = \\frac{1}{6}|\\vec{u}\\cdot(\\vec{v}\\times\\vec{w})|$.',
+          '<b>Düzlem Denklemi:</b> $A(x-x_0)+B(y-y_0)+C(z-z_0)=0$, normal vektör $\\vec{n}=(A,B,C)$.',
+          '<b>Noktanın Düzleme Uzaklığı:</b> $d = \\frac{|Ax_0+By_0+Cz_0+D|}{\\sqrt{A^2+B^2+C^2}}$.',
+          '<b>Aykırı İki Doğru Arası En Kısa Uzaklık:</b> $d = \\frac{|(\\vec{P_1P_2})\\cdot(\\vec{d_1}\\times\\vec{d_2})|}{\\|\\vec{d_1}\\times\\vec{d_2}\\|}$.'
+        ]
+      },
+      {
+        title: 'Geometry 03. Konikler ve Kuadrik Yüzeyler (Conics & Quadric Surfaces)',
+        items: [
+          '<b>Elips (Ellipse):</b> $\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1$, odaklar $c^2 = |a^2-b^2|$, dışmerkezlik $e = c/\\max(a,b) < 1$.',
+          '<b>Hiperbol (Hyperbola):</b> $\\frac{x^2}{a^2} - \\frac{y^2}{b^2} = 1$, odaklar $c^2 = a^2+b^2$, asimptotlar $y = \\pm\\frac{b}{a}x$, $e = c/a > 1$.',
+          '<b>Parabol (Parabola):</b> $y^2 = 2px$, odak $F(p/2, 0)$, doğrultman $x = -p/2$, odak kirişi (latus rectum) uzunluğu $= 2p$.',
+          '<b>3B Kuadrik Yüzeyler:</b> Elipsoid ($\\frac{x^2}{a^2}+\\frac{y^2}{b^2}+\\frac{z^2}{c^2}=1$), Eliptik Paraboloid ($z=x^2+y^2$), Hiperbolik Paraboloid / Eyer ($z=x^2-y^2$), Tek Kanatlı Hiperboloid ($x^2+y^2-z^2=1$), Çift Kanatlı Hiperboloid ($x^2+y^2-z^2=-1$).'
+        ]
+      }
+    ];
+
+    let currentGlossaryTab = 'dict';
+
+    function toggleGlossaryDrawer(open) {
+      const backdrop = document.getElementById('glossary-drawer-backdrop');
+      if (!backdrop) return;
+      const shouldOpen = open !== undefined ? open : !backdrop.classList.contains('open');
+      backdrop.classList.toggle('open', shouldOpen);
+      if (shouldOpen) {
+        renderGlossaryDrawerContent();
+      }
+    }
+
+    function switchGlossaryTab(tab) {
+      currentGlossaryTab = tab;
+      document.getElementById('drawer-tab-dict').classList.toggle('active', tab === 'dict');
+      document.getElementById('drawer-tab-formulas').classList.toggle('active', tab === 'formulas');
+      document.getElementById('glossary-search-bar').style.display = tab === 'dict' ? 'block' : 'none';
+      renderGlossaryDrawerContent();
+    }
+
+    function renderGlossaryDrawerContent() {
+      const body = document.getElementById('glossary-drawer-body');
+      if (!body) return;
+
+      if (currentGlossaryTab === 'dict') {
+        const q = (document.getElementById('glossary-search-input')?.value || '').toLowerCase().trim();
+        const filtered = MATH_GLOSSARY.filter(item =>
+          !q ||
+          item.en.toLowerCase().includes(q) ||
+          item.tr.toLowerCase().includes(q) ||
+          item.desc.toLowerCase().includes(q)
+        );
+
+        body.innerHTML = filtered.map(item => `
+          <div class="glossary-item-card">
+            <div class="glossary-item-head">
+              <span class="glossary-en">${item.en}</span>
+              <span class="glossary-tr">🇹🇷 ${item.tr}</span>
+            </div>
+            <div style="font-size:0.83rem; color:var(--text-secondary); line-height:1.5;">
+              ${item.desc}
+            </div>
+          </div>
+        `).join('') || `<div style="text-align:center; padding:30px; color:var(--text-muted);">Aranan terim bulunamadı.</div>`;
+      } else {
+        body.innerHTML = TOPIC_CHEATSHEETS.map(sec => `
+          <div class="glossary-item-card" style="margin-bottom:14px;">
+            <div style="font-weight:700; font-size:0.95rem; color:var(--accent); margin-bottom:8px;">
+              ${sec.title}
+            </div>
+            <ul style="padding-left:18px; margin:0; font-size:0.84rem; color:var(--text-secondary); line-height:1.65;">
+              ${sec.items.map(li => `<li style="margin-bottom:6px;">${li}</li>`).join('')}
+            </ul>
+          </div>
+        `).join('');
+      }
+
+      renderMathInContainer(body);
+    }
+
+    // --- Section-Level Turkish Bubble Enhancement ---
+    function enhanceArticleWithTurkishAndGlossary(contentEl) {
+      if (!contentEl) return;
+
+      // 1. Add top Study Assist Bar inside article-content
+      const assistBar = document.createElement('div');
+      assistBar.className = 'study-assist-bar';
+      assistBar.innerHTML = `
+        <div class="study-assist-left">
+          <span style="font-weight:700; color:var(--text-primary);">🎓 Çalışma Araçları (Study Assistant):</span>
+          <button type="button" class="tr-bubble-btn tr-master-btn" id="btn-translate-all" onclick="toggleAllTurkishBubbles()">
+            🇹🇷 Tümünü Türkçeye Çevir (Translate All)
+          </button>
+          <button type="button" class="tr-bubble-btn glossary-open-btn" onclick="toggleGlossaryDrawer(true)">
+            📘 TR Sözlük & Formül Özeti
+          </button>
+        </div>
+        <div class="study-assist-right">
+          <span style="font-size:0.75rem; color:var(--text-muted);">
+            💡 İpucu: Başlıkların yanındaki <b>🇹🇷 Türkçe</b> balonuna tıklayarak Türkçe açıklamayı açıp kapatabilirsiniz.
+          </span>
+        </div>
+      `;
+      contentEl.insertBefore(assistBar, contentEl.firstChild);
+
+      // 2. Attach a compact "🇹🇷 Türkçe" bubble button to every section heading (h1, h2, h3)
+      const headings = Array.from(contentEl.querySelectorAll('h1, h2, h3'));
+      headings.forEach((heading, idx) => {
+        // Check if this heading has sibling content before the next heading
+        const sectionNodes = getSectionNodesAfterHeading(heading);
+        if (sectionNodes.length === 0 && heading.tagName === 'H1') return;
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'tr-bubble-btn';
+        btn.dataset.sectionIdx = idx;
+        btn.innerHTML = '🇹🇷 Türkçe';
+        btn.title = 'Click to view Turkish translation / Tıklayarak Türkçe çeviriyi aç veya kapat';
+        btn.onclick = (e) => {
+          e.stopPropagation();
+          toggleSectionTurkishBubble(heading, btn);
+        };
+        heading.appendChild(btn);
+      });
+
+      // 3. Apply inline glossary term tooltips
+      if (inlineGlossaryEnabled) {
+        applyInlineGlossaryTooltips(contentEl);
+      }
+    }
+
+    function getSectionNodesAfterHeading(heading) {
+      const nodes = [];
+      let curr = heading.nextElementSibling;
+      while (curr) {
+        if (['H1', 'H2', 'H3', 'HR'].includes(curr.tagName)) break;
+        if (!curr.classList.contains('tr-translation-bubble') && !curr.classList.contains('study-assist-bar')) {
+          nodes.push(curr);
+        }
+        curr = curr.nextElementSibling;
+      }
+      return nodes;
+    }
+
+    async function toggleSectionTurkishBubble(heading, btn) {
+      // Check if an open bubble already exists for this heading
+      const existingBubble = heading.parentElement.querySelector(`.tr-translation-bubble[data-for-sec="${btn.dataset.sectionIdx}"]`);
+      if (existingBubble) {
+        // Close it completely so only English is visible!
+        existingBubble.remove();
+        btn.classList.remove('active');
+        btn.innerHTML = '🇹🇷 Türkçe';
+        updateMasterTranslateBtnState();
+        return;
+      }
+
+      // Open bubble
+      btn.classList.add('active');
+      btn.innerHTML = '🇹🇷 Türkçe (Kapat ✕)';
+
+      const sectionNodes = getSectionNodesAfterHeading(heading);
+      const insertAfterEl = sectionNodes.length > 0 ? sectionNodes[sectionNodes.length - 1] : heading;
+
+      const bubble = document.createElement('div');
+      bubble.className = 'tr-translation-bubble';
+      bubble.dataset.forSec = btn.dataset.sectionIdx;
+
+      const cleanHeadingText = heading.cloneNode(true);
+      cleanHeadingText.querySelectorAll('.tr-bubble-btn').forEach(b => b.remove());
+      const headingPlain = cleanHeadingText.textContent.trim();
+
+      bubble.innerHTML = `
+        <div class="tr-bubble-header" title="Kapatmak için tıklayın (Click to close)">
+          <span>🇹🇷 Türkçe Açıklama — ${translateMathHeadingLocally(headingPlain)}</span>
+          <button type="button" class="tr-bubble-close">✕ Kapat (Close)</button>
+        </div>
+        <div class="tr-bubble-body">
+          <div style="color:var(--text-muted); font-size:0.84rem;">⏳ Matematiksel ifadeler korunarak Türkçeye çevriliyor...</div>
+        </div>
+      `;
+
+      // Clicking the bubble header or close button closes the bubble and leaves only English
+      bubble.querySelector('.tr-bubble-header').onclick = () => {
+        bubble.remove();
+        btn.classList.remove('active');
+        btn.innerHTML = '🇹🇷 Türkçe';
+        updateMasterTranslateBtnState();
+      };
+
+      insertAfterEl.insertAdjacentElement('afterend', bubble);
+      updateMasterTranslateBtnState();
+
+      const bodyContainer = bubble.querySelector('.tr-bubble-body');
+      await translateSectionNodesIntoContainer(sectionNodes, bodyContainer, headingPlain);
+    }
+
+    function updateMasterTranslateBtnState() {
+      const masterBtn = document.getElementById('btn-translate-all');
+      if (!masterBtn) return;
+      const openBubbles = document.querySelectorAll('#article-content .tr-translation-bubble');
+      if (openBubbles.length > 0) {
+        masterBtn.classList.add('active');
+        masterBtn.innerHTML = `🇹🇷 Tüm Türkçe Balonları Kapat (${openBubbles.length} Açık ✕)`;
+      } else {
+        masterBtn.classList.remove('active');
+        masterBtn.innerHTML = '🇹🇷 Tümünü Türkçeye Çevir (Translate All)';
+      }
+    }
+
+    async function toggleAllTurkishBubbles() {
+      const contentEl = document.getElementById('article-content');
+      if (!contentEl) return;
+      const openBubbles = contentEl.querySelectorAll('.tr-translation-bubble');
+      const allBtns = Array.from(contentEl.querySelectorAll('h1 .tr-bubble-btn, h2 .tr-bubble-btn, h3 .tr-bubble-btn'));
+
+      if (openBubbles.length > 0) {
+        openBubbles.forEach(b => b.remove());
+        allBtns.forEach(btn => {
+          btn.classList.remove('active');
+          btn.innerHTML = '🇹🇷 Türkçe';
+        });
+        updateMasterTranslateBtnState();
+      } else {
+        for (const btn of allBtns) {
+          const heading = btn.parentElement;
+          if (heading) {
+            await toggleSectionTurkishBubble(heading, btn);
+          }
+        }
+      }
+    }
+
+    // --- Math-Preserving English -> Turkish Translation Engine ---
+    const EXACT_HEADING_MAP = {
+      'Problem Statement': 'Problem İfadesi',
+      'Solution': 'Çözüm',
+      'Approach': 'Çözüm Yaklaşımı ve Yöntem',
+      'Step-by-step derivation': 'Adım Adım Türetme ve Çözüm',
+      'Step-by-Step Solution': 'Adım Adım Çözüm',
+      'Verification': 'Doğrulama (Sağlama)',
+      'Final Answer': 'Nihai Cevap',
+      'Geometric Interpretation': 'Geometrik Yorum',
+      'Key Takeaways': 'Önemli Çıkarımlar',
+      'Summary Table': 'Özet Tablosu',
+      'Classification': 'Sınıflandırma',
+      'Tasks': 'Görevler'
+    };
+
+    function translateMathHeadingLocally(text) {
+      if (EXACT_HEADING_MAP[text]) return EXACT_HEADING_MAP[text];
+      return text
+        .replace(/^Exercise\s+(\d+)/i, 'Alıştırma $1')
+        .replace(/^Problem\s+(\d+)/i, 'Problem $1')
+        .replace(/^Step\s+(\d+)\s*:/i, 'Adım $1:')
+        .replace(/^Part\s+(\d+|\([a-z]\))/i, 'Bölüm $1')
+        .replace(/Solution/gi, 'Çözüm')
+        .replace(/Verification/gi, 'Doğrulama')
+        .replace(/Geometric Interpretation/gi, 'Geometrik Yorum')
+        .replace(/Final Answer/gi, 'Nihai Cevap');
+    }
+
+    function refineTurkishMathTerminology(trText) {
+      return trText
+        .replace(/\bsatır kademeli form(u)?\b/gi, 'satır eşelon formu')
+        .replace(/\bkademeli satır form(u)?\b/gi, 'satır eşelon formu')
+        .replace(/\bindirgenmiş satır kademeli form(u)?\b/gi, 'indirgenmiş satır eşelon formu')
+        .replace(/\bgeri ikame\b/gi, 'geri yerine koyma')
+        .replace(/\bçapraz çarpım\b/gi, 'vektörel çarpım')
+        .replace(/\bçarpık çizgiler\b/gi, 'aykırı doğrular')
+        .replace(/\bçarpık doğrular\b/gi, 'aykırı doğrular')
+        .replace(/\beğri çizgiler\b/gi, 'aykırı doğrular')
+        .replace(/\bçekirdek\s*\(\s*boş alan\s*\)/gi, 'çekirdek (sıfır uzayı)')
+        .replace(/\bboş uzay\b/gi, 'sıfır uzayı (null space)')
+        .replace(/\bkanonik form\b/gi, 'kanonik (standart) form');
+    }
+
+    async function translateTextPreservingMathTokens(rawText) {
+      const trimmed = rawText.trim();
+      if (!trimmed) return rawText;
+      if (EXACT_HEADING_MAP[trimmed]) return EXACT_HEADING_MAP[trimmed];
+
+      const cacheKey = 'tr_cache_v2_' + trimmed;
+      const cached = sessionStorage.getItem(cacheKey);
+      if (cached) return cached;
+
+      try {
+        const url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=tr&dt=t&q=' + encodeURIComponent(trimmed);
+        const resp = await fetch(url);
+        if (resp.ok) {
+          const data = await resp.json();
+          if (Array.isArray(data) && Array.isArray(data[0])) {
+            let translated = data[0].map(part => part[0]).join('');
+            translated = refineTurkishMathTerminology(translated);
+            sessionStorage.setItem(cacheKey, translated);
+            return translated;
+          }
+        }
+      } catch (err) {
+        console.warn('Translation fallback used:', err);
+      }
+
+      // Offline fallback dictionary replacement
+      return translateMathHeadingLocally(trimmed);
+    }
+
+    async function translateSectionNodesIntoContainer(sectionNodes, targetContainer, headingPlain) {
+      if (!sectionNodes || sectionNodes.length === 0) {
+        targetContainer.innerHTML = `<p>${translateMathHeadingLocally(headingPlain)}</p>`;
+        return;
+      }
+
+      // Clone nodes into a temporary wrapper
+      const wrapper = document.createElement('div');
+      sectionNodes.forEach(node => {
+        // Skip ASCII art <pre> blocks in translation bubble so we don't duplicate giant coordinate grids
+        if (node.tagName === 'PRE') return;
+        wrapper.appendChild(node.cloneNode(true));
+      });
+
+      // Find translatable block elements (p, li, td, th, h4, blockquote)
+      // Protect .katex, .katex-display, and code inside each block with placeholders [M0], [M1]...
+      const blocks = Array.from(wrapper.querySelectorAll('p, li, td, th, h4, h5'));
+      if (blocks.length === 0) {
+        targetContainer.innerHTML = wrapper.innerHTML;
+        return;
+      }
+
+      // Process blocks in parallel batches
+      await Promise.all(blocks.map(async (block) => {
+        // Skip blocks that contain nested block lists to avoid double-processing
+        if (block.tagName === 'LI' && (block.querySelector('ul, ol, p'))) {
+          // Only translate direct child text or let inner <p> handle it
+          if (block.querySelector('p')) return;
+        }
+
+        const savedMathHtml = [];
+        const cloneBlock = block.cloneNode(true);
+
+        // Replace KaTeX & code elements with tokens {{M0}}, {{M1}}
+        cloneBlock.querySelectorAll('.katex-display, .katex, code').forEach((mathEl) => {
+          // Avoid replacing .katex inside .katex-display twice
+          if (mathEl.classList.contains('katex') && mathEl.closest('.katex-display')) return;
+          const idx = savedMathHtml.length;
+          savedMathHtml.push(mathEl.outerHTML);
+          const tokenNode = document.createTextNode(` [[M${idx}]] `);
+          mathEl.replaceWith(tokenNode);
+        });
+
+        const plainWithTokens = cloneBlock.textContent.replace(/\s+/g, ' ').trim();
+        // If the block is purely math tokens/numbers/punctuation, keep original
+        const strippedAlpha = plainWithTokens.replace(/\[\[M\d+\]\]/g, '').replace(/[^a-zA-Z]/g, '');
+        if (strippedAlpha.length < 2) {
+          return;
+        }
+
+        let trText = await translateTextPreservingMathTokens(plainWithTokens);
+
+        // Restore [[M0]] tokens (handling any spacing variations added by translator)
+        trText = trText.replace(/\[\s*\[\s*[mM]\s*(\d+)\s*\]\s*\]/g, (_, numStr) => {
+          const idx = parseInt(numStr, 10);
+          return savedMathHtml[idx] !== undefined ? savedMathHtml[idx] : '';
+        });
+
+        block.innerHTML = trText;
+      }));
+
+      targetContainer.innerHTML = wrapper.innerHTML;
+    }
+
+    // --- Inline Math Glossary Tooltip Highlighter ---
+    const INLINE_TERM_PATTERNS = [
+      { regex: /\b(Reduced Row Echelon Form|RREF)\b/gi, termIdx: 1 },
+      { regex: /\b(Row Echelon Form)\b/gi, termIdx: 0 },
+      { regex: /\b(Gaussian [Ee]limination)\b/g, termIdx: 2 },
+      { regex: /\b([Bb]ack-[Ss]ubstitution)\b/g, termIdx: 3 },
+      { regex: /\b([Aa]ugmented [Mm]atrix)\b/g, termIdx: 4 },
+      { regex: /\b([Cc]ofactor [Ee]xpansion)\b/g, termIdx: 7 },
+      { regex: /\b([Aa]djugate [Mm]atrix)\b/g, termIdx: 9 },
+      { regex: /\b([Ss]ingular [Mm]atrix)\b/g, termIdx: 11 },
+      { regex: /\b(Rouché–Capelli|Rouché-Capelli)\b/g, termIdx: 16 },
+      { regex: /\b(Cramer's [Rr]ule)\b/g, termIdx: 17 },
+      { regex: /\b([Ss]calar [Tt]riple [Pp]roduct)\b/g, termIdx: 22 },
+      { regex: /\b([Cc]oplanar)\b/gi, termIdx: 23 },
+      { regex: /\b([Oo]rthogonal [Pp]rojection)\b/g, termIdx: 24 },
+      { regex: /\b([Ss]kew [Ll]ines)\b/g, termIdx: 27 },
+      { regex: /\b([Dd]irectrix)\b/gi, termIdx: 30 },
+      { regex: /\b([Ee]ccentricity)\b/gi, termIdx: 31 },
+      { regex: /\b([Ll]atus [Rr]ectum|[Ff]ocal [Cc]hord)\b/g, termIdx: 32 },
+      { regex: /\b([Aa]symptotes?)\b/gi, termIdx: 33 },
+      { regex: /\b([Hh]yperbolic [Pp]araboloid)\b/g, termIdx: 35 }
+    ];
+
+    function applyInlineGlossaryTooltips(container) {
+      const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+
+      nodes.forEach(node => {
+        const parent = node.parentElement;
+        if (!parent) return;
+        if (parent.closest('.katex, code, pre, h1, h2, h3, button, .study-assist-bar, .tr-translation-bubble, .math-term-highlight')) return;
+
+        let text = node.nodeValue;
+        if (!text || text.trim().length < 4) return;
+
+        let matched = false;
+        let html = text;
+        for (const pat of INLINE_TERM_PATTERNS) {
+          if (pat.regex.test(html)) {
+            matched = true;
+            html = html.replace(pat.regex, (m) => `<span class="math-term-highlight" data-term-idx="${pat.termIdx}">${m}</span>`);
+          }
+        }
+
+        if (matched) {
+          const span = document.createElement('span');
+          span.innerHTML = html;
+          parent.replaceChild(span, node);
+        }
+      });
+
+      container.querySelectorAll('.math-term-highlight').forEach(el => {
+        el.addEventListener('mouseenter', showTermTooltip);
+        el.addEventListener('mouseleave', hideTermTooltip);
+      });
+    }
+
+    function showTermTooltip(e) {
+      const popup = document.getElementById('math-term-tooltip');
+      if (!popup) return;
+      const idx = parseInt(e.currentTarget.dataset.termIdx, 10);
+      const item = MATH_GLOSSARY[idx];
+      if (!item) return;
+
+      popup.innerHTML = `
+        <div style="font-weight:700; color:#e11d48; margin-bottom:3px;">🇹🇷 ${item.tr}</div>
+        <div style="font-size:0.74rem; font-weight:600; color:var(--text-muted); margin-bottom:4px;">EN: ${item.en}</div>
+        <div style="color:var(--text-primary);">${item.desc}</div>
+      `;
+      renderMathInContainer(popup);
+      popup.style.display = 'block';
+
+      const rect = e.currentTarget.getBoundingClientRect();
+      const left = Math.min(window.innerWidth - 340, Math.max(12, rect.left));
+      const top = rect.bottom + 8;
+      popup.style.left = left + 'px';
+      popup.style.top = top + 'px';
+    }
+
+    function hideTermTooltip() {
+      const popup = document.getElementById('math-term-tooltip');
+      if (popup) popup.style.display = 'none';
+    }
+
+    // =========================================================================
+    // 2. 🧮 INTERACTIVE ALGEBRA LAB (Matrix & Linear System Step-by-Step Solver)
+    // =========================================================================
+    let algebraLabState = {
+      size: 3,
+      preset: 'sys_unique',
+      A: [
+        [2, 1, -1],
+        [-3, -1, 2],
+        [-2, 1, 2]
+      ],
+      b: [8, -11, -3]
+    };
+
+    const ALGEBRA_PRESETS = {
+      sys_unique: {
+        title: 'Topic 04: 3×3 Unique Solution System',
+        subtitle: 'det(A) ≠ 0, rank(A) = rank([A|b]) = 3',
+        size: 3,
+        A: [[2, 1, -1], [-3, -1, 2], [-2, 1, 2]],
+        b: [8, -11, -3],
+        desc: 'Classic $3\\times 3$ non-singular system with unique solution $(x, y, z) = (2, 3, -1)$.'
+      },
+      sys_infinite: {
+        title: 'Topic 04: Infinite Solutions (Free Parameter)',
+        subtitle: 'det(A) = 0, rank(A) = rank([A|b]) = 2 < 3',
+        size: 3,
+        A: [[1, 2, -1], [2, 5, 1], [3, 7, 0]],
+        b: [3, 9, 12],
+        desc: 'Consistent underdetermined rank-2 system where $R_3 = R_1 + R_2$, yielding a 1-parameter family of solutions.'
+      },
+      sys_none: {
+        title: 'Topic 04: Inconsistent System (No Solution)',
+        subtitle: 'rank(A) = 2 < rank([A|b]) = 3',
+        size: 3,
+        A: [[1, -1, 2], [2, 1, -1], [3, 0, 1]],
+        b: [4, 1, 10],
+        desc: 'Inconsistent system where elimination produces a contradictory row $[0\\; 0\\; 0 \\mid 5]$.'
+      },
+      inv_2x2: {
+        title: 'Topic 03: 2×2 Matrix Inverse & Cramer\'s Rule',
+        subtitle: '2×2 Invertible Matrix & Linear System',
+        size: 2,
+        A: [[3, 2], [5, 4]],
+        b: [7, 13],
+        desc: '$2\\times 2$ matrix with $\\det(A) = 12 - 10 = 2 \\neq 0$.'
+      }
+    };
+
+    function setAlgebraPreset(key) {
+      const p = ALGEBRA_PRESETS[key];
+      if (!p) return;
+      algebraLabState.preset = key;
+      algebraLabState.size = p.size;
+      algebraLabState.A = p.A.map(r => [...r]);
+      algebraLabState.b = [...p.b];
+      renderAlgebraLab();
+    }
+
+    function setAlgebraSize(n) {
+      algebraLabState.size = n;
+      algebraLabState.preset = 'custom';
+      if (n === 2) {
+        algebraLabState.A = [[2, 1], [5, 3]];
+        algebraLabState.b = [4, 11];
+      } else {
+        algebraLabState.A = [[2, 1, -1], [-3, -1, 2], [-2, 1, 2]];
+        algebraLabState.b = [8, -11, -3];
+      }
+      renderAlgebraLab();
+    }
+
+    function updateAlgebraCell(type, r, c, val) {
+      const num = parseFloat(val);
+      const clean = isNaN(num) ? 0 : num;
+      algebraLabState.preset = 'custom';
+      if (type === 'A') {
+        algebraLabState.A[r][c] = clean;
+      } else {
+        algebraLabState.b[r] = clean;
+      }
+      computeAndRenderAlgebraSteps();
+    }
+
+    function fmtNum(v) {
+      if (Math.abs(v) < 1e-9) return '0';
+      if (Math.abs(v - Math.round(v)) < 1e-7) return String(Math.round(v));
+      return v.toFixed(2);
+    }
+
+    function matrixToLatex(M, isAugmented = false) {
+      const rows = M.map(row => {
+        if (!isAugmented) return row.map(fmtNum).join(' & ');
+        const left = row.slice(0, row.length - 1).map(fmtNum).join(' & ');
+        const right = fmtNum(row[row.length - 1]);
+        return `${left} & \\big| & ${right}`;
+      });
+      return `\\begin{pmatrix} ${rows.join(' \\\\ ')} \\end{pmatrix}`;
+    }
+
+    function renderAlgebraLab() {
+      const contentEl = document.getElementById('article-content');
+      const breadcrumbs = document.getElementById('breadcrumbs');
+      breadcrumbs.innerHTML = `<span>1. Algebra</span> / <span class="active">Interactive Algebra Lab (EN / TR)</span>`;
+
+      const n = algebraLabState.size;
+      let matrixInputsHtml = `<div class="matrix-input-grid" style="grid-template-columns: repeat(${n + 1}, 1fr);">`;
+      for (let j = 0; j < n; j++) {
+        matrixInputsHtml += `<div style="text-align:center; font-size:0.74rem; font-weight:700; color:var(--text-muted);">x<sub>${j+1}</sub></div>`;
+      }
+      matrixInputsHtml += `<div style="text-align:center; font-size:0.74rem; font-weight:700; color:#e11d48;">= b</div>`;
+
+      for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+          matrixInputsHtml += `<input type="number" step="any" class="matrix-cell-input" value="${algebraLabState.A[i][j]}" oninput="updateAlgebraCell('A', ${i}, ${j}, this.value)">`;
+        }
+        matrixInputsHtml += `<input type="number" step="any" class="matrix-cell-input" style="border-color:rgba(225,29,72,0.4); background:rgba(225,29,72,0.04);" value="${algebraLabState.b[i]}" oninput="updateAlgebraCell('b', ${i}, 0, this.value)">`;
+      }
+      matrixInputsHtml += `</div>`;
+
+      contentEl.innerHTML = `
+        <div class="plotter-dashboard">
+          <div class="plotter-header">
+            <div>
+              <h1 class="plotter-title">🧮 Interactive Algebra Lab (Matrix & Linear Systems)</h1>
+              <div class="plotter-subtitle">
+                Step-by-step Determinant, Matrix Inverse ($A^{-1}$), and Gaussian Elimination ($[A \\mid b] \\to \\text{RREF}$) with English & Turkish explanations
+              </div>
+            </div>
+            <div class="plotter-mode-switch">
+              <button class="plotter-mode-btn ${n === 2 ? 'active' : ''}" onclick="setAlgebraSize(2)">2×2 Matrix</button>
+              <button class="plotter-mode-btn ${n === 3 ? 'active' : ''}" onclick="setAlgebraSize(3)">3×3 Matrix</button>
+            </div>
+          </div>
+
+          <div class="algebra-grid-layout">
+            <div class="plotter-sidebar">
+              <div class="plotter-card">
+                <div class="plotter-card-title">Workbook Problem Presets</div>
+                <div class="preset-list">
+                  ${Object.entries(ALGEBRA_PRESETS).map(([k, item]) => `
+                    <div class="preset-item ${algebraLabState.preset === k ? 'active' : ''}" onclick="setAlgebraPreset('${k}')">
+                      <div class="preset-item-header">
+                        <span class="preset-name">${item.title}</span>
+                      </div>
+                      <span class="preset-math">${item.subtitle}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+
+              <div class="plotter-card">
+                <div class="plotter-card-title">Edit Matrix $A$ and Vector $b$ ($Ax = b$)</div>
+                ${matrixInputsHtml}
+                <div style="font-size:0.76rem; color:var(--text-muted); margin-top:6px;">
+                  💡 Hücrelerdeki sayıları değiştirdiğinizde sağdaki tüm Gauss adımları ve determinant otomatik güncellenir.
+                </div>
+              </div>
+            </div>
+
+            <div id="algebra-steps-output"></div>
+          </div>
+        </div>
+      `;
+
+      computeAndRenderAlgebraSteps();
+    }
+
+    function computeAndRenderAlgebraSteps() {
+      const outEl = document.getElementById('algebra-steps-output');
+      if (!outEl) return;
+
+      const n = algebraLabState.size;
+      const A = algebraLabState.A.map(r => [...r]);
+      const b = [...algebraLabState.b];
+
+      // 1. Compute Determinant
+      let det = 0;
+      let detFormulaLatex = '';
+      if (n === 2) {
+        det = A[0][0] * A[1][1] - A[0][1] * A[1][0];
+        detFormulaLatex = `\\det(A) = (${fmtNum(A[0][0])})(${fmtNum(A[1][1])}) - (${fmtNum(A[0][1])})(${fmtNum(A[1][0])}) = ${fmtNum(det)}`;
+      } else {
+        const m0 = A[1][1] * A[2][2] - A[1][2] * A[2][1];
+        const m1 = A[1][0] * A[2][2] - A[1][2] * A[2][0];
+        const m2 = A[1][0] * A[2][1] - A[1][1] * A[2][0];
+        det = A[0][0] * m0 - A[0][1] * m1 + A[0][2] * m2;
+        detFormulaLatex = `\\det(A) = ${fmtNum(A[0][0])}(${fmtNum(m0)}) - (${fmtNum(A[0][1])})(${fmtNum(m1)}) + (${fmtNum(A[0][2])})(${fmtNum(m2)}) = ${fmtNum(det)}`;
+      }
+
+      // 2. Gaussian Elimination with step recording on Augmented Matrix [A | b]
+      const aug = A.map((row, i) => [...row, b[i]]);
+      const steps = [];
+      steps.push({
+        badge: 'Initial Augmented Matrix / Başlangıç Genişletilmiş Matrisi',
+        en: `Write the linear system $Ax = b$ in augmented matrix form $[A \\mid b]$:`,
+        tr: `$Ax = b$ doğrusal denklem sistemini $[A \\mid b]$ genişletilmiş matris formunda yazalım:`,
+        latex: matrixToLatex(aug, true)
+      });
+
+      let pivotRow = 0;
+      const pivotCols = [];
+      for (let col = 0; col < n && pivotRow < n; col++) {
+        // Partial pivoting
+        let maxRow = pivotRow;
+        for (let r = pivotRow + 1; r < n; r++) {
+          if (Math.abs(aug[r][col]) > Math.abs(aug[maxRow][col])) maxRow = r;
+        }
+        if (Math.abs(aug[maxRow][col]) < 1e-9) continue;
+
+        if (maxRow !== pivotRow) {
+          const tmp = aug[pivotRow];
+          aug[pivotRow] = aug[maxRow];
+          aug[maxRow] = tmp;
+          steps.push({
+            badge: `Row Swap / Satır Değişimi: R_${pivotRow + 1} ↔ R_${maxRow + 1}`,
+            en: `Swap row $R_${pivotRow + 1}$ and row $R_${maxRow + 1}$ to bring a non-zero pivot to position $(${pivotRow + 1}, ${col + 1})$.`,
+            tr: `Pivot konumuna sıfırdan farklı bir eleman getirmek için $R_${pivotRow + 1}$ ve $R_${maxRow + 1}$ satırlarını yer değiştirelim.`,
+            latex: matrixToLatex(aug, true)
+          });
+        }
+
+        pivotCols.push(col);
+        const opsEn = [];
+        const opsTr = [];
+        for (let r = pivotRow + 1; r < n; r++) {
+          if (Math.abs(aug[r][col]) > 1e-9) {
+            const factor = aug[r][col] / aug[pivotRow][col];
+            for (let c = col; c <= n; c++) {
+              aug[r][c] -= factor * aug[pivotRow][c];
+            }
+            opsEn.push(`$R_${r + 1} \\leftarrow R_${r + 1} - (${fmtNum(factor)})R_${pivotRow + 1}$`);
+            opsTr.push(`$R_${r + 1} \\leftarrow R_${r + 1} - (${fmtNum(factor)})R_${pivotRow + 1}$`);
+          }
+        }
+
+        if (opsEn.length > 0) {
+          steps.push({
+            badge: `Eliminate Column ${col + 1} / ${col + 1}. Sütun Eliminasyonu`,
+            en: `Apply elementary row operations ${opsEn.join(', ')} to zero out entries below the pivot:`,
+            tr: `Pivotun altındaki elemanları sıfırlamak için ${opsTr.join(', ')} satır işlemlerini uygulayalım:`,
+            latex: matrixToLatex(aug, true)
+          });
+        }
+        pivotRow++;
+      }
+
+      // Compute ranks
+      let rankA = 0;
+      let rankAug = 0;
+      for (let r = 0; r < n; r++) {
+        const rowAZero = aug[r].slice(0, n).every(v => Math.abs(v) < 1e-8);
+        const rowAugZero = aug[r].every(v => Math.abs(v) < 1e-8);
+        if (!rowAZero) rankA++;
+        if (!rowAugZero) rankAug++;
+      }
+
+      // Classification via Rouché-Capelli
+      let statusSummaryEn = '';
+      let statusSummaryTr = '';
+      if (rankA < rankAug) {
+        statusSummaryEn = `<b>Inconsistent System (No Solution):</b> Since $\\text{rank}(A) = ${rankA} < \\text{rank}([A \\mid b]) = ${rankAug}$, by the Rouché–Capelli theorem the system has <b>no solution</b> ($\\emptyset$).`;
+        statusSummaryTr = `<b>Tutarsız Sistem (Çözüm Kümesi Boş):</b> Rouché–Capelli teoremine göre $\\text{rank}(A) = ${rankA} < \\text{rank}([A \\mid b]) = ${rankAug}$ olduğundan denklem sisteminin <b>hiçbir çözümü yoktur</b> ($\\emptyset$).`;
+      } else if (rankA === n) {
+        // Back-substitution for unique solution
+        const sol = new Array(n).fill(0);
+        for (let i = n - 1; i >= 0; i--) {
+          let sum = aug[i][n];
+          for (let j = i + 1; j < n; j++) sum -= aug[i][j] * sol[j];
+          sol[i] = sum / aug[i][i];
+        }
+        const solVec = sol.map((v, idx) => `x_${idx + 1} = ${fmtNum(v)}`).join(',\\; ');
+        statusSummaryEn = `<b>Unique Solution:</b> Since $\\det(A) = ${fmtNum(det)} \\neq 0$ and $\\text{rank}(A) = \\text{rank}([A \\mid b]) = ${n}$, back-substitution yields the unique solution: $$${solVec}$$`;
+        statusSummaryTr = `<b>Tek Çözüm (Unique Solution):</b> $\\det(A) = ${fmtNum(det)} \\neq 0$ ve $\\text{rank}(A) = \\text{rank}([A \\mid b]) = ${n}$ olduğundan geri yerine koyma (back-substitution) ile tek çözüm bulunur: $$${solVec}$$`;
+      } else {
+        const freeCount = n - rankA;
+        statusSummaryEn = `<b>Infinitely Many Solutions:</b> Since $\\text{rank}(A) = \\text{rank}([A \\mid b]) = ${rankA} < ${n}$, the system is consistent with <b>${freeCount} free parameter(s)</b> ($t \\in \\mathbb{R}$).`;
+        statusSummaryTr = `<b>Sonsuz Çoklukta Çözüm:</b> $\\text{rank}(A) = \\text{rank}([A \\mid b]) = ${rankA} < ${n}$ olduğundan sistem tutarlıdır ve <b>${freeCount} serbest değişken (parametre)</b> içerir.`;
+      }
+
+      outEl.innerHTML = `
+        <div class="step-card">
+          <span class="step-badge">1. Determinant & Invertibility / Determinant ve Tersinirlik</span>
+          <div style="margin:6px 0;">$$A = ${matrixToLatex(A, false)}, \\quad ${detFormulaLatex}$$</div>
+          <div style="font-size:0.86rem; color:var(--text-secondary);">
+            🇬🇧 ${Math.abs(det) > 1e-8 ? `Since $\\det(A) \\neq 0$, matrix $A$ is <b>non-singular (invertible)</b>.` : `Since $\\det(A) = 0$, matrix $A$ is <b>singular (non-invertible)</b>.`}
+            <br>
+            🇹🇷 ${Math.abs(det) > 1e-8 ? `$\\det(A) \\neq 0$ olduğu için $A$ matrisi <b>tekil değildir (tersi alınabilir / tersinirdir)</b>.` : `$\\det(A) = 0$ olduğu için $A$ matrisi <b>tekildir (tersi yoktur)</b>.`}
+          </div>
+        </div>
+
+        <div class="step-card">
+          <span class="step-badge">2. Rouché–Capelli Rank Analysis & Solution / Rank Analizi ve Çözüm</span>
+          <div style="font-size:0.9rem; line-height:1.6;">
+            🇬🇧 ${statusSummaryEn}
+            <hr style="border:none; border-top:1px dashed var(--border-color); margin:8px 0;">
+            🇹🇷 ${statusSummaryTr}
+          </div>
+        </div>
+
+        ${steps.map((s, idx) => `
+          <div class="step-card">
+            <span class="step-badge">Step ${idx + 1}: ${s.badge}</span>
+            <div style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:6px;">
+              🇬🇧 ${s.en}<br>
+              🇹🇷 <span style="color:#e11d48;">${s.tr}</span>
+            </div>
+            <div>$$${s.latex}$$</div>
+          </div>
+        `).join('')}
+      `;
+
+      renderMathInContainer(outEl);
+    }
+
+    // =========================================================================
+    // 3. 🧊 INTERACTIVE 3D QUADRIC SURFACES & VECTORS PLOTTER
+    // =========================================================================
+    let plotter3DState = {
+      preset: 'paraboloid',
+      yaw: 0.65,
+      pitch: 0.42,
+      zoom: 38,
+      sliceZ: 1.5,
+      showSlice: true,
+      problemNum: 13
+    };
+
+    const PRESETS_3D = {
+      cylinder: {
+        id: 'cylinder',
+        title: 'Ex 9: Circular Cylinder (Silindir)',
+        eq: '$x^2 + y^2 = 4$',
+        problemNum: 9,
+        sliceZ: 1.0,
+        descEn: 'Circular cylinder of radius $R=2$ extending infinitely along the $z$-axis because $z$ is a free variable.',
+        descTr: '$z$ değişkeni denklemde yer almadığı (serbest olduğu) için $xy$-düzlemindeki $R=2$ yarıçaplı çemberin $z$-ekseni boyunca uzatılmasıyla oluşan dik dairesel silindir.',
+        traceInfo: (z) => `At $z = ${z.toFixed(1)}$: Circle $x^2 + y^2 = 4$ of radius $R = 2$ (Yarıçapı 2 olan çember).`
+      },
+      cone: {
+        id: 'cone',
+        title: 'Ex 10: Quadric Cone (İkinci Dereceden Koni)',
+        eq: '$x^2 + y^2 - z^2 = 0$',
+        problemNum: 10,
+        sliceZ: 2.0,
+        descEn: 'Double circular cone with apex at the origin $(0,0,0)$ and linear rulings along $z = \\pm r$.',
+        descTr: 'Tepe noktası orijinde $(0,0,0)$ bulunan çift koni yüzeyi. Yatay kesitleri çember, düşey kesitleri hiperboldür.',
+        traceInfo: (z) => Math.abs(z) < 0.05 ? `At $z = 0$: Single point $(0,0,0)$ (Tek nokta - tepe noktası).` : `At $z = ${z.toFixed(1)}$: Circle $x^2 + y^2 = ${(z*z).toFixed(2)}$ of radius $r = |z| = ${Math.abs(z).toFixed(1)}$.`
+      },
+      ellipsoid: {
+        id: 'ellipsoid',
+        title: 'Ex 12: Triaxial Ellipsoid (Elipsoid)',
+        eq: '$\\frac{x^2}{9} + \\frac{y^2}{4} + \\frac{z^2}{4} = 1$',
+        problemNum: 12,
+        sliceZ: 1.0,
+        descEn: 'Bounded triaxial ellipsoid with semi-axes $a=3, b=2, c=2$ centered at the origin.',
+        descTr: 'Merkezi orijinde ve yarı eksen uzunlukları $a=3, b=2, c=2$ olan kapalı ve sınırlı elipsoid yüzeyi.',
+        traceInfo: (z) => Math.abs(z) > 2 ? `At $z = ${z.toFixed(1)}$: Empty set $\\emptyset$ (Kesit yok, $|z| > c$).` : `At $z = ${z.toFixed(1)}$: Ellipse $\\frac{x^2}{9} + \\frac{y^2}{4} = ${(1 - (z*z)/4).toFixed(2)}$ (Elips kesiti).`
+      },
+      paraboloid: {
+        id: 'paraboloid',
+        title: 'Ex 13: Elliptic Paraboloid (Eliptik Paraboloid)',
+        eq: '$z = \\frac{x^2}{4} + \\frac{y^2}{4}$',
+        problemNum: 13,
+        sliceZ: 2.0,
+        descEn: 'Bowl-shaped upward-opening paraboloid with vertex at $(0,0,0)$. Exists only for $z \\ge 0$.',
+        descTr: 'Tepe noktası $(0,0,0)$ olan ve $+z$ yönünde yukarı doğru açılan çanak şeklindeki paraboloid yüzeyi ($z \\ge 0$).',
+        traceInfo: (z) => z < 0 ? `At $z = ${z.toFixed(1)} < 0$: Empty set $\\emptyset$ (Negatif $z$ için kesit boş kümedir).` : `At $z = ${z.toFixed(1)}$: Circle/Ellipse $x^2 + y^2 = ${(4*z).toFixed(2)}$ (Çember/Elips kesiti).`
+      },
+      saddle: {
+        id: 'saddle',
+        title: 'Ex 14: Hyperbolic Paraboloid / Saddle (Eyer Yüzeyi)',
+        eq: '$z = \\frac{x^2}{4} - \\frac{y^2}{4}$',
+        problemNum: 14,
+        sliceZ: 1.0,
+        descEn: 'Saddle surface opening upward along the $x$-direction and downward along the $y$-direction.',
+        descTr: 'Hiperbolik paraboloid (at eyeri yüzeyi): $xz$-kesiti yukarı bakan parabol, $yz$-kesiti aşağı bakan parabol, yatay $z=k$ kesiti ise hiperboldür.',
+        traceInfo: (z) => Math.abs(z) < 0.05 ? `At $z = 0$: Pair of intersecting lines $y = \\pm x$ (Kesişen iki doğru çifti).` : `At $z = ${z.toFixed(1)}$: Hyperbola $x^2 - y^2 = ${(4*z).toFixed(2)}$ (Hiperbol kesiti).`
+      },
+      hyp1: {
+        id: 'hyp1',
+        title: 'Ex 15a: Hyperboloid of One Sheet (Tek Kanatlı Hiperboloid)',
+        eq: '$\\frac{x^2}{4} + \\frac{y^2}{4} - \\frac{z^2}{4} = 1$',
+        problemNum: 15,
+        sliceZ: 1.5,
+        descEn: 'Connected waist/cooling-tower surface existing for all $z \\in \\mathbb{R}$, with minimum neck radius at $z=0$.',
+        descTr: 'Tüm $z \\in \\mathbb{R}$ değerleri için kesintisiz devam eden tek parçalı (soğutma kulesi / kum saati beli biçimli) hiperboloid.',
+        traceInfo: (z) => `At $z = ${z.toFixed(1)}$: Circle $x^2 + y^2 = ${(4 + z*z).toFixed(2)}$ (Her $z$ yüksekliğinde çember kesiti).`
+      },
+      hyp2: {
+        id: 'hyp2',
+        title: 'Ex 15b: Hyperboloid of Two Sheets (Çift Kanatlı Hiperboloid)',
+        eq: '$\\frac{x^2}{4} + \\frac{y^2}{4} - \\frac{z^2}{4} = -1$',
+        problemNum: 15,
+        sliceZ: 2.5,
+        descEn: 'Disconnected surface with two separate bowls for $|z| \\ge 2$ and an empty gap for $|z| < 2$.',
+        descTr: '$|z| < 2$ aralığında boşluk bırakan, $z \\ge 2$ ve $z \\le -2$ bölgelerinde iki ayrı çanak (kanat) oluşan yüzey.',
+        traceInfo: (z) => Math.abs(z) < 2 ? `At $z = ${z.toFixed(1)}$: Empty set $\\emptyset$ ($|z| < 2$ bölgesinde yüzey yoktur).` : `At $z = ${z.toFixed(1)}$: Circle $x^2 + y^2 = ${(z*z - 4).toFixed(2)}$ (Çember kesiti).`
+      },
+      vectors: {
+        id: 'vectors',
+        title: 'Topic 1 & 2: 3D Vectors & Cross Product (u × v)',
+        eq: '$\\vec{u}=(2,0,1),\\; \\vec{v}=(0,2,1),\\; \\vec{n}=\\vec{u}\\times\\vec{v}=(-2,-2,4)$',
+        problemNum: 4,
+        sliceZ: 0,
+        descEn: 'Visualizing vectors $\\vec{u}$ (blue), $\\vec{v}$ (emerald), the parallelogram they span, and their orthogonal cross-product vector $\\vec{u}\\times\\vec{v}$ (crimson).',
+        descTr: '$\\vec{u}$ (mavi) ve $\\vec{v}$ (yeşil) vektörleri, gerdikleri paralelkenar alanı ve her ikisine de dik olan $\\vec{u}\\times\\vec{v}$ (kırmızı) vektörel çarpım normal vektörü.',
+        traceInfo: () => `Parallelogram Area $= \\|\\vec{u}\\times\\vec{v}\\| = \\sqrt{(-2)^2+(-2)^2+4^2} = \\sqrt{24} = 2\\sqrt{6} \\approx 4.90$.`
+      }
+    };
+
+    function setPlotterMode(mode) {
+      plotterState.mode = mode;
+      renderGeometryPlotter();
+    }
+
+    function set3DPreset(id) {
+      plotter3DState.preset = id;
+      const conf = PRESETS_3D[id];
+      if (conf) {
+        plotter3DState.sliceZ = conf.sliceZ;
+        plotter3DState.problemNum = conf.problemNum;
+      }
+      renderGeometryPlotter();
+    }
+
+    function update3DSliceZ(val) {
+      plotter3DState.sliceZ = parseFloat(val);
+      const valSpan = document.getElementById('val-slice-z');
+      if (valSpan) valSpan.textContent = plotter3DState.sliceZ.toFixed(1);
+      const traceEl = document.getElementById('trace-3d-info');
+      const conf = PRESETS_3D[plotter3DState.preset];
+      if (traceEl && conf) {
+        traceEl.innerHTML = conf.traceInfo(plotter3DState.sliceZ);
+        renderMathInContainer(traceEl);
+      }
+      draw3DCanvas();
+    }
+
+    function render3DGeometryPlotter(contentEl) {
+      const conf = PRESETS_3D[plotter3DState.preset] || PRESETS_3D.paraboloid;
+      const topicTarget = plotter3DState.preset === 'vectors' ? 'geometry-01' : 'geometry-03';
+
+      contentEl.innerHTML = `
+        <div class="plotter-dashboard">
+          <div class="plotter-header">
+            <div>
+              <h1 class="plotter-title">🧊 Interactive 3D Quadric Surfaces & Vectors</h1>
+              <div class="plotter-subtitle">
+                Drag canvas to rotate in 3D · Use horizontal plane slider $z = k$ to inspect 2D cross-section traces
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <div class="plotter-mode-switch">
+                <button class="plotter-mode-btn" onclick="setPlotterMode('2d')">📐 2D Conics (Ex 1–8)</button>
+                <button class="plotter-mode-btn active" onclick="setPlotterMode('3d')">🧊 3D Surfaces & Vectors (Ex 9–15)</button>
+              </div>
+              <button class="btn btn-primary" onclick="jumpToSolution('${topicTarget}', ${conf.problemNum})">
+                📖 Inspect Problem ${conf.problemNum} Solution ↗
+              </button>
+            </div>
+          </div>
+
+          <div class="plotter-layout">
+            <div class="plotter-sidebar">
+              <div class="plotter-card">
+                <div class="plotter-card-title">Select 3D Surface / Vector Preset</div>
+                <div class="preset-list">
+                  ${Object.values(PRESETS_3D).map(item => `
+                    <div class="preset-item ${plotter3DState.preset === item.id ? 'active' : ''}" onclick="set3DPreset('${item.id}')">
+                      <div class="preset-item-header">
+                        <span class="preset-name">${item.title}</span>
+                      </div>
+                      <span class="preset-math">${item.eq}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+
+              <div class="plotter-card">
+                <div class="plotter-card-title">Horizontal Cross-Section Plane ($z = k$)</div>
+                <div class="slider-box">
+                  <div class="slider-head">
+                    <span>Slice Height ($z = k$):</span>
+                    <span class="slider-val" id="val-slice-z">${plotter3DState.sliceZ.toFixed(1)}</span>
+                  </div>
+                  <input type="range" class="range-input" min="-3.2" max="3.2" step="0.1" value="${plotter3DState.sliceZ}" oninput="update3DSliceZ(this.value)">
+                </div>
+                <label class="toggle-label" style="margin-top:8px;">
+                  <input type="checkbox" ${plotter3DState.showSlice ? 'checked' : ''} onchange="plotter3DState.showSlice=this.checked; draw3DCanvas();">
+                  Show $z = k$ Cross-Section Trace (Yatay Kesit İzini Göster)
+                </label>
+                <div id="trace-3d-info" style="margin-top:10px; padding:8px 10px; background:var(--bg-primary); border-left:3px solid #e11d48; border-radius:4px; font-size:0.8rem;">
+                  ${conf.traceInfo(plotter3DState.sliceZ)}
+                </div>
+              </div>
+            </div>
+
+            <div class="canvas-container-card">
+              <div class="canvas-toolbar">
+                <div style="font-size:0.95rem; font-weight:700; color:var(--text-primary);">
+                  ${conf.title} — ${conf.eq}
+                </div>
+                <div class="canvas-tools-group">
+                  <button class="canvas-btn" onclick="plotter3DState.zoom*=1.15; draw3DCanvas();">+ Zoom</button>
+                  <button class="canvas-btn" onclick="plotter3DState.zoom*=0.85; draw3DCanvas();">− Zoom</button>
+                  <button class="canvas-btn" onclick="plotter3DState.yaw=0.65; plotter3DState.pitch=0.42; plotter3DState.zoom=38; draw3DCanvas();">↺ Reset 3D Angle</button>
+                </div>
+              </div>
+
+              <div class="canvas-frame">
+                <canvas id="surface3DCanvas" style="width:100%; height:100%; display:block; cursor:grab;"></canvas>
+              </div>
+
+              <div style="font-size:0.86rem; line-height:1.55; color:var(--text-secondary);">
+                <div>🇬🇧 <b>English:</b> ${conf.descEn}</div>
+                <div style="margin-top:4px; color:#e11d48;">🇹🇷 <b>Türkçe:</b> ${conf.descTr}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      renderMathInContainer(contentEl);
+      init3DCanvas();
+      draw3DCanvas();
+    }
+
+    let is3DDragging = false;
+    let last3DX = 0, last3DY = 0;
+
+    function init3DCanvas() {
+      const canvas = document.getElementById('surface3DCanvas');
+      if (!canvas) return;
+      canvas.addEventListener('mousedown', (e) => {
+        is3DDragging = true;
+        last3DX = e.clientX;
+        last3DY = e.clientY;
+        canvas.style.cursor = 'grabbing';
+      });
+      window.addEventListener('mouseup', () => {
+        is3DDragging = false;
+        const c = document.getElementById('surface3DCanvas');
+        if (c) c.style.cursor = 'grab';
+      });
+      window.addEventListener('mousemove', (e) => {
+        if (!is3DDragging) return;
+        const dx = e.clientX - last3DX;
+        const dy = e.clientY - last3DY;
+        last3DX = e.clientX;
+        last3DY = e.clientY;
+        plotter3DState.yaw += dx * 0.01;
+        plotter3DState.pitch = Math.max(-1.3, Math.min(1.3, plotter3DState.pitch + dy * 0.01));
+        draw3DCanvas();
+      });
+    }
+
+    function project3DPoint(x, y, z, cx, cy, scale, yaw, pitch) {
+      // Rotate around Z-axis (yaw), then X/Y tilt (pitch)
+      const cosY = Math.cos(yaw), sinY = Math.sin(yaw);
+      const x1 = x * cosY - y * sinY;
+      const y1 = x * sinY + y * cosY;
+      const cosP = Math.cos(pitch), sinP = Math.sin(pitch);
+      const z2 = z * cosP - y1 * sinP;
+      const depth = y1 * cosP + z * sinP;
+      const persp = 1 / (1 + depth * 0.035);
+      return {
+        px: cx + x1 * scale * persp,
+        py: cy - z2 * scale * persp,
+        depth
+      };
+    }
+
+    function draw3DCanvas() {
+      const canvas = document.getElementById('surface3DCanvas');
+      if (!canvas) return;
+      const rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = rect.width * window.devicePixelRatio;
+      canvas.height = rect.height * window.devicePixelRatio;
+      const ctx = canvas.getContext('2d');
+      ctx.save();
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+      const w = rect.width, h = rect.height;
+      const cx = w / 2, cy = h / 2 + 15;
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+      ctx.fillStyle = isDark ? '#0b1120' : '#f8fafc';
+      ctx.fillRect(0, 0, w, h);
+
+      const { yaw, pitch, zoom, preset, sliceZ, showSlice } = plotter3DState;
+      const proj = (x, y, z) => project3DPoint(x, y, z, cx, cy, zoom, yaw, pitch);
+
+      // Draw 3D coordinate axes
+      const axes = [
+        { to: [4.2, 0, 0], label: 'x', color: '#ef4444' },
+        { to: [0, 4.2, 0], label: 'y', color: '#10b981' },
+        { to: [0, 0, 4.0], label: 'z', color: '#3b82f6' }
+      ];
+      axes.forEach(ax => {
+        const p0 = proj(-ax.to[0]*0.7, -ax.to[1]*0.7, -ax.to[2]*0.7);
+        const p1 = proj(ax.to[0], ax.to[1], ax.to[2]);
+        ctx.strokeStyle = ax.color;
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+        ctx.moveTo(p0.px, p0.py);
+        ctx.lineTo(p1.px, p1.py);
+        ctx.stroke();
+        ctx.fillStyle = ax.color;
+        ctx.font = 'bold 13px Inter, sans-serif';
+        ctx.fillText(ax.label, p1.px + 5, p1.py - 4);
+      });
+
+      const strokeCurve3D = (pts, color, width = 1.3, dash = []) => {
+        ctx.strokeStyle = color;
+        ctx.lineWidth = width;
+        ctx.setLineDash(dash);
+        ctx.beginPath();
+        pts.forEach((pt, idx) => {
+          const p = proj(pt[0], pt[1], pt[2]);
+          if (idx === 0) ctx.moveTo(p.px, p.py);
+          else ctx.lineTo(p.px, p.py);
+        });
+        ctx.stroke();
+        ctx.setLineDash([]);
+      };
+
+      const wireColor = isDark ? 'rgba(96, 165, 250, 0.52)' : 'rgba(37, 99, 235, 0.45)';
+
+      if (preset === 'vectors') {
+        const u = [2, 0, 1], v = [0, 2, 1], nVec = [-2, -2, 4];
+        const pO = proj(0, 0, 0), pU = proj(...u), pV = proj(...v), pUV = proj(u[0]+v[0], u[1]+v[1], u[2]+v[2]);
+        ctx.fillStyle = 'rgba(16, 185, 129, 0.18)';
+        ctx.beginPath();
+        ctx.moveTo(pO.px, pO.py);
+        ctx.lineTo(pU.px, pU.py);
+        ctx.lineTo(pUV.px, pUV.py);
+        ctx.lineTo(pV.px, pV.py);
+        ctx.closePath();
+        ctx.fill();
+        strokeCurve3D([[0,0,0], u], '#2563eb', 3.2);
+        strokeCurve3D([[0,0,0], v], '#10b981', 3.2);
+        strokeCurve3D([[0,0,0], nVec], '#e11d48', 3.4);
+        ctx.fillStyle = isDark ? '#f8fafc' : '#0f172a';
+        ctx.font = 'bold 12px Fira Code, monospace';
+        ctx.fillText('u(2,0,1)', pU.px + 6, pU.py);
+        ctx.fillText('v(0,2,1)', pV.px + 6, pV.py);
+        const pN = proj(...nVec);
+        ctx.fillStyle = '#e11d48';
+        ctx.fillText('u × v = (-2,-2,4)', pN.px + 8, pN.py);
+        ctx.restore();
+        return;
+      }
+
+      // Parametric wireframe meshes for quadric surfaces
+      if (preset === 'cylinder') {
+        for (let z = -3; z <= 3; z += 0.6) {
+          const ring = [];
+          for (let t = 0; t <= Math.PI * 2 + 0.05; t += 0.15) ring.push([2 * Math.cos(t), 2 * Math.sin(t), z]);
+          strokeCurve3D(ring, wireColor);
+        }
+        for (let t = 0; t < Math.PI * 2; t += Math.PI / 6) {
+          strokeCurve3D([[2 * Math.cos(t), 2 * Math.sin(t), -3], [2 * Math.cos(t), 2 * Math.sin(t), 3]], wireColor);
+        }
+      } else if (preset === 'cone') {
+        for (let z = -3; z <= 3; z += 0.5) {
+          const r = Math.abs(z);
+          const ring = [];
+          for (let t = 0; t <= Math.PI * 2 + 0.05; t += 0.15) ring.push([r * Math.cos(t), r * Math.sin(t), z]);
+          strokeCurve3D(ring, wireColor);
+        }
+        for (let t = 0; t < Math.PI * 2; t += Math.PI / 6) {
+          strokeCurve3D([[-3 * Math.cos(t), -3 * Math.sin(t), -3], [3 * Math.cos(t), 3 * Math.sin(t), 3]], wireColor);
+        }
+      } else if (preset === 'ellipsoid') {
+        const a = 3, b = 2, c = 2;
+        for (let u = -Math.PI / 2; u <= Math.PI / 2; u += Math.PI / 10) {
+          const ring = [];
+          for (let v = 0; v <= Math.PI * 2 + 0.05; v += 0.15) {
+            ring.push([a * Math.cos(u) * Math.cos(v), b * Math.cos(u) * Math.sin(v), c * Math.sin(u)]);
+          }
+          strokeCurve3D(ring, wireColor);
+        }
+        for (let v = 0; v < Math.PI * 2; v += Math.PI / 6) {
+          const mer = [];
+          for (let u = -Math.PI / 2; u <= Math.PI / 2; u += 0.15) {
+            mer.push([a * Math.cos(u) * Math.cos(v), b * Math.cos(u) * Math.sin(v), c * Math.sin(u)]);
+          }
+          strokeCurve3D(mer, wireColor);
+        }
+      } else if (preset === 'paraboloid') {
+        for (let r = 0.5; r <= 3.0; r += 0.5) {
+          const z = (r * r) / 2.5;
+          const ring = [];
+          for (let t = 0; t <= Math.PI * 2 + 0.05; t += 0.15) ring.push([r * Math.cos(t), r * Math.sin(t), z]);
+          strokeCurve3D(ring, wireColor);
+        }
+        for (let t = 0; t < Math.PI * 2; t += Math.PI / 6) {
+          const rad = [];
+          for (let r = 0; r <= 3.0; r += 0.2) rad.push([r * Math.cos(t), r * Math.sin(t), (r * r) / 2.5]);
+          strokeCurve3D(rad, wireColor);
+        }
+      } else if (preset === 'saddle') {
+        for (let x = -2.8; x <= 2.8; x += 0.4) {
+          const line = [];
+          for (let y = -2.8; y <= 2.8; y += 0.2) line.push([x, y, (x * x - y * y) / 3.2]);
+          strokeCurve3D(line, wireColor);
+        }
+        for (let y = -2.8; y <= 2.8; y += 0.4) {
+          const line = [];
+          for (let x = -2.8; x <= 2.8; x += 0.2) line.push([x, y, (x * x - y * y) / 3.2]);
+          strokeCurve3D(line, wireColor);
+        }
+      } else if (preset === 'hyp1') {
+        for (let z = -2.8; z <= 2.8; z += 0.55) {
+          const r = Math.sqrt(1.5 + z * z * 0.6);
+          const ring = [];
+          for (let t = 0; t <= Math.PI * 2 + 0.05; t += 0.15) ring.push([r * Math.cos(t), r * Math.sin(t), z]);
+          strokeCurve3D(ring, wireColor);
+        }
+        for (let t = 0; t < Math.PI * 2; t += Math.PI / 6) {
+          const mer = [];
+          for (let z = -2.8; z <= 2.8; z += 0.2) {
+            const r = Math.sqrt(1.5 + z * z * 0.6);
+            mer.push([r * Math.cos(t), r * Math.sin(t), z]);
+          }
+          strokeCurve3D(mer, wireColor);
+        }
+      } else if (preset === 'hyp2') {
+        [-1, 1].forEach(sign => {
+          for (let u = 0; u <= 1.3; u += 0.26) {
+            const z = sign * 1.4 * Math.cosh(u);
+            const r = 1.4 * Math.sinh(u);
+            const ring = [];
+            for (let t = 0; t <= Math.PI * 2 + 0.05; t += 0.15) ring.push([r * Math.cos(t), r * Math.sin(t), z]);
+            strokeCurve3D(ring, wireColor);
+          }
+        });
+      }
+
+      // Draw Horizontal Slice Plane z = sliceZ and highlight 2D Trace
+      if (showSlice) {
+        const planeCorners = [[-3.2, -3.2, sliceZ], [3.2, -3.2, sliceZ], [3.2, 3.2, sliceZ], [-3.2, 3.2, sliceZ], [-3.2, -3.2, sliceZ]];
+        strokeCurve3D(planeCorners, 'rgba(225, 29, 72, 0.45)', 1.2, [4, 4]);
+
+        const traceColor = '#e11d48';
+        if (preset === 'cylinder') {
+          const ring = [];
+          for (let t = 0; t <= Math.PI * 2 + 0.05; t += 0.1) ring.push([2 * Math.cos(t), 2 * Math.sin(t), sliceZ]);
+          strokeCurve3D(ring, traceColor, 3.2);
+        } else if (preset === 'cone') {
+          const r = Math.abs(sliceZ);
+          const ring = [];
+          for (let t = 0; t <= Math.PI * 2 + 0.05; t += 0.1) ring.push([r * Math.cos(t), r * Math.sin(t), sliceZ]);
+          strokeCurve3D(ring, traceColor, 3.2);
+        } else if (preset === 'ellipsoid' && Math.abs(sliceZ) <= 2) {
+          const k = Math.sqrt(Math.max(0, 1 - (sliceZ * sliceZ) / 4));
+          const ring = [];
+          for (let t = 0; t <= Math.PI * 2 + 0.05; t += 0.1) ring.push([3 * k * Math.cos(t), 2 * k * Math.sin(t), sliceZ]);
+          strokeCurve3D(ring, traceColor, 3.2);
+        } else if (preset === 'paraboloid' && sliceZ >= 0) {
+          const r = Math.sqrt(2.5 * sliceZ);
+          const ring = [];
+          for (let t = 0; t <= Math.PI * 2 + 0.05; t += 0.1) ring.push([r * Math.cos(t), r * Math.sin(t), sliceZ]);
+          strokeCurve3D(ring, traceColor, 3.2);
+        } else if (preset === 'hyp1') {
+          const r = Math.sqrt(1.5 + sliceZ * sliceZ * 0.6);
+          const ring = [];
+          for (let t = 0; t <= Math.PI * 2 + 0.05; t += 0.1) ring.push([r * Math.cos(t), r * Math.sin(t), sliceZ]);
+          strokeCurve3D(ring, traceColor, 3.2);
+        } else if (preset === 'hyp2' && Math.abs(sliceZ) >= 1.4) {
+          const r = Math.sqrt(Math.max(0, sliceZ * sliceZ - 1.96));
+          const ring = [];
+          for (let t = 0; t <= Math.PI * 2 + 0.05; t += 0.1) ring.push([r * Math.cos(t), r * Math.sin(t), sliceZ]);
+          strokeCurve3D(ring, traceColor, 3.2);
+        } else if (preset === 'saddle') {
+          const cVal = sliceZ * 3.2;
+          [-1, 1].forEach(sign => {
+            const branch = [];
+            for (let s = -2.4; s <= 2.4; s += 0.15) {
+              if (cVal >= 0) {
+                const x = sign * Math.sqrt(cVal + s * s);
+                if (Math.abs(x) <= 3.0) branch.push([x, s, sliceZ]);
+              } else {
+                const y = sign * Math.sqrt(-cVal + s * s);
+                if (Math.abs(y) <= 3.0) branch.push([s, y, sliceZ]);
+              }
+            }
+            if (branch.length > 1) strokeCurve3D(branch, traceColor, 3.2);
+          });
+        }
+      }
+
+      ctx.restore();
+    }
+
     // --- Search functionality ---
     document.getElementById('topic-search').addEventListener('input', (e) => {
       const term = e.target.value.toLowerCase();
@@ -2814,7 +4547,8 @@
       themeIcon.textContent = isDark ? '☀️' : '🌙';
       localStorage.setItem('math_workbook_theme', isDark ? 'dark' : 'light');
       if (currentTab === 'plotter') {
-        drawConicCanvas();
+        if (plotterState.mode === '3d') draw3DCanvas();
+        else drawConicCanvas();
       }
     }
 
@@ -2836,7 +4570,8 @@
     // Window resize handler for canvas
     window.addEventListener('resize', () => {
       if (currentTab === 'plotter') {
-        drawConicCanvas();
+        if (plotterState.mode === '3d') draw3DCanvas();
+        else drawConicCanvas();
       }
     });
 
@@ -2846,6 +4581,8 @@
         const hashId = window.location.hash.replace('#', '');
         if (hashId === 'tracker') {
           currentTab = 'tracker';
+        } else if (hashId === 'algebra') {
+          currentTab = 'algebra';
         } else if (hashId === 'plotter') {
           currentTab = 'plotter';
         } else if (CURRICULUM.some(t => t.id === hashId)) {
