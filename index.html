@@ -1227,13 +1227,13 @@
         exerciseFile: 'exercises/1_Algebra/02_determinants_en.md',
         solutionsDir: 'solutions/1_Algebra/02_determinants',
         totalProblems: 15,
-        acceptedCount: 14,
-        submittedCount: 1,
-        status: 'submitted',
+        acceptedCount: 15,
+        submittedCount: 0,
+        status: 'accepted',
         issueNumber: 2,
         issueTitle: 'Review — 1_Algebra/02_determinants',
         issueUrl: 'https://github.com/Uykulumirza/Basics_of_Mathematics_Student_Workbook_2026/issues/2',
-        reviewNotes: '14 of 15 accepted in Issue #2. Exercise 10 revision completed: derived kernel vector (7,-5,1)^T and column dependence 7C1-5C2+C3=0 directly.'
+        reviewNotes: 'All 15 exercises accepted in Issue #2. Exercise 10 revision confirmed with kernel vector (7,-5,1)^T and column dependence 7C1-5C2+C3=0.'
       },
       {
         id: 'algebra-03',
@@ -1242,10 +1242,15 @@
         exerciseFile: 'exercises/1_Algebra/03_matrix_inversion_en.md',
         solutionsDir: 'solutions/1_Algebra/03_matrix_inversion',
         totalProblems: 15,
-        acceptedCount: 0,
-        submittedCount: 15,
+        acceptedCount: 13,
+        submittedCount: 2,
+        acceptedProblems: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14],
+        submittedProblems: [11, 15],
         status: 'submitted',
-        reviewNotes: 'All 15 solutions completed with theoretical background, step-by-step Gauss-Jordan and formula derivations, and independent consistency checks.'
+        issueNumber: 4,
+        issueTitle: 'Review — 1_Algebra/03_matrix_inversion',
+        issueUrl: 'https://github.com/Uykulumirza/Basics_of_Mathematics_Student_Workbook_2026/issues/4',
+        reviewNotes: '13 of 15 accepted in Issue #4. Exercises 11 & 15 revised: distinguished mapping onto a line from orthogonal projection (A(±1)=2P_±) and defined explicit scalar operation counting convention.'
       },
       {
         id: 'algebra-04',
@@ -1255,8 +1260,9 @@
         solutionsDir: 'solutions/1_Algebra/04_systems_of_equations',
         totalProblems: 15,
         acceptedCount: 0,
-        submittedCount: 0,
-        status: 'pending'
+        submittedCount: 15,
+        status: 'submitted',
+        reviewNotes: 'All 15 solutions completed with Gaussian elimination, parametric analysis, geometric interpretations, and full verification.'
       },
       // Module 2: Geometry
       {
@@ -1267,8 +1273,9 @@
         solutionsDir: 'solutions/2_Geometry/01_vectors',
         totalProblems: 15,
         acceptedCount: 0,
-        submittedCount: 0,
-        status: 'pending'
+        submittedCount: 15,
+        status: 'submitted',
+        reviewNotes: 'All 15 solutions completed covering vector operations, dot and cross products, orthogonal projections, linear dependence, and coplanarity.'
       },
       {
         id: 'geometry-02',
@@ -1278,8 +1285,9 @@
         solutionsDir: 'solutions/2_Geometry/02_lines_and_planes',
         totalProblems: 15,
         acceptedCount: 0,
-        submittedCount: 0,
-        status: 'pending'
+        submittedCount: 15,
+        status: 'submitted',
+        reviewNotes: 'All 15 solutions completed covering parametric/general forms, skew/parallel/intersecting lines, distances, orthogonal projections, and reflections.'
       },
       {
         id: 'geometry-03',
@@ -1288,14 +1296,15 @@
         exerciseFile: 'exercises/2_Geometry/03_second_degree_curves_and_surfaces_en.md',
         solutionsDir: 'solutions/2_Geometry/03_second_degree_curves_and_surfaces',
         totalProblems: 15,
-        acceptedCount: 2,
-        submittedCount: 2,
-        submittedProblems: [1, 3, 4, 5],
+        acceptedCount: 3,
+        submittedCount: 12,
+        acceptedProblems: [3, 4, 5],
+        submittedProblems: [1, 2, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
         status: 'submitted',
         issueNumber: 3,
         issueTitle: 'Review — 2_Geometry/03_second_degree_curves_and_surfaces',
         issueUrl: 'https://github.com/Uykulumirza/Basics_of_Mathematics_Student_Workbook_2026/issues/3',
-        reviewNotes: 'Exercises 3 & 5 accepted in Issue #3. Exercises 1 & 4 sketches revised: hyperbola branches open outward, parabola vertex fixed at origin.'
+        reviewNotes: 'Exercises 3, 4 & 5 accepted in Issue #3. Exercise 1 parabola sketch revised and remaining Exercises 2, 6–15 completed with canonical reductions, 3D cross-section analyses, and sketches.'
       },
       // Module 3: Calculus
       {
@@ -1441,7 +1450,10 @@
           if (item.status === 'accepted') {
             badgeHtml = `<span class="status-badge accepted">✓ ${item.acceptedCount}/${item.totalProblems}</span>`;
           } else if (item.status === 'submitted') {
-            badgeHtml = `<span class="status-badge submitted">⏳ ${item.submittedCount}/${item.totalProblems}</span>`;
+            const doneTotal = (item.acceptedCount || 0) + (item.submittedCount || 0);
+            badgeHtml = item.acceptedCount > 0
+              ? `<span class="status-badge submitted">✓${item.acceptedCount} ⏳${item.submittedCount}/${item.totalProblems}</span>`
+              : `<span class="status-badge submitted">⏳ ${doneTotal}/${item.totalProblems}</span>`;
           } else if (item.status === 'pending') {
             badgeHtml = `<span class="status-badge pending">0/${item.totalProblems}</span>`;
           } else if (item.isPlotter) {
@@ -1470,7 +1482,7 @@
       let totalAccepted = 0;
       let totalSubmitted = 0;
 
-      const topics = CURRICULUM.filter(t => !t.isOverview && !t.isTracker);
+      const topics = CURRICULUM.filter(t => !t.isOverview && !t.isTracker && !t.isPlotter);
       topics.forEach(t => {
         totalCourseProblems += t.totalProblems;
         totalAccepted += (t.acceptedCount || 0);
@@ -1567,7 +1579,9 @@
         if (topic.status === 'accepted') {
           statusBadge = `<span class="status-badge accepted">✓ Accepted (${topic.acceptedCount}/${topic.totalProblems})</span>`;
         } else if (topic.status === 'submitted') {
-          statusBadge = `<span class="status-badge submitted">⏳ Submitted (${topic.submittedCount}/${topic.totalProblems})</span>`;
+          statusBadge = topic.acceptedCount > 0
+            ? `<span class="status-badge submitted">✓ ${topic.acceptedCount} Accepted · ⏳ ${topic.submittedCount} In Review (${topic.acceptedCount + topic.submittedCount}/${topic.totalProblems})</span>`
+            : `<span class="status-badge submitted">⏳ Submitted (${topic.submittedCount}/${topic.totalProblems})</span>`;
         } else {
           statusBadge = `<span class="status-badge pending">⚪ Not Started (0/${topic.totalProblems})</span>`;
         }
@@ -1598,8 +1612,9 @@
         for (let i = 1; i <= topic.totalProblems; i++) {
           let cellClass = 'pending';
           let cellTag = 'Pending';
-          const isSubmittedProb = topic.submittedProblems ? topic.submittedProblems.includes(i) : (topic.submittedCount && i <= topic.submittedCount);
-          if (topic.status === 'accepted') {
+          const isAcceptedProb = topic.status === 'accepted' || (topic.acceptedProblems ? topic.acceptedProblems.includes(i) : false);
+          const isSubmittedProb = !isAcceptedProb && (topic.submittedProblems ? topic.submittedProblems.includes(i) : (topic.submittedCount && i <= topic.submittedCount));
+          if (isAcceptedProb) {
             cellClass = 'accepted';
             cellTag = '✓ Pass';
           } else if (isSubmittedProb) {
@@ -1825,11 +1840,12 @@
       const total = topic.totalProblems || 15;
       for (let i = 1; i <= total; i++) {
         const pill = document.createElement('button');
-        const isDone = (topic.acceptedCount && i <= topic.acceptedCount) || 
-                       (topic.submittedProblems ? topic.submittedProblems.includes(i) : (topic.submittedCount && i <= topic.submittedCount));
+        const isAccepted = topic.status === 'accepted' || (topic.acceptedProblems ? topic.acceptedProblems.includes(i) : false);
+        const isSubmitted = !isAccepted && (topic.submittedProblems ? topic.submittedProblems.includes(i) : (topic.submittedCount && i <= topic.submittedCount));
+        const isDone = isAccepted || isSubmitted;
         pill.className = `problem-pill ${i === currentProblemIndex ? 'active' : ''} ${isDone ? 'done' : ''}`;
         pill.textContent = `P${i}`;
-        pill.title = `Problem ${i} ${isDone ? '(Completed)' : '(Pending)'}`;
+        pill.title = `Problem ${i} ${isAccepted ? '(Accepted ✓)' : isSubmitted ? '(Submitted ⏳)' : '(Pending)'}`;
         pill.onclick = () => selectProblem(i);
         selector.appendChild(pill);
       }
@@ -1907,6 +1923,80 @@
       }
     };
 
+    function buildParamFormulaHint(pState) {
+      if (pState.preset === 'ex3') {
+        return `Equation: $\\frac{x^2}{${(pState.a * pState.a).toFixed(0)}} + \\frac{y^2}{${(pState.b * pState.b).toFixed(0)}} = 1$`;
+      } else if (pState.preset === 'ex4') {
+        return `Equation: $y^2 = 2px = ${2 * pState.p}x$, Focus: $(${pState.p / 2}, 0)$`;
+      } else if (pState.preset === 'ex5') {
+        return `Asymptote slope: $\\pm \\frac{b}{a} = \\pm ${(pState.b / pState.a).toFixed(2)}$`;
+      }
+      return '';
+    }
+
+    function buildMathTableRows(pState) {
+      if (pState.preset === 'ex1') {
+        return `
+          <tr><td class="key">Circle</td><td class="val">$x^2 + y^2 = 9$ ($R = 3$)</td></tr>
+          <tr><td class="key">Ellipse</td><td class="val">$\\frac{x^2}{16} + \\frac{y^2}{9} = 1$ ($a=4, b=3$)</td></tr>
+          <tr><td class="key">Parabola</td><td class="val">$y^2 = 8x$ ($p = 4, F=(2, 0)$)</td></tr>
+          <tr><td class="key">Hyperbola</td><td class="val">$\\frac{x^2}{9} - \\frac{y^2}{4} = 1$ ($a=3, b=2$)</td></tr>
+        `;
+      } else if (pState.preset === 'ex3' || (pState.preset === 'custom' && pState.customType === 'ellipse')) {
+        const a = pState.a;
+        const b = pState.b;
+        const c = Math.sqrt(Math.abs(a * a - b * b));
+        const major = a >= b ? 'x-axis (Horizontal)' : 'y-axis (Vertical)';
+        const e = (c / Math.max(a, b)).toFixed(3);
+        return `
+          <tr><td class="key">Equation</td><td class="val">$\\frac{x^2}{${(a*a).toFixed(0)}} + \\frac{y^2}{${(b*b).toFixed(0)}} = 1$</td></tr>
+          <tr><td class="key">Semi-axes</td><td class="val">$a = ${a},\\; b = ${b}$</td></tr>
+          <tr><td class="key">Major Axis</td><td class="val">${major}</td></tr>
+          <tr><td class="key">Focal dist. (c)</td><td class="val">$c = ${c.toFixed(2)}$</td></tr>
+          <tr><td class="key">Eccentricity (e)</td><td class="val">$e = ${e}$</td></tr>
+          <tr><td class="key">Foci</td><td class="val">${a >= b ? `$(\\pm ${c.toFixed(2)}, 0)$` : `$(0, \\pm ${c.toFixed(2)})`}</td></tr>
+          <tr><td class="key">Vertices</td><td class="val">$(\\pm ${a}, 0), (0, \\pm ${b})$</td></tr>
+        `;
+      } else if (pState.preset === 'ex4' || (pState.preset === 'custom' && pState.customType === 'parabola')) {
+        const p = pState.p;
+        const fX = p / 2;
+        return `
+          <tr><td class="key">Canonical Equation</td><td class="val">$y^2 = ${2 * p}x$</td></tr>
+          <tr><td class="key">Focal Parameter</td><td class="val">$p = ${p}$</td></tr>
+          <tr><td class="key">Vertex</td><td class="val">$(0, 0)$</td></tr>
+          <tr><td class="key">Focus (F)</td><td class="val">$(\\frac{p}{2}, 0) = (${fX}, 0)$</td></tr>
+          <tr><td class="key">Directrix (d)</td><td class="val">$x = -${fX}$</td></tr>
+          <tr><td class="key">Latus Rectum Length</td><td class="val">$2p = ${2 * p}$</td></tr>
+          <tr><td class="key">Latus Rectum Points</td><td class="val">$(${fX}, \\pm ${p})$</td></tr>
+        `;
+      } else if (pState.preset === 'ex5' || (pState.preset === 'custom' && pState.customType === 'hyperbola')) {
+        const a = pState.a;
+        const b = pState.b;
+        const c = Math.sqrt(a * a + b * b);
+        const e = (c / a).toFixed(3);
+        const slope = (b / a).toFixed(2);
+        return `
+          <tr><td class="key">Canonical Equation</td><td class="val">$\\frac{x^2}{${(a*a).toFixed(0)}} - \\frac{y^2}{${(b*b).toFixed(0)}} = 1$</td></tr>
+          <tr><td class="key">Semi-axes</td><td class="val">$a = ${a},\\; b = ${b}$</td></tr>
+          <tr><td class="key">Vertices</td><td class="val">$(\\pm ${a}, 0)$</td></tr>
+          <tr><td class="key">Focal dist. (c)</td><td class="val">$c = ${c.toFixed(2)}$</td></tr>
+          <tr><td class="key">Eccentricity (e)</td><td class="val">$e = ${e}$</td></tr>
+          <tr><td class="key">Foci</td><td class="val">$(\\pm ${c.toFixed(2)}, 0)$</td></tr>
+          <tr><td class="key">Asymptotes</td><td class="val">$y = \\pm \\frac{${b}}{${a}}x = \\pm ${slope}x$</td></tr>
+        `;
+      } else if (pState.customType === 'circle') {
+        const R = pState.R;
+        return `
+          <tr><td class="key">Canonical Equation</td><td class="val">$x^2 + y^2 = ${(R*R).toFixed(0)}$</td></tr>
+          <tr><td class="key">Radius (R)</td><td class="val">$R = ${R}$</td></tr>
+          <tr><td class="key">Center</td><td class="val">$(0, 0)$</td></tr>
+          <tr><td class="key">Circumference</td><td class="val">$2\\pi R \\approx ${(2 * Math.PI * R).toFixed(2)}$</td></tr>
+          <tr><td class="key">Area</td><td class="val">$\\pi R^2 \\approx ${(Math.PI * R * R).toFixed(2)}$</td></tr>
+        `;
+      }
+      return '';
+    }
+
     function renderGeometryPlotter() {
       const contentEl = document.getElementById('article-content');
       const breadcrumbs = document.getElementById('breadcrumbs');
@@ -1955,7 +2045,7 @@
             </div>
             <input type="range" class="range-input" id="range-b" min="1" max="10" step="0.5" value="${pState.b}" oninput="updatePlotterParam('b', this.value)">
           </div>
-          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">Equation: $\\frac{x^2}{${(pState.a*pState.a).toFixed(0)}} + \\frac{y^2}{${(pState.b*pState.b).toFixed(0)}} = 1$</div>
+          <div id="param-formula-hint" style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">${buildParamFormulaHint(pState)}</div>
         `;
       } else if (pState.preset === 'ex4') {
         paramSlidersHtml = `
@@ -1965,7 +2055,7 @@
               <span class="slider-val" id="val-p">${pState.p}</span>
             </div>
             <input type="range" class="range-input" id="range-p" min="1" max="16" step="0.5" value="${pState.p}" oninput="updatePlotterParam('p', this.value)">
-            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Equation: $y^2 = 2px = ${2 * pState.p}x$, Focus: $(${pState.p/2}, 0)$</div>
+            <div id="param-formula-hint" style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">${buildParamFormulaHint(pState)}</div>
           </div>
         `;
       } else if (pState.preset === 'ex5') {
@@ -1983,7 +2073,7 @@
               <span class="slider-val" id="val-b">${pState.b}</span>
             </div>
             <input type="range" class="range-input" id="range-b" min="1" max="10" step="0.5" value="${pState.b}" oninput="updatePlotterParam('b', this.value)">
-            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Asymptote slope: $\\pm \\frac{b}{a} = \\pm ${(pState.b / pState.a).toFixed(2)}$</div>
+            <div id="param-formula-hint" style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">${buildParamFormulaHint(pState)}</div>
           </div>
         `;
       } else if (pState.preset === 'custom') {
@@ -2023,66 +2113,7 @@
       }
 
       // Mathematical Details Table
-      let mathTableRows = '';
-      if (pState.preset === 'ex1') {
-        mathTableRows = `
-          <tr><td class="key">Circle</td><td class="val">$x^2 + y^2 = 9$ ($R = 3$)</td></tr>
-          <tr><td class="key">Ellipse</td><td class="val">$\\frac{x^2}{16} + \\frac{y^2}{9} = 1$ ($a=4, b=3$)</td></tr>
-          <tr><td class="key">Parabola</td><td class="val">$y^2 = 8x$ ($p = 4, F=(2, 0)$)</td></tr>
-          <tr><td class="key">Hyperbola</td><td class="val">$\\frac{x^2}{9} - \\frac{y^2}{4} = 1$ ($a=3, b=2$)</td></tr>
-        `;
-      } else if (pState.preset === 'ex3' || (pState.preset === 'custom' && pState.customType === 'ellipse')) {
-        const a = pState.a;
-        const b = pState.b;
-        const c = Math.sqrt(Math.abs(a * a - b * b));
-        const major = a >= b ? 'x-axis (Horizontal)' : 'y-axis (Vertical)';
-        const e = (c / Math.max(a, b)).toFixed(3);
-        mathTableRows = `
-          <tr><td class="key">Equation</td><td class="val">$\\frac{x^2}{${(a*a).toFixed(0)}} + \\frac{y^2}{${(b*b).toFixed(0)}} = 1$</td></tr>
-          <tr><td class="key">Semi-axes</td><td class="val">$a = ${a},\\; b = ${b}$</td></tr>
-          <tr><td class="key">Major Axis</td><td class="val">${major}</td></tr>
-          <tr><td class="key">Focal dist. (c)</td><td class="val">$c = ${c.toFixed(2)}$</td></tr>
-          <tr><td class="key">Eccentricity (e)</td><td class="val">$e = ${e}$</td></tr>
-          <tr><td class="key">Foci</td><td class="val">${a >= b ? `$(\\pm ${c.toFixed(2)}, 0)$` : `$(0, \\pm ${c.toFixed(2)})`}</td></tr>
-          <tr><td class="key">Vertices</td><td class="val">$(\\pm ${a}, 0), (0, \\pm ${b})$</td></tr>
-        `;
-      } else if (pState.preset === 'ex4' || (pState.preset === 'custom' && pState.customType === 'parabola')) {
-        const p = pState.p;
-        const fX = p / 2;
-        mathTableRows = `
-          <tr><td class="key">Canonical Equation</td><td class="val">$y^2 = ${2 * p}x$</td></tr>
-          <tr><td class="key">Focal Parameter</td><td class="val">$p = ${p}$</td></tr>
-          <tr><td class="key">Vertex</td><td class="val">$(0, 0)$</td></tr>
-          <tr><td class="key">Focus (F)</td><td class="val">$(\\frac{p}{2}, 0) = (${fX}, 0)$</td></tr>
-          <tr><td class="key">Directrix (d)</td><td class="val">$x = -${fX}$</td></tr>
-          <tr><td class="key">Latus Rectum Length</td><td class="val">$2p = ${2 * p}$</td></tr>
-          <tr><td class="key">Latus Rectum Points</td><td class="val">$(${fX}, \\pm ${p})$</td></tr>
-        `;
-      } else if (pState.preset === 'ex5' || (pState.preset === 'custom' && pState.customType === 'hyperbola')) {
-        const a = pState.a;
-        const b = pState.b;
-        const c = Math.sqrt(a * a + b * b);
-        const e = (c / a).toFixed(3);
-        const slope = (b / a).toFixed(2);
-        mathTableRows = `
-          <tr><td class="key">Canonical Equation</td><td class="val">$\\frac{x^2}{${(a*a).toFixed(0)}} - \\frac{y^2}{${(b*b).toFixed(0)}} = 1$</td></tr>
-          <tr><td class="key">Semi-axes</td><td class="val">$a = ${a},\\; b = ${b}$</td></tr>
-          <tr><td class="key">Vertices</td><td class="val">$(\\pm ${a}, 0)$</td></tr>
-          <tr><td class="key">Focal dist. (c)</td><td class="val">$c = ${c.toFixed(2)}$</td></tr>
-          <tr><td class="key">Eccentricity (e)</td><td class="val">$e = ${e}$</td></tr>
-          <tr><td class="key">Foci</td><td class="val">$(\\pm ${c.toFixed(2)}, 0)$</td></tr>
-          <tr><td class="key">Asymptotes</td><td class="val">$y = \\pm \\frac{${b}}{${a}}x = \\pm ${slope}x$</td></tr>
-        `;
-      } else if (pState.customType === 'circle') {
-        const R = pState.R;
-        mathTableRows = `
-          <tr><td class="key">Canonical Equation</td><td class="val">$x^2 + y^2 = ${(R*R).toFixed(0)}$</td></tr>
-          <tr><td class="key">Radius (R)</td><td class="val">$R = ${R}$</td></tr>
-          <tr><td class="key">Center</td><td class="val">$(0, 0)$</td></tr>
-          <tr><td class="key">Circumference</td><td class="val">$2\\pi R \\approx ${(2 * Math.PI * R).toFixed(2)}$</td></tr>
-          <tr><td class="key">Area</td><td class="val">$\\pi R^2 \\approx ${(Math.PI * R * R).toFixed(2)}$</td></tr>
-        `;
-      }
+      const mathTableRows = buildMathTableRows(pState);
 
       contentEl.innerHTML = `
         <div class="plotter-dashboard">
@@ -2245,6 +2276,10 @@
       });
     }
 
+    let conicCanvasListenersBound = false;
+    let isCanvasDragging = false;
+    let dragStartX = 0, dragStartY = 0;
+
     function initConicCanvas() {
       const canvas = document.getElementById('conicCanvas');
       if (!canvas) return;
@@ -2261,24 +2296,28 @@
         if (badge) badge.textContent = `(x: ${mathX}, y: ${mathY})`;
       });
 
-      let isDragging = false;
-      let startX = 0, startY = 0;
       canvas.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        startX = e.clientX - plotterState.offsetX;
-        startY = e.clientY - plotterState.offsetY;
+        isCanvasDragging = true;
+        dragStartX = e.clientX - plotterState.offsetX;
+        dragStartY = e.clientY - plotterState.offsetY;
         canvas.style.cursor = 'grabbing';
       });
-      window.addEventListener('mouseup', () => {
-        isDragging = false;
-        if (canvas) canvas.style.cursor = 'crosshair';
-      });
-      window.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        plotterState.offsetX = e.clientX - startX;
-        plotterState.offsetY = e.clientY - startY;
-        drawConicCanvas();
-      });
+
+      if (!conicCanvasListenersBound) {
+        conicCanvasListenersBound = true;
+        window.addEventListener('mouseup', () => {
+          if (!isCanvasDragging) return;
+          isCanvasDragging = false;
+          const c = document.getElementById('conicCanvas');
+          if (c) c.style.cursor = 'crosshair';
+        });
+        window.addEventListener('mousemove', (e) => {
+          if (!isCanvasDragging) return;
+          plotterState.offsetX = e.clientX - dragStartX;
+          plotterState.offsetY = e.clientY - dragStartY;
+          drawConicCanvas();
+        });
+      }
 
       canvas.addEventListener('wheel', (e) => {
         e.preventDefault();
@@ -2310,11 +2349,29 @@
       plotterState[param] = parseFloat(value);
       const valEl = document.getElementById(`val-${param}`);
       if (valEl) valEl.textContent = value;
+
+      const hintEl = document.getElementById('param-formula-hint');
+      if (hintEl) {
+        hintEl.innerHTML = buildParamFormulaHint(plotterState);
+        renderMathInContainer(hintEl);
+      }
+
+      const tbodyEl = document.getElementById('math-details-tbody');
+      if (tbodyEl) {
+        tbodyEl.innerHTML = buildMathTableRows(plotterState);
+        renderMathInContainer(tbodyEl);
+      }
+
       drawConicCanvas();
     }
 
     function togglePlotterOption(opt, checked) {
       plotterState[opt] = checked;
+      if (opt === 'showFoci') {
+        plotterState.showDirectrix = checked;
+      } else if (opt === 'showAsymptotes') {
+        plotterState.showTangentBox = checked;
+      }
       drawConicCanvas();
     }
 
@@ -2455,6 +2512,34 @@
       const p = plotterState;
 
       if (p.preset === 'ex1') {
+        // Directrix of Parabola y^2 = 8x (x = -2)
+        if (p.showDirectrix) {
+          ctx.setLineDash([5, 4]);
+          ctx.strokeStyle = 'rgba(16, 185, 129, 0.6)';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(toCanvasX(-2), 0);
+          ctx.lineTo(toCanvasX(-2), h);
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
+
+        // Asymptotes of Hyperbola x^2/9 - y^2/4 = 1 (y = ±(2/3)x)
+        if (p.showAsymptotes) {
+          const leftX = toMathX(0);
+          const rightX = toMathX(w);
+          ctx.setLineDash([5, 4]);
+          ctx.strokeStyle = 'rgba(245, 158, 11, 0.55)';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(toCanvasX(leftX), toCanvasY((2 / 3) * leftX));
+          ctx.lineTo(toCanvasX(rightX), toCanvasY((2 / 3) * rightX));
+          ctx.moveTo(toCanvasX(leftX), toCanvasY(-(2 / 3) * leftX));
+          ctx.lineTo(toCanvasX(rightX), toCanvasY(-(2 / 3) * rightX));
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
+
         // Curve 1: Circle x^2 + y^2 = 9 (R=3)
         ctx.strokeStyle = '#2563eb';
         ctx.lineWidth = 2.5;
@@ -2487,30 +2572,41 @@
           else { ctx.lineTo(px, py); }
         }
         ctx.stroke();
+        drawKeyPoint(0, 0, 'V(0,0)', '#10b981', 'bottom');
         drawKeyPoint(2, 4, 'Parabola (2,4)', '#10b981');
         drawKeyPoint(2, -4, '(2,-4)', '#10b981', 'bottom');
+        if (p.showFoci) {
+          drawKeyPoint(2, 0, 'F(2,0)', '#10b981');
+        }
 
         // Curve 4: Hyperbola x^2/9 - y^2/4 = 1 (a=3, b=2)
         ctx.strokeStyle = '#f59e0b';
         ctx.lineWidth = 2.5;
         ctx.beginPath();
+        let firstH1 = true;
         for (let y = yMinEx1; y <= yMaxEx1; y += 0.05) {
           const x = 3 * Math.sqrt(1 + (y * y) / 4);
           const px = toCanvasX(x);
           const py = toCanvasY(y);
-          if (y === yMinEx1) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+          if (firstH1) { ctx.moveTo(px, py); firstH1 = false; } else ctx.lineTo(px, py);
         }
         ctx.stroke();
         ctx.beginPath();
+        let firstH2 = true;
         for (let y = yMinEx1; y <= yMaxEx1; y += 0.05) {
           const x = -3 * Math.sqrt(1 + (y * y) / 4);
           const px = toCanvasX(x);
           const py = toCanvasY(y);
-          if (y === yMinEx1) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+          if (firstH2) { ctx.moveTo(px, py); firstH2 = false; } else ctx.lineTo(px, py);
         }
         ctx.stroke();
         drawKeyPoint(3, 0, 'Hyperbola V(3,0)', '#f59e0b', 'bottom');
         drawKeyPoint(-3, 0, 'V(-3,0)', '#f59e0b', 'bottom');
+        if (p.showFoci) {
+          const cHyp = Math.sqrt(13);
+          drawKeyPoint(cHyp, 0, 'F2(√13,0)', '#ef4444');
+          drawKeyPoint(-cHyp, 0, 'F1(-√13,0)', '#ef4444');
+        }
 
       } else if (p.preset === 'ex3' || (p.preset === 'custom' && p.customType === 'ellipse')) {
         const a = p.a;

@@ -16,7 +16,7 @@ $$A(t) = \begin{pmatrix} 1 & t \\ t & 1 \end{pmatrix}, \qquad t \in \mathbb{R}$$
 ### Parameter-Dependent Invertibility
 A matrix containing an algebraic parameter $t$ is invertible if and only if its determinant, viewed as a polynomial function in $t$, is non-zero:
 $$\det A(t) \ne 0$$
-The roots of the characteristic equation $\det A(t) = 0$ define the set of singular (non-invertible) parameter values.
+The roots of the determinant equation $\det A(t) = 0$ define the set of singular (non-invertible) parameter values.
 
 ### The $2 \times 2$ Inverse Formula with a Parameter
 When $\det A(t) \ne 0$:
@@ -66,14 +66,18 @@ $$A(t)^{-1} = \begin{pmatrix} \frac{1}{1 - t^2} & \frac{-t}{1 - t^2} \\ \frac{-t
      $$A(1) = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$$
    - **Row/Column Collapse:** The two rows (and columns) are identical: $R_1 = R_2 = (1, 1)$.
    - **Algebraic Effect:** The determinant vanishes ($\det A(1) = 0$). In the inverse formula, the denominator becomes $1 - (1)^2 = 0$, resulting in division by zero.
-   - **Geometric Effect:** The transformation projects all of $\mathbb{R}^2$ onto the 1D diagonal line $y = x$. The entire orthogonal line $x_1 + x_2 = 0$ is collapsed into the origin (null space $\ker A(1) = \operatorname{span}\{(-1, 1)^T\}$). Information is permanently destroyed, making inversion impossible.
+   - **Geometric Effect (Mapping vs. Projection):** For any vector $x = (x_1, x_2)^T$, $A(1)x = (x_1 + x_2, x_1 + x_2)^T$, so $A(1)$ maps all of $\mathbb{R}^2$ onto the 1D diagonal line $y = x$. However, $A(1)$ is **not itself a projection** onto $y = x$, because a true projection $P$ must be idempotent ($P^2 = P$, fixing every point already on the target line), whereas:
+     $$A(1)^2 = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} = \begin{pmatrix} 2 & 2 \\ 2 & 2 \end{pmatrix} = 2A(1)$$
+     Since the orthogonal projection onto $y = x$ is $P_+ = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$, the matrix $A(1) = 2P_+$ equals **twice the orthogonal projection** onto $y = x$ (it projects orthogonally onto $y = x$ and then scales along that line by a factor of $2$). Meanwhile, the entire orthogonal line $x_1 + x_2 = 0$ ($y = -x$) is collapsed to the origin ($\ker A(1) = \operatorname{span}\{(-1, 1)^T\}$), destroying information and making inversion impossible.
 
 2. **Case $t = -1$:**
    - Substituting $t = -1$ into $A(t)$ gives:
      $$A(-1) = \begin{pmatrix} 1 & -1 \\ -1 & 1 \end{pmatrix}$$
    - **Row/Column Collapse:** The rows are exact opposites: $R_2 = -R_1$.
    - **Algebraic Effect:** The determinant is $\det A(-1) = 1 - (-1)^2 = 0$, again causing undefined division by zero in the inverse formula.
-   - **Geometric Effect:** The transformation collapses $\mathbb{R}^2$ onto the line $y = -x$, with non-trivial kernel $\ker A(-1) = \operatorname{span}\{(1, 1)^T\}$.
+   - **Geometric Effect (Mapping vs. Projection):** For any $x = (x_1, x_2)^T$, $A(-1)x = (x_1 - x_2, -(x_1 - x_2))^T$, so $A(-1)$ maps $\mathbb{R}^2$ onto the line $y = -x$. Just as before, $A(-1)$ is not a projection because:
+     $$A(-1)^2 = \begin{pmatrix} 1 & -1 \\ -1 & 1 \end{pmatrix}\begin{pmatrix} 1 & -1 \\ -1 & 1 \end{pmatrix} = \begin{pmatrix} 2 & -2 \\ -2 & 2 \end{pmatrix} = 2A(-1)$$
+     Instead, $A(-1) = 2P_-$ equals **twice the orthogonal projection** $P_- = \frac{1}{2}\begin{pmatrix} 1 & -1 \\ -1 & 1 \end{pmatrix}$ onto the line $y = -x$, while collapsing the orthogonal line $y = x$ into the origin ($\ker A(-1) = \operatorname{span}\{(1, 1)^T\}$).
 
 3. **Asymptotic Behavior as $t \to \pm 1$:**
    $$\lim_{t \to 1} \|A(t)^{-1}\| = \infty, \qquad \lim_{t \to -1} \|A(t)^{-1}\| = \infty$$
