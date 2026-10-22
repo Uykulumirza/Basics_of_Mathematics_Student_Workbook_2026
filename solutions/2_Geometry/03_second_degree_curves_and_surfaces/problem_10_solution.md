@@ -74,31 +74,32 @@ Substituting $z = c$ yields the equation $x^2 - y^2 = c$:
 
 ```
   SURFACE 1: Circular Paraboloid (z = x^2 + y^2)         Level Curves (z = c in xy-plane)
-                     z                                                y
-                     ^                                                ^
-            . - - - -|- - - - .   <-- circle z = c > 0                |    . - - .
-          '    . - - + - - .    '                                     |  '  . - .  '
-         *           |           *                                ----+-(  (  *  )  )----> x
-          *   z=x^2  |  z=y^2   *                                     |  .  ' - '  .
-            *        |        *                                       |    ' - - '
-               '  .  |  .  '                                        c=0 (point), c>0 (circles)
-      ---------------+---------------> y
-                    / (0,0,0) vertex
-                   v
-                  x
+                     z                                                   y
+                     ^                                                   ^
+            . - - - -|- - - - .   <-- circle z = c > 0                   |
+          '    . - - + - - .    '                                    . - * - .   (c > 0)
+         *           |           *                                 '   . + .   '
+          *   z=x^2  |  z=y^2   *                                *   (   |   )   *
+            *        |        *                              ----*---(---*---)---*----> x
+               '  .  |  .  '                                     *   ( (0,0) )   *
+      ---------------+---------------> y                           '   ' + '   '
+                    / (0,0,0) vertex                                 ' - * - '
+                   v                                                     |
+                  x                                           c=0: origin, c>0: concentric circles
 
   SURFACE 2: Hyperbolic Paraboloid (z = x^2 - y^2)       Level Curves (z = c in xy-plane)
-                     z                                                y
-                     ^                                                ^
-         *           |           *  (rises along x: z = x^2)     \    |    /  c < 0
-          *          |          *                                 \ . - - . /
-            ' .      |      . '                                    \       /
-                ' .  |  . '   Saddle point (0,0,0)            ----+-(  X  )+-----> x (c > 0)
-      -------.-------+-------.-------> y                           /       \
-           '    .    |    .    '                                  / ' - - ' \
-         *       '   |   '       *  (drops along y: z = -y^2)    /    |    \  lines y = +-x (c=0)
-                   v
-                  x
+                     z                                                   y
+                     ^                                                   ^
+         *           |           *  (rises along x: z = x^2)        \    |    /
+          *          |          *                                    \ . * . /   (c < 0)
+            ' .      |      . '                                       \  |  /
+                ' .  |  . '   Saddle point (0,0,0)                 \   \ | /   /
+      -------.-------+-------.-------> y                     -------*----X----*-------> x
+           '    .    |    .    '                              (c>0) /   / | \   \  (c>0)
+         *       '   |   '       *  (drops along y: z = -y^2)          /  |  \
+                   v                                                  / ' * ' \  (c < 0)
+                  x                                                  /    |    \
+                                                              lines y = +-x meet at (0,0)
 ```
 
 ---

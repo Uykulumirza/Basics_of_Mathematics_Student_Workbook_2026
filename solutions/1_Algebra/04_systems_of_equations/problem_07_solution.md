@@ -59,7 +59,9 @@ $$\begin{cases}2x-y=3,\\4y=8.\end{cases}$$
   3. Solve the resulting $3\times 3$ upper-triangular system $Ux = c$ from bottom to top via back-substitution.
 - **What Would Be Unnecessary (and What Could Be Reused If More RHS Appeared Later):**
   - **Unnecessary:** Computing the full $3\times 3$ inverse matrix $A^{-1}$ (e.g., via $[A \mid I_3] \to [I_3 \mid A^{-1}]$ or via the adjugate formula $A^{-1} = \frac{1}{\det A}\operatorname{adj}(A)$) and then multiplying $A^{-1}b$ would do **roughly three times as much work**. Specifically, finding $A^{-1}$ solves three systems $Ax = e_1$, $Ax = e_2$, and $Ax = e_3$ for the three columns of the $3\times 3$ identity matrix $I_3$, plus requires upward elimination above the pivots, whereas we only need the solution for **one** right-hand side vector $b$.
-  - **Note on Reusability:** If we ever needed to solve for additional right-hand sides later, we could record the elimination multipliers from Gaussian elimination as an $LU$ factorization ($A = LU$), which reuses the forward-elimination work without paying the higher cost of computing $A^{-1}$.
+  - **Note on Reusability ($LU$ vs. $PA = LU$ Factorization):** If we ever needed to solve for additional right-hand sides later, the forward-elimination multipliers and upper-triangular matrix $U$ from Gaussian elimination could be saved and reused without paying the higher cost of computing $A^{-1}$:
+    - When Gaussian elimination proceeds **without row interchanges**, the multipliers directly yield the factorization $A = LU$ (where $L$ is unit lower-triangular and $U$ is upper-triangular), allowing any new right-hand side $b^{(k)}$ to be solved in $O(n^2)$ operations via forward substitution $Ly = b^{(k)}$ followed by back-substitution $Ux = y$.
+    - When **row interchanges (partial pivoting)** are required during elimination to avoid zero or small pivots, the reusable factorization takes the form $PA = LU$, where $P$ is the permutation matrix recording the row swaps. For each new right-hand side $b^{(k)}$, the same permutation $P$ must first be applied to form $Pb^{(k)}$, after which we solve $Ly = Pb^{(k)}$ and $Ux = y$.
 
 ---
 

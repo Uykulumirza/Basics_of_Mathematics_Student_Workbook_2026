@@ -46,16 +46,18 @@ When there are no cross-terms ($B = 0$) and the center is at the origin ($D = E 
   - **Symmetry:** Complete rotational symmetry about $(0, 0)$ and reflections across both coordinate axes.
 
 ```
-       y
-       ^
-       |     * (0, 3)
-   *   |   *
- *     |     *
--------+-------> x
-(-3,0) | (3,0)
- *     |     *
-   *   |   *
-       |     * (0, -3)
+              y
+              ^
+              |
+              * (0, 3)
+          *   |   *
+        *     |     *
+  ------*-----+-----*------> x
+     (-3,0)   |(0,0) (3,0)
+        *     |     *
+          *   |   *
+              * (0, -3)
+              |
 ```
 
 ---

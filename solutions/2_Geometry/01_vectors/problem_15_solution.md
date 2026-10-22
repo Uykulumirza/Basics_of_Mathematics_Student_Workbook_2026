@@ -67,6 +67,12 @@ For the exact same reason, $a$ and $b$ make the exact same angle with $c$ ($\cos
 ## 4. Verification and Consistency Checks
 
 ### Cauchy-Schwarz Inequality Check
-For every pair $(u, v)$, the Cauchy-Schwarz inequality requires $\left|\frac{u \cdot v}{\|u\|\,\|v\|}\right| \le 1$, with equality $= 1$ if and only if one vector is a positive scalar multiple of the other:
-- For $(a, b)$: $\cos\theta_{ab} = 1 \le 1$, and indeed $b = 2a$ with $2 > 0$.
-- For $(a, c)$ and $(b, c)$: $\frac{5}{\sqrt{78}} = \sqrt{\frac{25}{78}} < 1$, confirming a strictly positive acute angle between the non-collinear directions of $a$ (or $b$) and $c$.
+For every pair of non-zero vectors $(u, v)$, the Cauchy–Schwarz inequality states that
+$$\left|\frac{u \cdot v}{\|u\|\,\|v\|}\right| \le 1, \qquad \text{or equivalently} \qquad -1 \le \frac{u \cdot v}{\|u\|\,\|v\|} \le 1.$$
+- **Equality with the absolute value:** $\left|\frac{u \cdot v}{\|u\|\,\|v\|}\right| = 1$ holds if and only if $u$ and $v$ are collinear (one is a **non-zero scalar multiple** of the other, $v = \lambda u$ with $\lambda \neq 0$, including both positive and negative multiples).
+- **Signed equality without the absolute value:**
+  - $\frac{u \cdot v}{\|u\|\,\|v\|} = +1$ holds if and only if $v = \lambda u$ for a **positive** scalar multiple $\lambda > 0$ (same direction, $\theta = 0$),
+  - $\frac{u \cdot v}{\|u\|\,\|v\|} = -1$ holds if and only if $v = \lambda u$ for a **negative** scalar multiple $\lambda < 0$ (opposite direction, $\theta = \pi$).
+- **Application to our pairs:**
+  - For $(a, b)$: Since $b = 2a$ with positive scalar $\lambda = 2 > 0$, we obtain $\cos\theta_{ab} = \frac{a \cdot b}{\|a\|\,\|b\|} = +1$ (and $|\cos\theta_{ab}| = 1$).
+  - For $(a, c)$ and $(b, c)$: $\frac{5}{\sqrt{78}} = \sqrt{\frac{25}{78}} < 1$, confirming a strictly positive acute angle between the non-collinear directions of $a$ (or $b$) and $c$.
