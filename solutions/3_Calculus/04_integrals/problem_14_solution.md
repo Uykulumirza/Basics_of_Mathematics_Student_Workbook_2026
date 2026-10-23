@@ -31,19 +31,20 @@ Let us examine the two branches of $f(x)$:
 2. **Second branch on $[1, 3]$:** $f(x) = 2$ is a horizontal line at height $y = 2$ from $(1, 2)$ to $(3, 2)$.
 3. **Continuity at the transition point $x = 1$:** As $x \to 1^-$, $x + 1 \to 2$, which equals $f(1) = 2$. Thus, the two segments meet continuously at the corner point $(1, 2)$.
 
-```
-        y
-      3 +
-        |
-      2 +                 (1,2) *-----------+-----------+ (3,2)
-        |                     / |           |           |
-        |                   /   |           |           |
-      1 +           (0,1) *     |  Triangle | Rectangle |
-        |               /   (+) |   Area=2  |  Area=4   |
-        |             /         |           |           |
-    ----+-----+-----*-----------+-----------+-----------+---> x
-       -2    -1    0            1           2           3
-           (-1,0)
+```text
+                     y
+                     ^
+                   3 +
+                     |
+                   2 +     (1,2) *-----------+-----------+ (3,2)
+                     |         / :           :           :
+                     |       /   :           :           :
+            (0,1)  1 *     /     :  Triangle : Rectangle :
+                  /  |   /   (+) :   Area=2  :  Area=4   :
+                /    | /         :           :           :
+    -----+-----*-----+-----------+-----------+-----------+---> x
+        -2    -1    0|           1           2           3
+            (-1,0)   |
 ```
 
 ### Step 2: Deciding Where to Split the Integral

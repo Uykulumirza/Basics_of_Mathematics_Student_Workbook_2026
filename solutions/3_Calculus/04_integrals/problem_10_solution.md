@@ -58,12 +58,18 @@ We check whether $I = \frac{14}{3}$ falls within the predicted interval $[2, 10]
 $$2 = \frac{6}{3} \le \frac{14}{3} \le \frac{30}{3} = 10.$$
 Indeed, $4.67 \in [2, 10]$ (and is slightly below the midpoint $\frac{2+10}{2} = 6$ because $y = x^2 + 1$ is convex/concave upward on $[0, 2]$). The exact result is fully consistent with our a priori bound.
 
-### Step 4: Explaining What Types of Computational Errors Such a Check Detects
-Performing a quick $m(b-a) \le \int_a^b f(x)\,dx \le M(b-a)$ bound check before or after integration immediately catches several common classes of errors:
-1. **Sign errors or reversed limits of integration:** Computing $F(0) - F(2) = -\frac{14}{3} < 0$ is immediately flagged as impossible because the lower bound is $+2 > 0$.
-2. **Omitting a term in the integrand:** If a student integrates $x^2$ to $\frac{x^3}{3}$ and forgets to integrate the constant $+1$ (or treats $\int 1\,dx$ as $0$ like a derivative), they would obtain $\left[\frac{x^3}{3}\right]_0^2 = \frac{8}{3} \approx 2.67$ (or if they omitted $x^2$, they would get $2$). Even worse, differentiating instead of integrating would give $[2x]_0^2 = 4$, or evaluating $2x$ at $0$ gives $0 \notin [2, 10]$.
-3. **Power-rule exponent or denominator errors:** For instance, writing $\int x^2\,dx = 3x^3$ instead of $\frac{x^3}{3}$ would produce $[3x^3 + x]_0^2 = 24 + 2 = 26 > 10$, violating the upper bound of $10$.
-4. **Arithmetic mistakes at the endpoints:** Any gross miscalculation that pushes the final number below $2$ or above $10$ is immediately exposed.
+### Step 4: Explaining What Types of Computational Errors Such a Check Detects (and Its Limitations)
+Performing a quick $m(b-a) \le \int_a^b f(x)\,dx \le M(b-a)$ bound check provides a **necessary consistency condition**, though it is **not sufficient** by itself to prove that a calculation is error-free:
+
+1. **Errors that ARE detected (values falling outside $[2, 10]$):**
+   - **Sign errors or reversed limits of integration:** Computing $F(0) - F(2) = -\frac{14}{3} \approx -4.67 < 2$ is immediately flagged as impossible because the integrand is strictly positive ($f(x) \ge 1$) and the lower bound is $+2$.
+   - **Major exponent, coefficient, or arithmetic errors:** For example, mistakenly writing $\int x^2\,dx = 3x^3$ instead of $\frac{x^3}{3}$ yields $[3x^3 + x]_0^2 = 26 > 10$, violating the upper bound; similarly, evaluating only at the lower endpoint ($0 < 2$) or making a large arithmetic slip that pushes the result outside $[2, 10]$ is immediately caught.
+
+2. **Errors that are NOT detected by the bound $[2, 10]$ alone (requiring independent checks):**
+   - Because the interval $[2, 10]$ is relatively wide, certain flawed calculations still land inside $[2, 10]$. For instance:
+     - **Omitting the constant term $+1$** (or treating $\int 1\,dx$ as $0$) gives $\int_0^2 x^2\,dx = \left[\frac{x^3}{3}\right]_0^2 = \frac{8}{3} \approx 2.67$, which still satisfies $2 \le \frac{8}{3} \le 10$.
+     - **Differentiating instead of integrating** gives $[2x]_0^2 = 4$, which also lies inside $[2, 10]$.
+   - Detecting these subtler errors requires **verifying the antiderivative by differentiation** ($F'(x) = \frac{d}{dx}\left(\frac{x^3}{3} + x\right) = x^2 + 1 = f(x)$) or using a tighter numerical check such as the midpoint/trapezoidal rule.
 
 ---
 

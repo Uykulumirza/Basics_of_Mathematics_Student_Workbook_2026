@@ -47,17 +47,19 @@ The function $f(x) = x$ crosses the $x$-axis at $x = 0$, splitting the interval 
 - On $[-1, 0]$, we have $f(x) = x \le 0$ (the graph lies **below** the $x$-axis).
 - On $[0, 2]$, we have $f(x) = x \ge 0$ (the graph lies **above** the $x$-axis).
 
-```
-      y
-    2 +                   /| (2, 2)
-      |                 /  |
-    1 +               /    |   A_above = 2
-      |             /  (+) |
-  ----+-----+-----/--------+---> x
-     -1     |   0/    1    2
-      | (-) |  /
-   -1 +-----+
-     (-1,-1)   A_below = 1/2
+```text
+                  y
+                  ^
+                2 +             * (2, 2)
+                  |           / :
+                1 +         *   :   A_above = 2
+                  |       / (+) :
+   ---------+-----+-----*-------+-----+---> x
+           -1     |   0(0,0)  1     2
+            : (-) |   /
+         -1 * - - + /
+         (-1,-1)  |
+      A_below = 1/2
 ```
 
 1. **Geometric area of the part below the $x$-axis on $[-1, 0]$ ($A_{\text{below}}$):**

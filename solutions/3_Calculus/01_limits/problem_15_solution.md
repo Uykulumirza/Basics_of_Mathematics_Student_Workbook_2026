@@ -93,21 +93,20 @@ Let us evaluate $f(x) = \frac{x^2-4x+3}{x-3}$ for arguments approaching $3$ from
 The graph of $f(x) = \frac{x^2-4x+3}{x-3}$ is the straight line $y = x - 1$ with an **open circle (removable discontinuity / hole)** at $(3, 2)$ because $x = 3$ is not in the domain of $f$:
 
 ```text
-            y
-            ^
-          4 +                                   *
-            |                                *
-          3 +                             *   y = f(x) = (x^2 - 4x + 3)/(x - 3)
-            |                          *
-          2 + - - - - - - - - - - - o         <-- Open circle (hole) at (3, 2);
-            |                    *  :             limit is 2, f(3) is undefined
-          1 +                 *     :
-            |              *        :
-   ---------+-----+-----*-----------+-----+-----> x
-           -1     0  *  1     2     3     4
-            |     *
-         -1 +  *
-            |
+                   y
+                   ^
+                 3 +                       * (4, 3)
+                   |                    *
+                 2 + - - - - - - - - o (3, 2)  <-- Open circle (hole) at (3, 2);
+                   |              *  :             limit is 2, f(3) is undefined
+                 1 +           * (2,1)
+                   |        *        :
+   ----------+-----+-----*-----------+-----+-----> x
+            -1    0|   (1,0)   2     3     4
+                   |  *
+                -1 * (0, -1)
+                *  |
+       (-1,-2) *   |
 ```
 
 ---

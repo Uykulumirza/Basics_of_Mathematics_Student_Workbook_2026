@@ -85,17 +85,17 @@ means that:
 ```
     y ^
   9.0 +                                  * (3, 9)
-      |                                 /|
-      |                                / |
-  6.0 +                               /  |  Area above y = 3
-      |                              /   |  on [sqrt(3), 3]
-      |                             /    |
-  3.0 +----------------------------*-----+  <-- y = f_avg = 3
-      |  Area below y = 3       .  |     |      Rectangle height = 3
-      |  on [0, sqrt(3)]    .      |     |      Rectangle area = 3 x 3 = 9
-  0.0 *------------------*---------+-----+---> x
-      0            c = sqrt(3)          3.0
-                     (~1.732)
+      |                                 .|
+      |                                . |
+  6.0 +                              .   |  Area above y = 3
+      |                            .     |  on [sqrt(3), 3]
+      |                          .       |
+  3.0 +-----------------------*----------+  <-- y = f_avg = 3, intersection (sqrt(3), 3)
+      |  Area below y = 3  .  :          |      Rectangle height = 3
+      |  on [0, sqrt(3)].     :          |      Rectangle area = 3 x 3 = 9
+  0.0 *-----------------------+----------+---> x
+      0 (0,0)            c = sqrt(3)    3.0
+                          (~1.732)
 ```
 
 ---

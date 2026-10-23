@@ -129,8 +129,13 @@ At $x^* = \frac{35 - 5\sqrt{13}}{3} \approx 5.657\text{ cm}$:
 - **Width**: $w = 30 - 2x^* = \frac{20 + 10\sqrt{13}}{3} \approx 18.69\text{ cm}$.
 - **Length**: $l = 40 - 2x^* = \frac{50 + 10\sqrt{13}}{3} \approx 28.69\text{ cm}$.
 - **Maximum Volume**:
+  Substituting $x^* = \frac{35 - 5\sqrt{13}}{3}$ into $V(x^*) = x^*(30 - 2x^*)(40 - 2x^*)$:
   $$
-  V_{\max} = V\left(\frac{35 - 5\sqrt{13}}{3}\right) = \frac{2000\left(26\sqrt{13} - 35\right)}{27}\text{ cm}^3 \approx 3032.30\text{ cm}^3.
+  \begin{aligned}
+  V_{\max} &= \left(\frac{35 - 5\sqrt{13}}{3}\right)\left(\frac{20 + 10\sqrt{13}}{3}\right)\left(\frac{50 + 10\sqrt{13}}{3}\right) \\
+  &= \frac{500\left(7 - \sqrt{13}\right)\left(2 + \sqrt{13}\right)\left(5 + \sqrt{13}\right)}{27} = \frac{500\left(7 - \sqrt{13}\right)\left(23 + 7\sqrt{13}\right)}{27} \\
+  &= \frac{500\left(70 + 26\sqrt{13}\right)}{27} = \frac{35000 + 13000\sqrt{13}}{27}\text{ cm}^3 \approx 3032.302466\text{ cm}^3.
+  \end{aligned}
   $$
 
 ---
