@@ -408,9 +408,17 @@
     }
 
     .markdown-body {
-      max-width: 860px;
+      max-width: 960px;
       margin: 0 auto;
       color: var(--text-primary);
+      transition: max-width 0.2s ease;
+    }
+
+    .markdown-body.wide-layout,
+    .markdown-body:has(.pres-shell),
+    .markdown-body:has(.sec-bilingual-row),
+    .markdown-body:has(.algebra-grid-layout) {
+      max-width: 1460px;
     }
 
     .markdown-body h1 {
@@ -1764,6 +1772,10 @@
       border-radius: var(--radius-md);
       animation: bubbleFadeIn 0.18s ease-out;
       height: 100%;
+      min-width: 0;
+      max-width: 100%;
+      overflow-x: auto;
+      box-sizing: border-box;
     }
 
     [data-theme="dark"] .pres-tr-panel {
@@ -1773,8 +1785,13 @@
     }
 
     /* Side-by-Side Split Layout (Left: English, Right: Turkish) */
+    .pres-shell {
+      max-width: 1180px;
+      width: 100%;
+    }
+
     .pres-shell.tr-split-active {
-      max-width: 1380px;
+      max-width: 1440px;
     }
 
     .pres-bilingual-split {
@@ -1782,10 +1799,11 @@
       grid-template-columns: 1fr;
       gap: 24px;
       align-items: start;
+      width: 100%;
     }
 
     .pres-bilingual-split.active {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
     }
 
     .pres-bilingual-split.active .pres-en-pane .pres-grid-2 {
@@ -1795,6 +1813,9 @@
 
     .pres-en-pane {
       min-width: 0;
+      max-width: 100%;
+      overflow-x: auto;
+      box-sizing: border-box;
     }
 
     .pres-bilingual-split.active .pres-en-pane {
@@ -1802,34 +1823,52 @@
       border-right: 2px dashed var(--border-color);
     }
 
+    .pres-bilingual-split.active .pres-en-pane table {
+      font-size: 0.82rem;
+      width: 100%;
+    }
+
+    .pres-bilingual-split.active .pres-en-pane th,
+    .pres-bilingual-split.active .pres-en-pane td {
+      padding: 7px 9px;
+      word-break: break-word;
+    }
+
     /* Side-by-Side Section Split for Regular Solutions Explorer Turkish Button */
     .sec-bilingual-row {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 20px;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 22px;
       align-items: start;
       margin: 12px 0 20px 0;
+      width: 100%;
     }
 
     .sec-bilingual-row .sec-en-col {
       min-width: 0;
-      padding-right: 16px;
+      max-width: 100%;
+      overflow-x: auto;
+      box-sizing: border-box;
+      padding-right: 18px;
       border-right: 2px dashed var(--border-color);
+    }
+
+    .sec-bilingual-row .sec-en-col table {
+      font-size: 0.82rem;
+      width: 100%;
+    }
+
+    .sec-bilingual-row .sec-en-col th,
+    .sec-bilingual-row .sec-en-col td {
+      padding: 8px 10px;
     }
 
     .sec-bilingual-row .tr-translation-bubble {
       margin: 0;
       min-width: 0;
-    }
-
-    @media (max-width: 960px) {
-      .sec-bilingual-row {
-        grid-template-columns: 1fr;
-      }
-      .sec-bilingual-row .sec-en-col {
-        padding-right: 0;
-        border-right: none;
-      }
+      max-width: 100%;
+      overflow-x: auto;
+      box-sizing: border-box;
     }
 
     .pres-pane-badge {
@@ -1847,13 +1886,17 @@
       color: var(--accent);
     }
 
-    @media (max-width: 1024px) {
-      .pres-bilingual-split.active {
+    @media (max-width: 1120px) {
+      .pres-bilingual-split.active,
+      .sec-bilingual-row {
         grid-template-columns: 1fr;
       }
-      .pres-bilingual-split.active .pres-en-pane {
+      .pres-bilingual-split.active .pres-en-pane,
+      .sec-bilingual-row .sec-en-col {
         padding-right: 0;
         border-right: none;
+        padding-bottom: 16px;
+        border-bottom: 2px dashed var(--border-color);
       }
     }
 
@@ -5767,6 +5810,7 @@ To **compute** an unknown inverse $A^{-1}$, we use Gauss–Jordan elimination or
 
     function renderPresentationDeck() {
       const contentEl = document.getElementById('article-content');
+      contentEl.classList.add('wide-layout');
       const breadcrumbs = document.getElementById('breadcrumbs');
       breadcrumbs.innerHTML = `<span>Classroom Presentation</span> / <span class="active">Determinants (Q2) & Matrix Inversion (Q1)</span>`;
 
