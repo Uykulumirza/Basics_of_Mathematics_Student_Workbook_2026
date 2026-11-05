@@ -1817,6 +1817,9 @@
       </div>
 
       <div class="header-right">
+        <button class="btn btn-primary" onclick="switchTab('presentation')" title="Open Classroom Presentation Slide Deck (Determinants Q2 & Matrix Inversion Q1)">
+          🎓 Presentation
+        </button>
         <button class="btn" onclick="toggleGlossaryDrawer(true)" title="Open Turkish Math Glossary & Formula Cheat-Sheets" style="border-color:rgba(225,29,72,0.35); color:#e11d48;">
           📘 TR Sözlük & Formüller
         </button>
@@ -2490,12 +2493,8 @@
 
       // Update Tab Bar visibility
       const problemSelector = document.getElementById('problem-selector');
-      if (topic.isOverview) {
-        document.querySelector('.view-bar').style.display = 'none';
-      } else {
-        document.querySelector('.view-bar').style.display = 'flex';
-        problemSelector.style.display = currentTab === 'solutions' ? 'flex' : 'none';
-      }
+      document.querySelector('.view-bar').style.display = 'flex';
+      problemSelector.style.display = (!topic.isOverview && currentTab === 'solutions') ? 'flex' : 'none';
 
       const contentEl = document.getElementById('article-content');
       contentEl.innerHTML = `
