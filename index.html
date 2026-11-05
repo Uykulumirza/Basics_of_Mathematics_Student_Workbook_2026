@@ -1900,6 +1900,130 @@
       }
     }
 
+    /* --- Presenter Coach, Teleprompter & Pronunciation Guide Styles --- */
+    .pres-coach-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1.5px solid rgba(16, 185, 129, 0.5);
+      background: rgba(16, 185, 129, 0.1);
+      color: #047857;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    [data-theme="dark"] .pres-coach-btn {
+      color: #34d399;
+      border-color: rgba(52, 211, 153, 0.45);
+      background: rgba(16, 185, 129, 0.14);
+    }
+
+    .pres-coach-btn:hover,
+    .pres-coach-btn.active {
+      background: #10b981;
+      color: #ffffff;
+      border-color: #10b981;
+      box-shadow: 0 3px 10px rgba(16, 185, 129, 0.25);
+    }
+
+    .pres-coach-box {
+      margin-top: 18px;
+      padding: 18px 22px;
+      border-radius: var(--radius-lg);
+      border: 1.5px solid rgba(16, 185, 129, 0.38);
+      border-left: 5px solid #10b981;
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.07) 0%, rgba(16, 185, 129, 0.02) 100%);
+      animation: bubbleFadeIn 0.18s ease-out;
+    }
+
+    [data-theme="dark"] .pres-coach-box {
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.12) 0%, rgba(16, 185, 129, 0.03) 100%);
+      border-color: rgba(52, 211, 153, 0.35);
+      border-left-color: #34d399;
+    }
+
+    .pres-cue-card {
+      padding: 12px 15px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background: var(--bg-primary);
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .pres-cue-card:hover {
+      border-color: #10b981;
+    }
+
+    .pres-cue-card.active-cue {
+      border: 2px solid #10b981;
+      background: rgba(16, 185, 129, 0.08);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .pres-cue-en {
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.55;
+      margin-bottom: 6px;
+    }
+
+    .pres-cue-tr {
+      font-size: 0.86rem;
+      color: #e11d48;
+      line-height: 1.45;
+    }
+
+    [data-theme="dark"] .pres-cue-tr {
+      color: #fb7185;
+    }
+
+    .pres-cue-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 2px 9px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+
+    .pron-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: var(--bg-primary);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .pron-pill:hover {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .qa-rescue-card {
+      padding: 11px 14px;
+      border-radius: var(--radius-md);
+      border: 1px dashed var(--border-color);
+      background: var(--bg-primary);
+      margin-bottom: 8px;
+      font-size: 0.88rem;
+    }
+
     .pres-footer-nav {
       display: flex;
       align-items: center;
@@ -5081,11 +5205,579 @@
       deck: 'both',      // 'det2' | 'inv1' | 'both'
       slideIndex: 0,
       showTurkish: false,
+      showCoach: true,   // Word-for-word teleprompter, pronunciation & Q&A helper
+      activeCue: 0,
       fullscreen: false,
-      sarrusHighlight: 'p1', // 'p1' | 'p2' | 'p3' | 'n1' | 'n2' | 'n3' | 'all-pos' | 'all-neg'
+      sarrusHighlight: 'p1', // 'p1' | 'p2' | 'p3' | 'n1' | 'n2' | 'n3'
       abCell: '11',          // '11' | '12' | '21' | '22'
-      baCell: '11'           // '11' | '12' | '21' | '22'
+      baCell: '11',          // '11' | '12' | '21' | '22'
+      timerSec: 0,
+      timerRunning: false
     };
+
+    let presTimerInterval = null;
+
+    function togglePresTimer() {
+      presState.timerRunning = !presState.timerRunning;
+      if (presState.timerRunning) {
+        if (presTimerInterval) clearInterval(presTimerInterval);
+        presTimerInterval = setInterval(() => {
+          presState.timerSec++;
+          const el = document.getElementById('pres-timer-val');
+          if (el) {
+            const m = String(Math.floor(presState.timerSec / 60)).padStart(2, '0');
+            const s = String(presState.timerSec % 60).padStart(2, '0');
+            el.textContent = `${m}:${s}`;
+          }
+        }, 1000);
+      } else {
+        if (presTimerInterval) clearInterval(presTimerInterval);
+      }
+      renderPresentationDeck();
+    }
+
+    function resetPresTimer() {
+      presState.timerRunning = false;
+      presState.timerSec = 0;
+      if (presTimerInterval) clearInterval(presTimerInterval);
+      renderPresentationDeck();
+    }
+
+    function speakPresText(text) {
+      if (!('speechSynthesis' in window)) {
+        alert('Your browser does not support Web Speech synthesis.');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'en-US';
+      utter.rate = 0.9; // Calm, clear classroom speaking speed
+      window.speechSynthesis.speak(utter);
+    }
+
+    function stopPresSpeech() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    function togglePresCoach() {
+      presState.showCoach = !presState.showCoach;
+      renderPresentationDeck();
+    }
+
+    function setPresActiveCue(idx) {
+      presState.activeCue = idx;
+      renderPresentationDeck();
+    }
+
+    const PRESENTATION_COACH_DATA = {
+      'D-1 · Problem': {
+        timeEst: '~35 sec',
+        cues: [
+          {
+            action: '👋 Smile at the class & point to Matrix A',
+            en: 'Hello everyone. In this first problem, we want to find the determinant of this three-by-three matrix A.',
+            tr: 'Herkese merhaba. Bu ilk soruda, verilen bu 3×3 boyutundaki A matrisinin determinantını bulmak istiyoruz.'
+          },
+          {
+            action: '👉 Point to Task 1 (Sarrus’ rule)',
+            en: 'First, we will calculate the determinant step by step using Sarrus’ rule, which is a fast visual method for three-by-three matrices.',
+            tr: 'İlk olarak determinantı, 3×3 matrisler için hızlı bir görsel yöntem olan Sarrus kuralını kullanarak adım adım hesaplayacağız.'
+          },
+          {
+            action: '👉 Point to Task 2 (Laplace expansion)',
+            en: 'Second, to be one hundred percent sure our answer is correct, we will verify it using Laplace cofactor expansion along the first column.',
+            tr: 'İkinci olarak, cevabımızın yüzde yüz doğru olduğundan emin olmak için sonucu birinci sütun boyunca Laplace kofaktör açılımı ile doğrulayacağız.'
+          }
+        ],
+        pronunciations: [
+          { term: 'Determinant', phonetic: 'dee-TER-mi-nunt', say: 'determinant' },
+          { term: '3×3 matrix', phonetic: 'three by three MAY-triks', say: 'three by three matrix' },
+          { term: "Sarrus' rule", phonetic: 'sah-ROOS rool', say: 'Sarrus rule' },
+          { term: 'Laplace cofactor expansion', phonetic: 'lah-PLAHS KOH-fak-ter ik-SPAN-shun', say: 'Laplace cofactor expansion' }
+        ],
+        qa: {
+          qEn: 'Why do we use two different methods for the same matrix?',
+          aEn: 'Sarrus’ rule is very fast for 3 by 3 matrices, while Laplace expansion gives an independent check so we can catch any arithmetic or sign mistakes.',
+          aTr: 'Sarrus kuralı 3×3 matrisler için çok hızlıdır; Laplace açılımı ise işlem veya işaret hatalarını yakalamamız için bağımsız bir sağlama yöntemi sunar.'
+        }
+      },
+      'D-2 · Theory': {
+        timeEst: '~45 sec',
+        cues: [
+          {
+            action: '👉 Point to the Left Card (Method 1: Sarrus’ Rule)',
+            en: 'Before calculating, let’s quickly review the two formulas. In Sarrus’ rule, we copy the first two columns to the right side of the matrix.',
+            tr: 'Hesaplamaya geçmeden önce iki formülü kısaca hatırlayalım. Sarrus kuralında matrisin ilk iki sütununu sağ tarafa kopyalarız.'
+          },
+          {
+            action: '👉 Trace downward (↘) then upward (↗)',
+            en: 'Then, we add the three main diagonal products going down-right, and subtract the three antidiagonal products going up-right: det A equals P minus N.',
+            tr: 'Ardından sağ-aşağı inen üç ana köşegen çarpımını toplar (P) ve sağ-yukarı çıkan üç ters köşegen çarpımını çıkarırız: det A = P − N.'
+          },
+          {
+            action: '👉 Point to the Right Card (Method 2: Laplace Expansion)',
+            en: 'In Laplace expansion, we expand along any row or column using two-by-two minors and alternating plus-minus signs. Picking a column with a zero saves a lot of work!',
+            tr: 'Laplace açılımında ise 2×2 minörler ve artı-eksi işaret tablosuyla herhangi bir satır veya sütun boyunca açılım yaparız. Sıfır içeren bir sütun seçmek işi çok kolaylaştırır!'
+          }
+        ],
+        pronunciations: [
+          { term: 'Antidiagonal', phonetic: 'AN-tee-dy-AG-uh-nul', say: 'antidiagonal' },
+          { term: 'Minor M_ij', phonetic: 'MY-ner M eye jay', say: 'minor M i j' },
+          { term: 'Cofactor C_ij', phonetic: 'KOH-fak-ter C eye jay', say: 'cofactor C i j' },
+          { term: 'Checkerboard sign pattern', phonetic: 'CHEK-er-bord syne PAT-ern', say: 'checkerboard sign pattern' }
+        ],
+        qa: {
+          qEn: 'Does Sarrus’ rule work for a 4×4 matrix?',
+          aEn: 'No! Sarrus’ rule only works for 3 by 3 matrices. For 4 by 4 or larger matrices, we must use Laplace expansion or row reduction.',
+          aTr: 'Hayır! Sarrus kuralı yalnızca 3×3 matrislerde geçerlidir. 4×4 veya daha büyük matrislerde Laplace açılımı veya satır indirgeme kullanmalıyız.'
+        }
+      },
+      'D-3 · Sarrus Grid': {
+        timeEst: '~45 sec',
+        cues: [
+          {
+            action: '👉 Point to Dashed Columns 4 & 5 in the table',
+            en: 'Here is our extended three-by-five Sarrus table. Notice that Column 4 is a copy of Column 1, and Column 5 is a copy of Column 2.',
+            tr: 'İşte genişletilmiş 3×5 Sarrus tablomuz. 4. sütunun 1. sütunun kopyası, 5. sütunun ise 2. sütunun kopyası olduğuna dikkat edin.'
+          },
+          {
+            action: '🖱️ Click the green "+Diag 1", "+Diag 2", "+Diag 3" buttons one by one!',
+            en: 'As I click the green buttons, you can see the three positive main diagonals: 15, 16, and 0.',
+            tr: 'Yeşil butonlara sırayla tıkladığımda üç pozitif ana köşegeni görebilirsiniz: 15, 16 ve 0.'
+          },
+          {
+            action: '🖱️ Click the red "−Antidiag 1", "−Antidiag 2", "−Antidiag 3" buttons!',
+            en: 'And when I click the red buttons, you can see the three negative antidiagonals going from bottom-left to top-right: minus 6, plus 4, and 0.',
+            tr: 'Kırmızı butonlara tıkladığımda ise sol alttan sağ üste çıkan üç negatif ters köşegeni görüyorsunuz: -6, +4 ve 0.'
+          }
+        ],
+        pronunciations: [
+          { term: '3×5 array', phonetic: 'three by five uh-RAY', say: 'three by five array' },
+          { term: 'Appended columns', phonetic: 'uh-PEN-did KOL-umz', say: 'appended columns' },
+          { term: 'Main diagonal', phonetic: 'mayn dy-AG-uh-nul', say: 'main diagonal' }
+        ],
+        qa: {
+          qEn: 'Why do we only copy the first two columns instead of all three?',
+          aEn: 'Because each diagonal needs three entries, so appending the first two columns is just enough to complete the second and third three-element diagonals.',
+          aTr: 'Çünkü her köşegen 3 elemandan oluşur; ilk iki sütunu eklemek ikinci ve üçüncü köşegenleri tamamlamak için tam olarak yeterlidir.'
+        }
+      },
+      'D-4 · Positive Sum P': {
+        timeEst: '~35 sec',
+        cues: [
+          {
+            action: '👉 Point to the Left Card (Three Main Diagonals)',
+            en: 'Now let’s write down the three positive main diagonal products explicitly.',
+            tr: 'Şimdi üç pozitif ana köşegen çarpımını açıkça yazalım.'
+          },
+          {
+            action: '👉 Read d₁ = 15, d₂ = 16, d₃ = 0',
+            en: 'The first diagonal is 1 times 3 times 5, which is 15. The second is 2 times 4 times 2, which is 16. The third contains a zero, so minus 1 times 0 times 1 is 0.',
+            tr: 'İlk köşegen 1 çarpı 3 çarpı 5 eşittir 15. İkincisi 2 çarpı 4 çarpı 2 eşittir 16. Üçüncüsü sıfır içerdiği için (-1)·0·1 = 0 olur.'
+          },
+          {
+            action: '👉 Point to P = 31 on the Right Card',
+            en: 'Adding these three numbers together gives our positive sum: P equals 15 plus 16 plus 0, which equals 31.',
+            tr: 'Bu üç sayıyı topladığımızda pozitif toplamımızı elde ederiz: P = 15 + 16 + 0 = 31.'
+          }
+        ],
+        pronunciations: [
+          { term: 'd₁ = 15', phonetic: 'dee-one equals fif-TEEN', say: 'd one equals fifteen' },
+          { term: 'Vanishes', phonetic: 'VAN-ish-iz (becomes zero)', say: 'vanishes' },
+          { term: 'P = 31', phonetic: 'pee equals THUR-tee-wun', say: 'P equals thirty one' }
+        ],
+        qa: {
+          qEn: 'Why is the third diagonal zero?',
+          aEn: 'Because the entry a_21 in row 2, column 1 is zero, and any product containing zero is zero.',
+          aTr: 'Çünkü 2. satır 1. sütundaki a_21 elemanı sıfırdır ve sıfır içeren her çarpımın sonucu sıfırdır.'
+        }
+      },
+      'D-5 · Negative Sum N': {
+        timeEst: '~40 sec',
+        cues: [
+          {
+            action: '👉 Point to the Left Card (Three Antidiagonals)',
+            en: 'Next, we calculate the three antidiagonals going from bottom-left to top-right.',
+            tr: 'Şimdi sol alttan sağ üste doğru çıkan üç ters köşegeni hesaplayalım.'
+          },
+          {
+            action: '👉 Point to N = -6 + 4 + 0 = -2',
+            en: 'We get 2 times 3 times minus 1 equals minus 6; then 1 times 4 times 1 equals 4; and 5 times 0 times 2 equals 0. Their sum N is minus 6 plus 4, which is minus 2.',
+            tr: '2·3·(-1) = -6; 1·4·1 = 4; ve 5·0·2 = 0 buluruz. Bunların toplamı N = -6 + 4 = -2 olur.'
+          },
+          {
+            action: '👉 Point to the Green Card (det A = 31 - (-2) = 33)',
+            en: 'Finally, we subtract N from P: 31 minus negative 2 becomes 31 plus 2, giving a determinant of 33. Be careful with the double minus sign here!',
+            tr: 'Son olarak P’den N’yi çıkarırız: 31 eksi (-2), 31 artı 2 olur ve determinant 33 bulunur. Buradaki çift eksi işaretine özellikle dikkat etmeliyiz!'
+          }
+        ],
+        pronunciations: [
+          { term: 'N = −2', phonetic: 'en equals MY-nus too', say: 'N equals minus two' },
+          { term: '31 − (−2) = 33', phonetic: 'thur-tee-wun MY-nus NEG-uh-tiv too equals thur-tee-THREE', say: 'thirty one minus negative two equals thirty three' }
+        ],
+        qa: {
+          qEn: 'What is the most common mistake students make on this step?',
+          aEn: 'Forgetting the minus sign in the formula P minus N and writing 31 minus 2 equals 29 instead of 31 minus negative 2 equals 33.',
+          aTr: 'Formüldeki P − N eksisini unutarak 31 − (-2) = 33 yerine yanlışlıkla 31 − 2 = 29 yazmaktır.'
+        }
+      },
+      'D-6 · Laplace Check': {
+        timeEst: '~45 sec',
+        cues: [
+          {
+            action: '👉 Point to Column 1 (1, 0, 2) in the determinant',
+            en: 'Now let’s verify our answer of 33 using Laplace cofactor expansion. We choose Column 1 because its middle entry is zero!',
+            tr: 'Şimdi bulduğumuz 33 cevabını Laplace kofaktör açılımıyla doğrulayalım. Ortadaki elemanı sıfır olduğu için 1. sütunu seçiyoruz!'
+          },
+          {
+            action: '👉 Point to C₁₁ = 11 and C₃₁ = 11 on the Left Card',
+            en: 'For the first entry 1, its two-by-two minor is 3 times 5 minus 4 times 1, which is 11. The second term is zero. For the third entry 2, its minor is 8 minus negative 3, which is also 11.',
+            tr: 'İlk eleman 1 için 2×2 minör 3·5 − 4·1 = 11’dir. İkinci terim sıfırdır. Üçüncü eleman 2 için minör 8 − (-3) = 11’dir.'
+          },
+          {
+            action: '👉 Point to the Green Card (1(11) + 0 + 2(11) = 33)',
+            en: 'Combining them gives 1 times 11, plus 0, plus 2 times 11, which is 11 plus 22 equals 33. Both methods match completely!',
+            tr: 'Terimleri birleştirirsek 1·11 + 0 + 2·11 = 11 + 22 = 33 elde ederiz. Her iki yöntem birbiriyle tamamen örtüşmektedir!'
+          }
+        ],
+        pronunciations: [
+          { term: 'Cofactor C₁₁', phonetic: 'KOH-fak-ter see wun wun', say: 'cofactor C one one' },
+          { term: '2×2 submatrix', phonetic: 'too by too SUB-may-triks', say: 'two by two submatrix' },
+          { term: '11 + 22 = 33', phonetic: 'ih-LEV-un plus TWEN-tee-too equals THUR-tee-three', say: 'eleven plus twenty two equals thirty three' }
+        ],
+        qa: {
+          qEn: 'What if we expanded along Row 2 instead of Column 1?',
+          aEn: 'Row 2 also contains the zero entry a_21 = 0, so expanding along Row 2 would also give 33 with only two 2×2 determinants!',
+          aTr: '2. satır da a_21 = 0 elemanını içerir; dolayısıyla 2. satır boyunca açılım yapsaydık yine sadece iki adet 2×2 determinant hesaplayarak 33 bulurduk!'
+        }
+      },
+      'D-7 · Summary': {
+        timeEst: '~30 sec',
+        cues: [
+          {
+            action: '👉 Point to the Summary Comparison Table',
+            en: 'To wrap up Part 1: both Sarrus’ rule and Laplace cofactor expansion confirm that the determinant of A is 33.',
+            tr: '1. Bölümü özetlersek: hem Sarrus kuralı hem de Laplace kofaktör açılımı A’nın determinantının 33 olduğunu doğrulamaktadır.'
+          },
+          {
+            action: '👉 Point to the Algebraic & Geometric Consequence cards',
+            en: 'Because 33 is not zero, matrix A is invertible, and geometrically it scales three-dimensional volume by a factor of 33 while preserving orientation.',
+            tr: '33 sıfırdan farklı olduğu için A matrisi tersinirdir (invertible) ve geometrik olarak yönelimi koruyarak 3 boyutlu hacmi 33 katına çıkarır.'
+          }
+        ],
+        pronunciations: [
+          { term: 'Non-singular / Invertible', phonetic: 'non-SIN-gyuh-ler / in-VUR-tuh-bul', say: 'non singular and invertible' },
+          { term: 'Linearly independent', phonetic: 'LIN-ee-er-lee in-dih-PEN-dunt', say: 'linearly independent' },
+          { term: 'Preserves orientation', phonetic: 'pri-ZURVZ or-ee-en-TAY-shun', say: 'preserves orientation' }
+        ],
+        qa: {
+          qEn: 'What does it mean that det(A) = 33 is positive?',
+          aEn: 'A positive determinant means the transformation preserves orientation, whereas a negative determinant would flip space like a mirror reflection.',
+          aTr: 'Determinantın pozitif olması dönüşümün uzaydaki yönelimi koruduğu anlamına gelir; negatif olsaydı ayna yansıması gibi yönü ters çevirirdi.'
+        }
+      },
+      'I-1 · Problem': {
+        timeEst: '~35 sec',
+        cues: [
+          {
+            action: '👉 Point to the two 2×2 matrices A and B',
+            en: 'Now let’s move to Part 2, which is Question 1 from the Matrix Inversion section. We are given two two-by-two matrices, A and B.',
+            tr: 'Şimdi 2. Bölüme, yani Ters Matris (Matrix Inversion) bölümünün 1. sorusuna geçelim. Bize 2×2 boyutunda iki matris, A ve B verilmiş.'
+          },
+          {
+            action: '👉 Point to Task 1 ("without using an inversion formula")',
+            en: 'Our goal is to check whether B is the inverse of A without using any inversion formula.',
+            tr: 'Amacımız, herhangi bir ters alma formülü kullanmadan B matrisinin A’nın tersi olup olmadığını kontrol etmektir.'
+          },
+          {
+            action: '👉 Point to Tasks 2 & 3 (Compute AB and BA)',
+            en: 'Instead of a formula, we will multiply A times B and B times A, and show that both products equal the identity matrix.',
+            tr: 'Formül kullanmak yerine A çarpı B ve B çarpı A çarpımlarını hesaplayacağız ve her ikisinin de birim matrise eşit olduğunu göstereceğiz.'
+          }
+        ],
+        pronunciations: [
+          { term: 'Matrix Inversion', phonetic: 'MAY-triks in-VUR-zhun', say: 'matrix inversion' },
+          { term: 'B = A⁻¹', phonetic: 'BEE equals AY IN-vurs', say: 'B equals A inverse' },
+          { term: 'Matrix products AB and BA', phonetic: 'MAY-triks PROD-ukts AY-BEE and BEE-AY', say: 'matrix products A B and B A' }
+        ],
+        qa: {
+          qEn: 'Why does the question say "without using an inversion formula"?',
+          aEn: 'Because it wants to test our understanding of the fundamental definition of an inverse matrix: A times B equals I, and B times A equals I.',
+          aTr: 'Çünkü soru, ters matrisin temel tanımını (AB = I ve BA = I) anlayıp anlamadığımızı ölçmek istemektedir.'
+        }
+      },
+      'I-2 · Theory': {
+        timeEst: '~40 sec',
+        cues: [
+          {
+            action: '👉 Point to the Left Card (Formal Definition)',
+            en: 'What is the formal definition of a matrix inverse? A square matrix B is the inverse of A if and only if A times B equals the identity matrix I, AND B times A also equals I.',
+            tr: 'Ters matrisin resmi tanımı nedir? Bir B kare matrisinin A’nın tersi olması için gerek ve yeter şart, A çarpı B’nin birim matris I’ya VE B çarpı A’nın da I’ya eşit olmasıdır.'
+          },
+          {
+            action: '👉 Point to I₂ = [1 0; 0 1]',
+            en: 'For two-by-two matrices, the identity matrix I-two has ones on the main diagonal and zeros everywhere else.',
+            tr: '2×2 matrisler için I₂ birim matrisi, ana köşegeninde 1’ler ve diğer yerlerde 0’lar bulunan matristir.'
+          },
+          {
+            action: '👉 Point to the Right Card (Uniqueness Proof)',
+            en: 'Also, the inverse of a matrix is unique. So once we show A B equals I and B A equals I, B is guaranteed to be the one and only inverse of A.',
+            tr: 'Ayrıca bir matrisin tersi tektir. Dolayısıyla AB = I ve BA = I olduğunu gösterdiğimiz anda, B’nin A’nın tek tersi olduğu kesinleşir.'
+          }
+        ],
+        pronunciations: [
+          { term: 'Identity matrix I₂', phonetic: 'eye-DEN-ti-tee MAY-triks EYE-two', say: 'identity matrix I two' },
+          { term: 'If and only if (iff)', phonetic: 'if and OHN-lee if', say: 'if and only if' },
+          { term: 'Uniqueness', phonetic: 'yoo-NEEK-nis', say: 'uniqueness' }
+        ],
+        qa: {
+          qEn: 'Why is the identity matrix I₂ like the number 1 in arithmetic?',
+          aEn: 'Because multiplying any matrix M by the identity matrix leaves M unchanged: M times I equals M, just like 5 times 1 equals 5.',
+          aTr: 'Çünkü herhangi bir M matrisini birim matrisle çarpmak M’yi değiştirmez (M·I = M); tıpkı sayılarda 5·1 = 5 olması gibi.'
+        }
+      },
+      'I-3 · Product AB': {
+        timeEst: '~45 sec',
+        cues: [
+          {
+            action: '🖱️ Click "Entry (1,1) = 1" and "Entry (1,2) = 0" buttons!',
+            en: 'Step 1 is to compute the product A times B using row-by-column multiplication. For the first row: 2 times 1 plus 1 times minus 1 gives 1; and 2 times minus 1 plus 1 times 2 gives 0.',
+            tr: '1. Adım, satır çarpı sütun kuralıyla A çarpı B çarpımını hesaplamaktır. İlk satır için: 2(1) + 1(-1) = 1 ve 2(-1) + 1(2) = 0 bulunur.'
+          },
+          {
+            action: '🖱️ Click "Entry (2,1) = 0" and "Entry (2,2) = 1" buttons!',
+            en: 'For the second row: 1 times 1 plus 1 times minus 1 gives 0; and 1 times minus 1 plus 1 times 2 gives 1.',
+            tr: 'İkinci satır için: 1(1) + 1(-1) = 0 ve 1(-1) + 1(2) = 1 bulunur.'
+          },
+          {
+            action: '👉 Point to the output matrix AB = I₂',
+            en: 'Putting all four entries together, A times B equals the two-by-two identity matrix I-two!',
+            tr: 'Dört elemanı bir araya getirdiğimizde, A çarpı B çarpımı 2×2 birim matris I₂’ye eşit olur!'
+          }
+        ],
+        pronunciations: [
+          { term: 'Row-by-column rule', phonetic: 'roh by KOL-um rool', say: 'row by column rule' },
+          { term: 'Entry (1,1)', phonetic: 'EN-tree wun wun', say: 'entry one one' },
+          { term: 'Dot product', phonetic: 'DOT PROD-ukt', say: 'dot product' }
+        ],
+        qa: {
+          qEn: 'How do we find entry (i, j) when multiplying two matrices?',
+          aEn: 'We take the dot product of Row i from the left matrix with Column j from the right matrix.',
+          aTr: 'Soldaki matrisin i. satırı ile sağdaki matrisin j. sütununun skaler (nokta) çarpımını alırız.'
+        }
+      },
+      'I-4 · Product BA': {
+        timeEst: '~40 sec',
+        cues: [
+          {
+            action: '👉 Point to BA (reversed order: B on left, A on right)',
+            en: 'In Step 2, we reverse the order and compute B times A, because matrix multiplication is not commutative in general.',
+            tr: '2. Adımda sırayı ters çevirip B çarpı A’yı hesaplıyoruz; çünkü matris çarpımının genel olarak değişme özelliği yoktur.'
+          },
+          {
+            action: '🖱️ Click through the 4 Entry buttons (1,1), (1,2), (2,1), (2,2)',
+            en: 'Multiplying the rows of B by the columns of A gives: 2 minus 1 equals 1; 1 minus 1 equals 0; minus 2 plus 2 equals 0; and minus 1 plus 2 equals 1.',
+            tr: 'B’nin satırlarını A’nın sütunlarıyla çarptığımızda: 2−1 = 1, 1−1 = 0, -2+2 = 0 ve -1+2 = 1 elde ederiz.'
+          },
+          {
+            action: '👉 Point to BA = I₂',
+            en: 'Once again, we obtain the exact identity matrix I-two!',
+            tr: 'Bir kez daha tam olarak I₂ birim matrisini elde etmiş oluruz!'
+          }
+        ],
+        pronunciations: [
+          { term: 'Non-commutative', phonetic: 'non kuh-MYOO-tuh-tiv', say: 'non commutative' },
+          { term: 'Reverse the factor order', phonetic: 'ri-VURS thuh FAK-ter OR-der', say: 'reverse the factor order' }
+        ],
+        qa: {
+          qEn: 'For square matrices, if AB = I, is BA automatically equal to I?',
+          aEn: 'Yes, for finite-dimensional square matrices that is a known theorem, but the formal definition states both AB = I and BA = I, so we verify both explicitly.',
+          aTr: 'Evet, sonlu boyutlu kare matrislerde bu bir teoremdir; ancak resmi tanım hem AB = I hem BA = I şartını içerdiği için ikisini de açıkça gösteriyoruz.'
+        }
+      },
+      'I-5 · Definition Link': {
+        timeEst: '~35 sec',
+        cues: [
+          {
+            action: '👉 Point to the Left Card (AB = I₂ and BA = I₂)',
+            en: 'Now in Step 3, we connect our calculations directly to the formal definition.',
+            tr: 'Şimdi 3. Adımda, yaptığımız hesaplamaları doğrudan resmi tanımla birleştiriyoruz.'
+          },
+          {
+            action: '👉 Point to the Right Card (AB = I₂ and BA = I₂ ⟺ B = A⁻¹)',
+            en: 'Since A B equals I-two, B is a right inverse of A. Since B A equals I-two, B is also a left inverse of A.',
+            tr: 'AB = I₂ olduğu için B, A’nın sağ tersidir. BA = I₂ olduğu için B aynı zamanda A’nın sol tersidir.'
+          },
+          {
+            action: '👉 Point to B = A⁻¹',
+            en: 'Therefore, directly by the definition of matrix invertibility—and without using any formula—we conclude that B is indeed A-inverse!',
+            tr: 'Dolayısıyla hiçbir formül kullanmadan, doğrudan tersinirlik tanımı gereği B matrisinin A’nın tersi olduğu sonucuna varırız!'
+          }
+        ],
+        pronunciations: [
+          { term: 'Right inverse & Left inverse', phonetic: 'ryte IN-vurs and left IN-vurs', say: 'right inverse and left inverse' },
+          { term: 'Invertibility', phonetic: 'in-vur-tuh-BIL-i-tee', say: 'invertibility' }
+        ],
+        qa: {
+          qEn: 'Does this also mean A is the inverse of B?',
+          aEn: 'Yes! Because the relationship is completely symmetric, A equals B-inverse as well.',
+          aTr: 'Evet! Bu bağıntı tamamen simetrik olduğu için aynı zamanda A matrisi de B’nin tersidir (A = B⁻¹).'
+        }
+      },
+      'I-6 · Cross-Checks': {
+        timeEst: '~40 sec',
+        cues: [
+          {
+            action: '👉 Point to Check 1 (Determinant Multiplicativity)',
+            en: 'As an extra check, let’s look at the determinants. Both det A and det B equal 2 minus 1, which is 1. Since 1 times 1 equals 1, this matches det I-two.',
+            tr: 'Ek bir kontrol olarak determinantlara bakalım. Hem det A hem det B, 2 − 1 = 1’dir. 1 çarpı 1 = 1 olduğu için bu sonuç det(I₂) = 1 ile tam uyumludur.'
+          },
+          {
+            action: '👉 Point to Check 2 (2×2 Shortcut Formula)',
+            en: 'We can also cross-check with the standard two-by-two inverse formula: swap the main diagonal entries 2 and 1, negate the off-diagonal ones, and divide by det A equals 1.',
+            tr: 'Standart 2×2 ters alma formülüyle de kontrol edebiliriz: ana köşegendeki 2 ve 1’in yerini değiştirip diğer köşegenin işaretini değiştirir ve det A = 1’e böleriz.'
+          },
+          {
+            action: '👉 Point to the final matrix = B',
+            en: 'That formula gives the exact same matrix B, confirming our work.',
+            tr: 'Bu formül de birebir aynı B matrisini vererek çözümümüzü doğrular.'
+          }
+        ],
+        pronunciations: [
+          { term: "Binet's theorem", phonetic: 'bee-NAYZ THEE-uh-rum', say: 'Binets theorem' },
+          { term: 'Adjugate formula', phonetic: 'AJ-uh-git FOR-myuh-luh', say: 'adjugate formula' },
+          { term: 'Off-diagonal entries', phonetic: 'awf dy-AG-uh-nul EN-treez', say: 'off diagonal entries' }
+        ],
+        qa: {
+          qEn: 'What would happen if det(A) were 0?',
+          aEn: 'If det(A) were 0, division by det(A) would be impossible, meaning the matrix is singular and has no inverse.',
+          aTr: 'Eğer det(A) = 0 olsaydı sıfıra bölme yapılamazdı; yani matris tekil (singular) olurdu ve tersi bulunmazdı.'
+        }
+      },
+      'I-7 · Summary': {
+        timeEst: '~30 sec',
+        cues: [
+          {
+            action: '👉 Point to the Summary Table',
+            en: 'To summarize Question 1: we computed A B equals I-two and B A equals I-two, which proves B equals A-inverse directly from the definition.',
+            tr: '1. Soruyu özetlemek gerekirse: AB = I₂ ve BA = I₂ çarpımlarını hesaplayarak doğrudan tanımdan B = A⁻¹ olduğunu kanıtladık.'
+          },
+          {
+            action: '👏 Smile & thank the class!',
+            en: 'So remember: to find an unknown inverse we use a formula, but to verify a given inverse we simply multiply! Thank you for listening—I am happy to take any questions.',
+            tr: 'Özetle: bilinmeyen bir tersi bulmak için formül kullanırız, ancak verilen bir tersi doğrulamak için sadece çarparız! Dinlediğiniz için teşekkür ederim, sorularınız varsa yanıtlamaktan memnuniyet duyarım.'
+          }
+        ],
+        pronunciations: [
+          { term: 'Gauss–Jordan elimination', phonetic: 'GOWS JOR-dun ih-lim-i-NAY-shun', say: 'Gauss Jordan elimination' },
+          { term: 'Thank you for listening!', phonetic: 'thank yoo for LIS-ning', say: 'Thank you for listening! I am happy to take any questions.' }
+        ],
+        qa: {
+          qEn: 'Which method is faster when B is already given: Gauss–Jordan or multiplying AB?',
+          aEn: 'Multiplying AB is much faster and less error-prone because it only requires four simple dot products!',
+          aTr: 'B hazır verildiğinde AB çarpımını yapmak çok daha hızlı ve hatasızdır; çünkü sadece dört basit skaler çarpım gerektirir!'
+        }
+      }
+    };
+
+    function buildPresenterCoachHtml(slide) {
+      const data = PRESENTATION_COACH_DATA[slide.stepLabel];
+      if (!data || !presState.showCoach) return '';
+
+      const activeCueIdx = Math.min(presState.activeCue, data.cues.length - 1);
+      const fullSpeechText = data.cues.map(c => c.en).join(' ');
+
+      const cuesHtml = data.cues.map((c, idx) => {
+        const safeEn = c.en.replace(/'/g, "\\'");
+        return `
+          <div class="pres-cue-card ${idx === activeCueIdx ? 'active-cue' : ''}" onclick="setPresActiveCue(${idx})">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:4px;">
+              <span class="pres-cue-action">${idx + 1}. ${c.action}</span>
+              <button class="filter-chip" style="padding:2px 8px; font-size:0.72rem;" onclick="event.stopPropagation(); speakPresText('${safeEn}')" title="Listen to this sentence in English">
+                🔊 Listen
+              </button>
+            </div>
+            <div class="pres-cue-en">🗣️ "${c.en}"</div>
+            <div class="pres-cue-tr">🇹🇷 <i>Anlamı:</i> ${c.tr}</div>
+          </div>
+        `;
+      }).join('');
+
+      const pronHtml = data.pronunciations.map(p => {
+        const safeSay = p.say.replace(/'/g, "\\'");
+        return `
+          <button class="pron-pill" onclick="speakPresText('${safeSay}')" title="Click to hear pronunciation">
+            <span>🔊 <b>${p.term}</b></span>
+            <span style="color:var(--accent); font-family:'Fira Code',monospace; font-size:0.75rem;">[${p.phonetic}]</span>
+          </button>
+        `;
+      }).join('');
+
+      const safeFullSpeech = fullSpeechText.replace(/'/g, "\\'");
+      const safeQaAnswer = data.qa.aEn.replace(/'/g, "\\'");
+
+      return `
+        <div class="pres-coach-box">
+          <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; margin-bottom:12px; padding-bottom:10px; border-bottom:1px dashed rgba(16,185,129,0.35);">
+            <div>
+              <div style="font-size:0.86rem; font-weight:800; color:#047857;">
+                🎤 PRESENTER TELEPROMPTER & SPEECH COACH (Sınıfta Ne Söylemeliyim?)
+              </div>
+              <div style="font-size:0.76rem; color:var(--text-secondary);">
+                Read the numbered sentences aloud in order. Click any card to mark your place, or click <b>🔊 Listen</b> to practice pronunciation!
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+              <span class="status-badge" style="background:rgba(16,185,129,0.15); color:#047857; font-weight:700;">⏳ Pace: ${data.timeEst}</span>
+              <button class="btn" style="padding:4px 10px; font-size:0.76rem; border-color:#10b981; color:#047857;" onclick="speakPresText('${safeFullSpeech}')">
+                🔊 Read Whole Slide Aloud
+              </button>
+              <button class="btn" style="padding:4px 8px; font-size:0.76rem;" onclick="stopPresSpeech()">
+                ⏹ Stop
+              </button>
+            </div>
+          </div>
+
+          <!-- Step-by-Step Spoken Cues -->
+          <div style="margin-bottom:14px;">
+            ${cuesHtml}
+          </div>
+
+          <!-- Pronunciation Helper Bar -->
+          <div style="margin-bottom:14px;">
+            <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:6px;">
+              🗣️ Tricky Words & Math Pronunciation Guide (Click any word to hear it):
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              ${pronHtml}
+            </div>
+          </div>
+
+          <!-- Likely Question & Ready Answer -->
+          <div class="qa-rescue-card">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:4px;">
+              <span style="font-size:0.76rem; font-weight:800; color:var(--accent); text-transform:uppercase;">
+                ❓ Likely Teacher / Class Question & Your Ready Answer:
+              </span>
+              <button class="filter-chip" style="padding:2px 8px; font-size:0.72rem;" onclick="speakPresText('${safeQaAnswer}')">
+                🔊 Listen to Answer
+              </button>
+            </div>
+            <div style="font-weight:700; color:var(--text-primary); margin-bottom:4px;">
+              Q: "${data.qa.qEn}"
+            </div>
+            <div style="color:var(--success); font-weight:600; margin-bottom:3px;">
+              💬 Say This: "${data.qa.aEn}"
+            </div>
+            <div style="font-size:0.82rem; color:var(--text-secondary);">
+              🇹🇷 <i>Türkçesi:</i> ${data.qa.aTr}
+            </div>
+          </div>
+        </div>
+      `;
+    }
 
     const PRESENTATION_SLIDES = [
       // ==================== PART 1: DETERMINANTS — QUESTION 2 ====================
@@ -5621,6 +6313,8 @@ To **compute** an unknown inverse $A^{-1}$, we use Gauss–Jordan elimination or
     function goToPresSlide(idx) {
       const slides = getFilteredPresSlides();
       presState.slideIndex = Math.max(0, Math.min(slides.length - 1, idx));
+      presState.activeCue = 0;
+      stopPresSpeech();
       renderPresentationDeck();
     }
 
@@ -5837,6 +6531,9 @@ To **compute** an unknown inverse $A^{-1}$, we use Gauss–Jordan elimination or
       }
 
       const bodyHtml = renderMarkdownWithKaTeX(slide.bodyMd);
+      const coachHtml = buildPresenterCoachHtml(slide);
+      const timerFormatted = `${String(Math.floor(presState.timerSec / 60)).padStart(2, '0')}:${String(presState.timerSec % 60).padStart(2, '0')}`;
+
       const trHtml = presState.showTurkish ? `
         <div class="pres-tr-panel">
           <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:10px; padding-bottom:8px; border-bottom:1px dashed rgba(225,29,72,0.25);">
@@ -5846,6 +6543,7 @@ To **compute** an unknown inverse $A^{-1}$, we use Gauss–Jordan elimination or
           <div class="tr-bubble-body">
             ${renderMarkdownWithKaTeX(slide.trMd)}
           </div>
+          ${coachHtml}
         </div>
       ` : '';
 
@@ -5866,6 +6564,14 @@ To **compute** an unknown inverse $A^{-1}$, we use Gauss–Jordan elimination or
             </div>
 
             <div class="pres-actions">
+              <div style="display:inline-flex; align-items:center; gap:4px; background:var(--bg-primary); border:1px solid var(--border-color); padding:4px 10px; border-radius:999px; font-size:0.78rem; font-weight:700;">
+                <span>⏱️ <span id="pres-timer-val">${timerFormatted}</span></span>
+                <button class="filter-chip" style="padding:2px 7px; font-size:0.7rem;" onclick="togglePresTimer()">${presState.timerRunning ? '⏸ Pause' : '▶ Practice Timer'}</button>
+                <button class="filter-chip" style="padding:2px 6px; font-size:0.7rem;" onclick="resetPresTimer()" title="Reset Timer">↺</button>
+              </div>
+              <button class="pres-coach-btn ${presState.showCoach ? 'active' : ''}" onclick="togglePresCoach()" title="Show/Hide Word-for-Word English Speech Script & Pronunciation Coach">
+                🎤 ${presState.showCoach ? 'Speech Coach: ON ✓' : 'Speech Coach (Ne Söylemeliyim?)'}
+              </button>
               <button class="pres-tr-btn ${presState.showTurkish ? 'active' : ''}" onclick="togglePresTurkish()" title="Click to toggle side-by-side Turkish explanation panel">
                 🇹🇷 ${presState.showTurkish ? 'Yan Yana Türkçe Açık ✓ (Kapat)' : 'Yan Yana Türkçe Açıklama (EN | TR)'}
               </button>
@@ -5889,9 +6595,14 @@ To **compute** an unknown inverse $A^{-1}$, we use Gauss–Jordan elimination or
                   <h1 class="pres-slide-title">${slide.title}</h1>
                   <div class="pres-slide-subtitle">${slide.subtitle}</div>
                 </div>
-                <button class="pres-tr-btn ${presState.showTurkish ? 'active' : ''}" onclick="togglePresTurkish()" style="flex-shrink:0;">
-                  🇹🇷 ${presState.showTurkish ? 'EN | TR Yan Yana Açık ✓' : 'TR Yan Yana Aç'}
-                </button>
+                <div style="display:flex; align-items:center; gap:8px; flex-shrink:0; flex-wrap:wrap;">
+                  <button class="pres-coach-btn ${presState.showCoach ? 'active' : ''}" onclick="togglePresCoach()">
+                    🎤 ${presState.showCoach ? 'Konuşma Metni Açık ✓' : 'Konuşma Metni'}
+                  </button>
+                  <button class="pres-tr-btn ${presState.showTurkish ? 'active' : ''}" onclick="togglePresTurkish()">
+                    🇹🇷 ${presState.showTurkish ? 'EN | TR Yan Yana Açık ✓' : 'TR Yan Yana Aç'}
+                  </button>
+                </div>
               </div>
 
               <div class="pres-slide-body">
@@ -5900,6 +6611,7 @@ To **compute** an unknown inverse $A^{-1}$, we use Gauss–Jordan elimination or
                     ${presState.showTurkish ? '<div class="pres-pane-badge">🇬🇧 LEFT PANEL: ENGLISH PRESENTATION SLIDE</div>' : ''}
                     ${bodyHtml}
                     ${widgetHtml}
+                    ${!presState.showTurkish ? coachHtml : ''}
                   </div>
                   ${trHtml}
                 </div>
